@@ -1,7 +1,7 @@
 from discord.embeds import Embed
 import discord
 from discord.ext import commands
-from helpers import token, config, reddit, embeds
+from helpers import config, reddit, embeds
 import os
 
 bot = commands.Bot(command_prefix='>')
@@ -10,6 +10,7 @@ file_load = open(config_path, 'r').read()
 
 session_config = config.Configuration(file_load)
 
+
 @bot.command()
 async def ping(ctx):
     await ctx.send('Im rumning from env tokem')
@@ -17,9 +18,10 @@ async def ping(ctx):
 
 @bot.command()
 async def meme(ctx):
-    reddit_post = reddit.RedditPost(session_config.get_reddit_client_id(), session_config.get_client_secret(), session_config.get_user_agent(), "dogelore")
-    await ctx.send(embed=embeds.EmbedMessage(discord.colour.Color.red(), reddit_post.get_post_title(), reddit_post.get_random_meme(), reddit_post.get_post_subreddit(), reddit_post.get_post_author(), reddit_post.get_poster_avatar()).getEmbedMessage())
+    reddit_post = reddit.RedditPost(session_config.reddit_client_id,
+                                    session_config.reddit_client_secret, session_config.reddit_user_agent, "dogelore")
+    embed_message = embeds.EmbedMessage(discord.colour.Color.blue(), reddit_post.post_title, reddit_post.post_image,
+                                        reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar).getEmbedMessage()
+    await ctx.send(embed=embed_message)
 
-
-session_token = token.get_token()
-bot.run(session_token)
+bot.run(session_config.discord_token)
