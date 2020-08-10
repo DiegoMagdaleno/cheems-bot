@@ -20,7 +20,7 @@ async def ping(ctx):
 
 
 @bot.command()
-async def meme(ctx):
+async def dogememe(ctx):
     reddit_post = reddit.RedditPost(session_config.reddit_client_id,
                                     session_config.reddit_client_secret, session_config.reddit_user_agent, session_config.reddit_user, session_config.reddit_password, "dogelore")
     embed_message = embeds.RedditEmbedMessage(discord.Color.orange(), reddit_post.post_title, reddit_post.post_image,
@@ -80,6 +80,18 @@ async def lewdneko(ctx):
     if ctx.channel.is_nsfw():
         await ctx.send(nekoimg.get_neko_nsfw())
     else:
-        await ctx.send("not infromt of the childmren.")
+        await ctx.send("Not infromt of the childmren.")
+
+@bot.command()
+async def meme(ctx, *, subreddit=None):
+    if subreddit == None:
+        await ctx.send("Gimve me a sumbreddit")
+    else:
+            reddit_post = reddit.RedditPost(session_config.reddit_client_id,
+                                    session_config.reddit_client_secret, session_config.reddit_user_agent, session_config.reddit_user, session_config.reddit_password,
+                                    subreddit)
+            embed_message = embeds.RedditEmbedMessage(discord.Color.orange(), reddit_post.post_title, reddit_post.post_image,
+                                              reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar, reddit_post.post_link).getEmbedMessage()
+            await ctx.send(embed=embed_message)
 
 bot.run(session_config.discord_token)
