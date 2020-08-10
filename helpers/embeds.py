@@ -16,7 +16,6 @@ class EmbedMessage():
         ourEmbed.title = self.title
         print(self.image)
         ourEmbed.set_image(url=self.image)
-        ourEmbed.set_footer(text="**Posted on: **" + self.subreddit + "\n**Meme by: **" +  self.author, icon_url=self.author_icon)
+        ourEmbed.set_footer(text="Posted on: " + self.subreddit + "\nMeme by: " +  self.author, icon_url=self.author_icon)
         ourEmbed.color = self.colour
-        ourEmbed.description = "Posted at: " + self.posted_time + "UTC"
         return ourEmbed
