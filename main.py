@@ -72,6 +72,7 @@ async def femboy(ctx):
                                     "crossdressing")
     await ctx.send(reddit_post.post_image)
 
+
 @bot.command()
 async def lewdfemboy(ctx):
     if ctx.channel.is_nsfw():
@@ -82,9 +83,11 @@ async def lewdfemboy(ctx):
     else:
         await ctx.send('Not infromt of the childmren.')
 
+
 @bot.command()
 async def neko(ctx):
     await ctx.send(nekoimg.get_neko_sfw())
+
 
 @bot.command()
 async def lewdneko(ctx):
@@ -93,53 +96,59 @@ async def lewdneko(ctx):
     else:
         await ctx.send("Not infromt of the childmren.")
 
+
 @bot.command()
 async def meme(ctx, *, subreddit=None):
-    if ctx.channel.is_nsfw():
-        if subreddit == None:
-            await ctx.send("Gimve me a sumbreddit")
-        else:
-                reddit_post = reddit.RedditPost(session_config.reddit_client_id,
+    if subreddit == None:
+        await ctx.send("Gimve me a sumbreddit")
+    else:
+        reddit_post = reddit.RedditPost(session_config.reddit_client_id,
                                         session_config.reddit_client_secret, session_config.reddit_user_agent, session_config.reddit_user, session_config.reddit_password,
                                         subreddit)
-                embed_message = embeds.RedditEmbedMessage(discord.Color.orange(), reddit_post.post_title, reddit_post.post_image,
-                                                reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar, reddit_post.post_link).getEmbedMessage()
-                await ctx.send(embed=embed_message)
-    else:
-        await ctx.send('Not infromt of the childmren.')
+        if reddit_post.is_nsfw:
+            await ctx.send("Not infromt of the childdrem")
+            return
+        embed_message = embeds.RedditEmbedMessage(discord.Color.orange(), reddit_post.post_title, reddit_post.post_image,
+                                                  reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar, reddit_post.post_link).getEmbedMessage()
+        await ctx.send(embed=embed_message)
+
 
 @bot.command()
 async def owofy(ctx, *, text=None):
     if text == None:
-         await ctx.send("Gimve me a memsage")
+        await ctx.send("Gimve me a memsage")
     else:
         await ctx.send(nekoimg.owo_text(text))
 
+
 @bot.command()
-async def cuddle(ctx, member:discord.User=None):
+async def cuddle(ctx, member: discord.User = None):
     if member == None:
-         await ctx.send("Gimve me a user")
+        await ctx.send("Gimve me a user")
     else:
         await ctx.send(nekoimg.get_neko_cuddle())
 
+
 @bot.command()
-async def headpat(ctx, member:discord.User=None):
+async def headpat(ctx, member: discord.User = None):
     if member == None:
-         await ctx.send("Gimve me a user")
+        await ctx.send("Gimve me a user")
     else:
         await ctx.send(nekoimg.get_neko_pat())
 
+
 @bot.command()
-async def kiss(ctx, member:discord.User=None):
+async def kiss(ctx, member: discord.User = None):
     if member == None:
-         await ctx.send("Gimve me a user")
+        await ctx.send("Gimve me a user")
     else:
         await ctx.send(nekoimg.get_neko_kiss())
 
+
 @bot.command()
-async def slap(ctx, member:discord.User=None):
+async def slap(ctx, member: discord.User = None):
     if member == None:
-         await ctx.send("Gimve me a user")
+        await ctx.send("Gimve me a user")
     else:
         await ctx.send(nekoimg.get_neko_slap())
 
