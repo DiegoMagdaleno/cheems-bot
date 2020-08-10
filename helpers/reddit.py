@@ -2,18 +2,20 @@ import praw
 
 
 class RedditSession():
-    def __init__(self, client_id, client_secret, user_agent):
+    def __init__(self, client_id, client_secret, user_agent, user, password):
         self.client_id = str(client_id)
         self.client_secret = str(client_secret)
         self.user_agent = str(user_agent)
+        self.user = str(user)
+        self.password = str(password)
         self.current_log = praw.Reddit(
-            client_id=self.client_id, client_secret=self.client_secret, user_agent=self.user_agent)
+            client_id=self.client_id, client_secret=self.client_secret, user_agent=self.user_agent, user=self.user, password=self.password)
 
 
 class RedditPost(RedditSession):
-    def __init__(self, client_id, client_secret, user_agent, subreddit) -> None:
+    def __init__(self, client_id, client_secret, user_agent, user, password, subreddit) -> None:
         self.subreddit = subreddit
-        super().__init__(client_id, client_secret, user_agent)
+        super().__init__(client_id, client_secret, user_agent, user, password)
         self.subreddit = subreddit
         self.target = self.current_log.subreddit(self.subreddit).random()
         self.post_image = self.target.url
