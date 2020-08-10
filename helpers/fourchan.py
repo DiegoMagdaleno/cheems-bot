@@ -16,5 +16,7 @@ class FourChanImage(FourChan):
 
         for f in thread.file_objects():
             self.image_url = f.file_url
-
+        
+        self.topic = str(thread.topic.subject)
+        self.url = str(thread.url)
 

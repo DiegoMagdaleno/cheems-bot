@@ -22,7 +22,7 @@ async def ping(ctx):
 async def meme(ctx):
     reddit_post = reddit.RedditPost(session_config.reddit_client_id,
                                     session_config.reddit_client_secret, session_config.reddit_user_agent, "dogelore")
-    embed_message = embeds.EmbedMessage(discord.colour.Color.blue(), reddit_post.post_title, reddit_post.post_image,
+    embed_message = embeds.RedditEmbedMessage(discord.Color.orange(), reddit_post.post_title, reddit_post.post_image,
                                         reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar, reddit_post.post_link).getEmbedMessage()
     await ctx.send(embed=embed_message)
 
@@ -37,8 +37,10 @@ async def ask(ctx, *, question=None):
 
 @bot.command()
 async def tech(ctx):
-    four_chan_session = fourchan.FourChanImage('g')
-    await ctx.send(four_chan_session.image_url)
+    target_board = 'g'
+    fourchan_post = fourchan.FourChanImage(target_board)
+    embed_message = embeds.FourChanEmbed(discord.Color.green(), fourchan_post.topic, fourchan_post.image_url, target_board, fourchan_post.url).getEmbedMessage()
+    await ctx.send(embed=embed_message)
 
 
 bot.run(session_config.discord_token)
