@@ -1,7 +1,7 @@
 from discord.embeds import Embed
 import discord
 from discord.ext import commands
-from helpers import config, reddit, embeds, randomBall, fourchan
+from helpers import config, reddit, embeds, randomBall, fourchan, nekoimg
 import os
 import basc_py4chan
 import random
@@ -72,6 +72,6 @@ async def femboy(ctx):
 
 @bot.command()
 async def neko(ctx):
-    await ctx.send(nekos.img('neko'))
+    await ctx.send(nekoimg.get_neko_sfw())
 
 bot.run(session_config.discord_token)
