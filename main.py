@@ -42,5 +42,10 @@ async def tech(ctx):
     embed_message = embeds.FourChanEmbed(discord.Color.green(), fourchan_post.topic, fourchan_post.image_url, target_board, fourchan_post.url).getEmbedMessage()
     await ctx.send(embed=embed_message)
 
+@bot.command()
+async def girlfriend(ctx):
+    reddit_post = reddit.RedditPost(session_config.reddit_client_id,
+                                    session_config.reddit_client_secret, session_config.reddit_user_agent, "gentlemanboners")
+    await ctx.send(reddit_post.post_image)
 
 bot.run(session_config.discord_token)
