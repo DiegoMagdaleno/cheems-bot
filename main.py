@@ -48,4 +48,16 @@ async def girlfriend(ctx):
                                     session_config.reddit_client_secret, session_config.reddit_user_agent, "gentlemanboners")
     await ctx.send(reddit_post.post_image)
 
+@bot.command()
+async def femboy(ctx):
+        reddit_post = reddit.RedditPost(session_config.reddit_client_id,
+                                    session_config.reddit_client_secret, session_config.reddit_user_agent, "femboy")
+        await ctx.send(reddit_post.post_image)
+
+@bot.command()
+async def catgirl(ctx):
+        reddit_post = reddit.RedditPost(session_config.reddit_client_id,
+                                    session_config.reddit_client_secret, session_config.reddit_user_agent, "kemonomimi")
+        await ctx.send(reddit_post.post_image)
+
 bot.run(session_config.discord_token)
