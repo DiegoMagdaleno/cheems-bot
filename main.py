@@ -63,6 +63,7 @@ async def boyfriend(ctx):
 # TODO: Here it should be r/femboy, however, we tried to fix it, and it refuses to work.
 # it returns a none type, this ofc makes an error, this however should be look up on
 # as many users have requested this feature to be r/femboy and not r/crossdressing
+# wen eta femboy command :(
 @bot.command()
 async def femboy(ctx):
     reddit_post = reddit.RedditPost(session_config.reddit_client_id,
@@ -73,5 +74,12 @@ async def femboy(ctx):
 @bot.command()
 async def neko(ctx):
     await ctx.send(nekoimg.get_neko_sfw())
+
+@bot.command()
+async def lewdneko(ctx):
+    if ctx.channel.is_nsfw():
+        await ctx.send(nekoimg.get_neko_nsfw())
+    else:
+        await ctx.send("not infromt of the childmren.")
 
 bot.run(session_config.discord_token)
