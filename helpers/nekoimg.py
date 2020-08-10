@@ -1,8 +1,7 @@
 import random
 import nekos
 def get_neko_sfw():
-        possible = ['wallpaper', 'slap', 'waifu', 'pat', 'kiss', 'femdom',
-        'neko', 'cuddle', 'fox_girl']
+        possible = ['waifu', 'fox_girl', 'neko', 'cuddle']
         return nekos.img(random.choice(possible))
     
 def get_neko_nsfw():
@@ -18,5 +17,27 @@ def get_neko_nsfw():
         'smallboobs', 'hug', 'ero', 'smug', 'goose', 'baka', 'woof']
     return nekos.img(random.choice(possible))
 
+def get_neko_slap():
+        possible = ['slap']
+        return nekos.img(random.choice(possible))
+
+def get_neko_kiss():
+        possible = ['kiss']
+        return nekos.img(random.choice(possible))
+
+def get_neko_pat():
+        possible = ['pat']
+        return nekos.img(random.choice(possible))
+
+def get_neko_cuddle():
+        possible = ['cuddle']
+        return nekos.img(random.choice(possible))
+
 def owo_text(desired_text):
     return nekos.owoify(desired_text)
+
+#def get_neko_sfw():
+#        possible = ['wallpaper', 'slap', 'waifu', 'pat', 'kiss', 'fox_girl',
+#        'neko', 'cuddle']
+#        return nekos.img(random.choice(possible))
+# just putting this here so i can refer to it later :)
