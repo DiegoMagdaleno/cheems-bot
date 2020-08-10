@@ -17,4 +17,6 @@ def get_neko_nsfw():
         'neko', 'spank', 'cuddle', 'erok', 'fox_girl', 'boobs', 'random_hentai_gif',
         'smallboobs', 'hug', 'ero', 'smug', 'goose', 'baka', 'woof']
     return nekos.img(random.choice(possible))
-    
+
+def owo_text(desired_text):
+    return nekos.owoify(desired_text)

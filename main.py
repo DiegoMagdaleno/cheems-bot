@@ -1,6 +1,7 @@
 from discord.embeds import Embed
 import discord
 from discord.ext import commands
+from nekos.nekos import textcat
 from helpers import config, reddit, embeds, randomBall, fourchan, nekoimg
 import os
 import basc_py4chan
@@ -93,5 +94,12 @@ async def meme(ctx, *, subreddit=None):
             embed_message = embeds.RedditEmbedMessage(discord.Color.orange(), reddit_post.post_title, reddit_post.post_image,
                                               reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar, reddit_post.post_link).getEmbedMessage()
             await ctx.send(embed=embed_message)
+
+@bot.command()
+async def owofy(ctx, *, text=None):
+    if text == None:
+         await ctx.send("Gimve me a memsage")
+    else:
+        await ctx.send(nekoimg.owo_text(text))
 
 bot.run(session_config.discord_token)
