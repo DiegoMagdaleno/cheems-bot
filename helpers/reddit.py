@@ -21,3 +21,4 @@ class RedditPost(RedditSession):
         self.post_title = self.target.title
         self.post_subreddit = str(self.target.subreddit)
         self.post_author_avatar = str(self.target.author.icon_img)
+        self.post_link = "https://reddit.com" + self.target.permalink
