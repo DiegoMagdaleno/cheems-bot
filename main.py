@@ -152,4 +152,15 @@ async def slap(ctx, member: discord.User = None):
     else:
         await ctx.send(nekoimg.get_neko_slap())
 
+@bot.command()
+async def ischad(ctx, member: discord.User = None):
+    if member == None:
+        await ctx.send("Gimve me a user")
+    else:
+        randomno = random.randint(0,100)
+        if randomno >= 50:
+            await ctx.send(f"{member.mention} is a chad! <:chad:741875439940665365>")
+        if randomno <= 49:
+            await ctx.send(f"{member.mention} is a beta! <:virgin:741907301627199499>")
+
 bot.run(session_config.discord_token)
