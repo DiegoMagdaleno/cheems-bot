@@ -1,7 +1,7 @@
 from discord.embeds import Embed
 import discord
 from discord.ext import commands
-from helpers import config, reddit, embeds
+from helpers import config, reddit, embeds, random
 import os
 
 bot = commands.Bot(command_prefix='>')
@@ -23,5 +23,15 @@ async def meme(ctx):
     embed_message = embeds.EmbedMessage(discord.colour.Color.blue(), reddit_post.post_title, reddit_post.post_image,
                                         reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar, reddit_post.post_link).getEmbedMessage()
     await ctx.send(embed=embed_message)
+
+
+@bot.command()
+async def ask(ctx, *, question=None):
+    if question == None:
+        await ctx.send("I meed you to amsk somethimg")
+    else:
+        ask_answer = random.get_8_ball()
+        await ctx.send(f"{ctx.author.mention}, "+ask_answer)
+
 
 bot.run(session_config.discord_token)
