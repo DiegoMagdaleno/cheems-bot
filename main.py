@@ -1,8 +1,10 @@
 from discord.embeds import Embed
 import discord
 from discord.ext import commands
-from helpers import config, reddit, embeds, random
+from helpers import config, reddit, embeds, randomBall, fourchan
 import os
+import basc_py4chan
+import random
 
 bot = commands.Bot(command_prefix='>')
 config_path = os.path.abspath("config.json")
@@ -30,8 +32,13 @@ async def ask(ctx, *, question=None):
     if question == None:
         await ctx.send("I meed you to amsk somethimg")
     else:
-        ask_answer = random.get_8_ball()
+        ask_answer = randomBall.get_8_ball()
         await ctx.send(f"{ctx.author.mention}, "+ask_answer)
+
+@bot.command()
+async def tech(ctx):
+    four_chan_session = fourchan.FourChanImage('g')
+    await ctx.send(four_chan_session.image_url)
 
 
 bot.run(session_config.discord_token)

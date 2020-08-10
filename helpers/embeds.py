@@ -16,11 +16,12 @@ class EmbedMessage():
         self.link = link
 
     def getEmbedMessage(self):
+        ourEmbed.clear_fields()
         ourEmbed.title = self.title
         print(self.image)
         ourEmbed.set_image(url=self.image)
         ourEmbed.set_footer(text="Posted on: " + self.subreddit +
                             "\nMeme by: " + self.author, icon_url=self.author_icon)
         ourEmbed.color = self.colour
-        ourEmbed.add_field(name="Link to post", value='[Go to post]({})'.format(self.link), inline=True)
+        ourEmbed.insert_field_at(20, name="Link to post", value='[Go to post]({})'.format(self.link), inline=True)
         return ourEmbed
