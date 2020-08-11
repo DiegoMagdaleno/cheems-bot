@@ -126,7 +126,7 @@ async def cuddle(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        await ctx.send(nekoimg.get_neko_cuddle())
+        await ctx.send(nekoimg.NekoActions.neko_cuddle())
 
 
 @bot.command()
@@ -134,7 +134,7 @@ async def headpat(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        await ctx.send(nekoimg.get_neko_pat())
+        await ctx.send(nekoimg.NekoActions.pat())
 
 
 @bot.command()
@@ -142,7 +142,7 @@ async def kiss(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        await ctx.send(nekoimg.get_neko_kiss())
+        await ctx.send(nekoimg.NekoActions.neko_kiss())
 
 
 @bot.command()
@@ -150,14 +150,15 @@ async def slap(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        await ctx.send(nekoimg.get_neko_slap())
+        await ctx.send(nekoimg.NekoActions.neko_slap())
+
 
 @bot.command()
 async def ischad(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        randomno = random.randint(0,100)
+        randomno = random.randint(0, 100)
         if randomno >= 50:
             await ctx.send(f"{member.mention} is a chad! <:chad:741875439940665365>")
         if randomno <= 49:
