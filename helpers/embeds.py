@@ -1,5 +1,7 @@
 import discord
 from discord import embeds
+from switch import Switch
+
 
 ourEmbed = discord.Embed()
 
@@ -39,4 +41,28 @@ class FourChanEmbed(EmbedMessage):
         ourEmbed.set_footer(text="Posted on: 4chan\nOn board: " + self.source)
         ourEmbed.color = self.colour
         ourEmbed.insert_field_at(20, name="Link to thread", value="[Go to thread]({})".format(self.link), inline=True)
+        return ourEmbed
+
+class NekoEmbed(EmbedMessage):
+    def __init__(self, colour, image, user_a, user_b, action) -> None:
+        super().__init__(colour, None, image, None, None, None, None)
+        self.user_a = user_a
+        self.user_b = user_b
+        self.action = action
+    
+    def getEmbedMessage(self):
+        ourEmbed.clear_fields()
+        with Switch(self.action) as case:
+            if case("kiss"):
+                ourEmbed.title = self.user_a + " is kissing " + self.user_b
+            if case("hug"):
+                ourEmbed.title = self.user_a + " is hugging " + self.user_b
+            if case("headpat"):
+                ourEmbed.title = self.user_a + " is patting " + self.user_b
+            if case("slap"):
+                ourEmbed.title = self.user_a + " is slapping " + self.user_b
+            if case("cuddle"):
+                ourEmbed.title = self.user_a + " is cludding with " + self.user_b
+        ourEmbed.set_image(url=self.image)
+        ourEmbed.color = self.colour
         return ourEmbed

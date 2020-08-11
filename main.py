@@ -126,7 +126,8 @@ async def cuddle(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        await ctx.send(nekoimg.NekoActions.neko_cuddle())
+        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_cuddle(), ctx.author.name, str(member.name), 'cuddle').getEmbedMessage()
+        await ctx.send(embed=neko_action)
 
 
 @bot.command()
@@ -134,7 +135,8 @@ async def headpat(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        await ctx.send(nekoimg.NekoActions.pat())
+        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_pat(), ctx.author.name, str(member.name), 'pat').getEmbedMessage()
+        await ctx.send(embed=neko_action)
 
 
 @bot.command()
@@ -142,7 +144,8 @@ async def kiss(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        await ctx.send(nekoimg.NekoActions.neko_kiss())
+        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_kiss(), ctx.author.name, str(member.name), 'kiss').getEmbedMessage()
+        await ctx.send(embed=neko_action)
 
 
 @bot.command()
@@ -150,7 +153,8 @@ async def slap(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        await ctx.send(nekoimg.NekoActions.neko_slap())
+        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_slap(), ctx.author.name, str(member.name), 'slap').getEmbedMessage()
+        await ctx.send(embed=neko_action)
 
 
 @bot.command()
