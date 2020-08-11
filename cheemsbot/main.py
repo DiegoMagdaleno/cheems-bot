@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from helpers import config, reddit, embeds, random_operations, fourchan, nekoimg
+from helpers import config, embeds, random_operations, fourchan
 import os
 import sys
 import traceback
@@ -12,7 +12,8 @@ file_load = open(config_path, 'r').read()
 
 session_config = config.Configuration(file_load)
 
-initial_extensions = ['cogs.fun', 'cogs.nekoactions', 'cogs.nsfw']
+initial_extensions = ['cogs.fun',
+                      'cogs.nekoactions', 'cogs.nsfw', 'cogs.reddit']
 if __name__ == '__main__':
     for extension in initial_extensions:
         try:
@@ -29,14 +30,6 @@ async def ping(ctx):
 
 
 @bot.command()
-async def dogememe(ctx):
-    reddit_post = reddit.RedditPost(session_config.reddit_client_id,
-                                    session_config.reddit_client_secret, session_config.reddit_user_agent, session_config.reddit_user, session_config.reddit_password, "dogelore")
-    embed_message = embeds.RedditEmbedMessage(discord.Color.orange(), reddit_post.post_title, reddit_post.post_image,
-                                              reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar, reddit_post.post_link).getEmbedMessage()
-    await ctx.send(embed=embed_message)
-
-@bot.command()
 async def tech(ctx):
     target_board = 'g'
     fourchan_post = fourchan.FourChanImage(target_board)
@@ -44,19 +37,5 @@ async def tech(ctx):
     ), fourchan_post.topic, fourchan_post.image_url, target_board, fourchan_post.url).getEmbedMessage()
     await ctx.send(embed=embed_message)
 
-@bot.command()
-async def redditmeme(ctx, *, subreddit=None):
-    if subreddit == None:
-        await ctx.send("Gimve me a sumbreddit")
-    else:
-        reddit_post = reddit.RedditPost(session_config.reddit_client_id,
-                                        session_config.reddit_client_secret, session_config.reddit_user_agent, session_config.reddit_user, session_config.reddit_password,
-                                        subreddit)
-        if reddit_post.is_nsfw:
-            await ctx.send("Not infromt of the childdrem")
-            return
-        embed_message = embeds.RedditEmbedMessage(discord.Color.orange(), reddit_post.post_title, reddit_post.post_image,
-                                                  reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar, reddit_post.post_link).getEmbedMessage()
-        await ctx.send(embed=embed_message)
 
 bot.run(session_config.discord_token)
