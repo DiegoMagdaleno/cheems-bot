@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 from helpers import config, reddit, embeds, random_operations, fourchan, nekoimg
 import os
-import random
 import sys
 import traceback
 
@@ -13,7 +12,7 @@ file_load = open(config_path, 'r').read()
 
 session_config = config.Configuration(file_load)
 
-initial_extensions = ['cogs.fun']
+initial_extensions = ['cogs.fun', 'cogs.nekoactions']
 if __name__ == '__main__':
     for extension in initial_extensions:
         try:
@@ -79,45 +78,5 @@ async def redditmeme(ctx, *, subreddit=None):
         embed_message = embeds.RedditEmbedMessage(discord.Color.orange(), reddit_post.post_title, reddit_post.post_image,
                                                   reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar, reddit_post.post_link).getEmbedMessage()
         await ctx.send(embed=embed_message)
-
-
-@bot.command()
-async def cuddle(ctx, member: discord.User = None):
-    if member == None:
-        await ctx.send("Gimve me a user")
-    else:
-        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_cuddle(
-        ), ctx.author.name, str(member.name), 'cuddle').getEmbedMessage()
-        await ctx.send(embed=neko_action)
-
-
-@bot.command()
-async def headpat(ctx, member: discord.User = None):
-    if member == None:
-        await ctx.send("Gimve me a user")
-    else:
-        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_pat(
-        ), ctx.author.name, str(member.name), 'pat').getEmbedMessage()
-        await ctx.send(embed=neko_action)
-
-
-@bot.command()
-async def kiss(ctx, member: discord.User = None):
-    if member == None:
-        await ctx.send("Gimve me a user")
-    else:
-        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_kiss(
-        ), ctx.author.name, str(member.name), 'kiss').getEmbedMessage()
-        await ctx.send(embed=neko_action)
-
-
-@bot.command()
-async def slap(ctx, member: discord.User = None):
-    if member == None:
-        await ctx.send("Gimve me a user")
-    else:
-        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_slap(
-        ), ctx.author.name, str(member.name), 'slap').getEmbedMessage()
-        await ctx.send(embed=neko_action)
 
 bot.run(session_config.discord_token)

@@ -25,16 +25,20 @@ def get_neko_nsfw() -> str:
 
 class NekoActions:
     def neko_slap(self) -> str:
-        return str(nekos.img('slap'))
+        self.slap_image_url =str(nekos.img('slap'))
+        return self.slap_image_url
 
     def neko_kiss(self) -> str:
-        return str(nekos.img('kiss'))
+        self.kiss_image_url = str(nekos.img('kiss'))
+        return self.kiss_image_url
 
     def neko_pat(self) -> str:
-        return str(nekos.img('pat'))
+        self.pat_image_url = str(nekos.img('pat'))
+        return self.pat_image_url
 
     def neko_cuddle(self) -> str:
-        return str(nekos.img('cuddle'))
+        self.cuddle_image_url = str(nekos.img('cuddle'))
+        return str(self.cuddle_image_url)
 
 
 def owo_text(desired_text:str) -> str:

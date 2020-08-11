@@ -62,7 +62,7 @@ class NekoEmbed(EmbedMessage):
                 ourEmbed.title = self.user_a + " is kissing " + self.user_b
             if case("hug"):
                 ourEmbed.title = self.user_a + " is hugging " + self.user_b
-            if case("headpat"):
+            if case("pat"):
                 ourEmbed.title = self.user_a + " is patting " + self.user_b
             if case("slap"):
                 ourEmbed.title = self.user_a + " is slapping " + self.user_b
