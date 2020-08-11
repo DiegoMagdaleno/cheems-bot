@@ -2,10 +2,6 @@
 import discord
 from switch import Switch
 
-
-ourEmbed = discord.Embed()
-
-
 class EmbedMessage():
     def __init__(self, colour, title=None, image=None, source=None, author=None, author_icon=None, link=None) -> None:
         self.colour = colour
@@ -22,15 +18,16 @@ class RedditEmbedMessage(EmbedMessage):
         super().__init__(colour, title, image, source, author, author_icon, link)
 
     def getEmbedMessage(self):
-        ourEmbed.clear_fields()
-        ourEmbed.title = self.title
-        ourEmbed.set_image(url=self.image)
-        ourEmbed.set_footer(text="Posted on: " + self.source +
+        self.embed_object_session = discord.Embed()
+        self.embed_object_session.clear_fields()
+        self.embed_object_session.title = self.title
+        self.embed_object_session.set_image(url=self.image)
+        self.embed_object_session.set_footer(text="Posted on: " + self.source +
                             "\nMeme by: " + self.author, icon_url=self.author_icon)
-        ourEmbed.color = self.colour
-        ourEmbed.insert_field_at(
+        self.embed_object_session.color = self.colour
+        self.embed_object_session.insert_field_at(
             20, name="Link to post", value='[Go to post]({})'.format(self.link), inline=True)
-        return ourEmbed
+        return self.embed_object_session
 
 
 class FourChanEmbed(EmbedMessage):
@@ -38,14 +35,14 @@ class FourChanEmbed(EmbedMessage):
         super().__init__(colour=colour, title=title, image=image, source=source, link=link)
 
     def getEmbedMessage(self):
-        ourEmbed.clear_fields()
-        ourEmbed.title = self.title
-        ourEmbed.set_image(url=self.image)
-        ourEmbed.set_footer(text="Posted on: 4chan\nOn board: " + self.source)
-        ourEmbed.color = self.colour
-        ourEmbed.insert_field_at(
+        self.embed_object_session = discord.Embed()
+        self.embed_object_session.title = self.title
+        self.embed_object_session.set_image(url=self.image)
+        self.embed_object_session.set_footer(text="Posted on: 4chan\nOn board: " + self.source)
+        self.embed_object_session.color = self.colour
+        self.embed_object_session.insert_field_at(
             20, name="Link to thread", value="[Go to thread]({})".format(self.link), inline=True)
-        return ourEmbed
+        return self.embed_object_session
 
 
 class NekoEmbed(EmbedMessage):
@@ -56,18 +53,19 @@ class NekoEmbed(EmbedMessage):
         self.action = action
 
     def getEmbedMessage(self):
-        ourEmbed.clear_fields()
+        self.embed_object_session = discord.Embed()
+        self.embed_object_session.clear_fields()
         with Switch(self.action) as case:
             if case("kiss"):
-                ourEmbed.title = self.user_a + " is kissing " + self.user_b
+                self.embed_object_session.title = self.user_a + " is kissing " + self.user_b
             if case("hug"):
-                ourEmbed.title = self.user_a + " is hugging " + self.user_b
+                self.embed_object_session.title = self.user_a + " is hugging " + self.user_b
             if case("pat"):
-                ourEmbed.title = self.user_a + " is patting " + self.user_b
+                self.embed_object_session.title = self.user_a + " is patting " + self.user_b
             if case("slap"):
-                ourEmbed.title = self.user_a + " is slapping " + self.user_b
+                self.embed_object_session.title = self.user_a + " is slapping " + self.user_b
             if case("cuddle"):
-                ourEmbed.title = self.user_a + " is cludding with " + self.user_b
-        ourEmbed.set_image(url=self.image)
-        ourEmbed.color = self.colour
-        return ourEmbed
+                self.embed_object_session.title = self.user_a + " is cludding with " + self.user_b
+        self.embed_object_session.set_image(url=self.image)
+        self.embed_object_session.color = self.colour
+        return self.embed_object_session
