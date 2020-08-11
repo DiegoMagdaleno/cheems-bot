@@ -16,6 +16,9 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
         if self.current_member == None:
             await ctx.send("Gimve me a user")
         else:
+            if ctx.message.author == member:
+                await ctx.send("You camt cuddle wimth yourmself")
+                return
             neko_action = embeds.NekoEmbed(discord.Color.blurple(),
                                            self.our_neko_actions.neko_cuddle(),
                                            ctx.author.name,
@@ -29,6 +32,9 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
         if self.current_member == None:
             await ctx.send("Gimve me a user")
         else:
+            if ctx.message.author == self.current_member:
+                await ctx.send("You camt pat yourselmf.")
+                return
             neko_action = embeds.NekoEmbed(discord.Color.blurple(),
                                            self.our_neko_actions.neko_pat(),
                                            ctx.author.name,
@@ -37,11 +43,15 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
         await ctx.send(embed=neko_action)
 
     @commands.command(name='kiss')
+    
     async def kiss(self, ctx, member: discord.User = None):
         self.current_member = member
         if self.current_member == None:
             await ctx.send("Gimve me a user")
         else:
+            if ctx.message.author == self.current_member:
+                await ctx.send("You camt kiss yourmself.")
+                return
             neko_action = embeds.NekoEmbed(discord.Color.blurple(),
                                            self.our_neko_actions.neko_kiss(),
                                            ctx.author.name,
@@ -55,6 +65,9 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
         if self.current_member == None:
             await ctx.send("Gimve me a user")
         else:
+            if ctx.message.author == self.current_member:
+                await ctx.send("You camt slap yourmself")
+                return
             neko_action = embeds.NekoEmbed(discord.Color.blurple(),
                                            self.our_neko_actions.neko_slap(),
                                            ctx.author.name,
