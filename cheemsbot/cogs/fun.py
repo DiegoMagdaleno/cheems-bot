@@ -1,6 +1,8 @@
 from discord.ext import commands
 from cheemsbot.helpers import reddit, config, nekoimg, random_operations
 import os
+import random
+import discord
 
 bot = commands.Bot(command_prefix='>')
 config_path = os.path.abspath("config.json")
@@ -10,6 +12,11 @@ session_config = config.Configuration(file_load)
 
 
 class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
+
+    def __init__(self, bot, configuration=None):
+        self.bot = bot
+        self.session_config = configuration
+
     @commands.command(name='ask', aliases=['8b'])
     async def ask(self, ctx, *, question=None):
         if question == None:
@@ -18,31 +25,36 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
             ask_answer = random_operations.get_8_ball()
         await ctx.send(f"{ctx.author.mention}, "+ask_answer)
 
-    def __init__(self, bot, configuration=None):
-        self.bot = bot
-        self.session_config = configuration
-
     @commands.command(name='gf')
     async def girlfriend(self, ctx):
         reddit_post = reddit.RedditPost(self.session_config.reddit_client_id,
-                                        self.session_config.reddit_client_secret, self.session_config.reddit_user_agent, self.session_config.reddit_user, self.session_config.reddit_password, "gentlemanboners")
+                                        self.session_config.reddit_client_secret,
+                                        self.session_config.reddit_user_agent,
+                                        self.session_config.reddit_user,
+                                        self.session_config.reddit_password,
+                                        "gentlemanboners")
         await ctx.send(reddit_post.post_image)
 
     @commands.command(name='bf')
     async def boyfriend(self, ctx):
         reddit_post = reddit.RedditPost(self.session_config.reddit_client_id,
-                                        self.session_config.reddit_client_secret, self.session_config.reddit_user_agent, self.session_config.reddit_user, self.session_config.reddit_password, "ladyboners")
+                                        self.session_config.reddit_client_secret, self.session_config.reddit_user_agent,
+                                        self.session_config.reddit_user,
+                                        self.session_config.reddit_password,
+                                        "ladyboners")
         await ctx.send(reddit_post.post_image)
 
     # TODO: Here it should be r/femboy, however, we tried to fix it, and it refuses to work.
     # it returns a none type, this ofc makes an error, this however should be look up on
     # as many users have requested this feature to be r/femboy and not r/crossdressing
-    # wen eta femboy command :(
 
     @commands.command(name='femboy')
     async def femboy(self, ctx):
         reddit_post = reddit.RedditPost(self.session_config.reddit_client_id,
-                                        self.session_config.reddit_client_secret, self.session_config.reddit_user_agent, self.session_config.reddit_user, self.session_config.reddit_password,
+                                        self.session_config.reddit_client_secret,
+                                        self.session_config.reddit_user_agent,
+                                        self.session_config.reddit_user,
+                                        self.session_config.reddit_password,
                                         "crossdressing")
         await ctx.send(reddit_post.post_image)
 
@@ -58,6 +70,17 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
         else:
             self.owofied_input = nekoimg.owo_text(our_input)
             await ctx.send(self.owofied_input)
+
+    @commands.command(name='ischad')
+    async def ischad(self, ctx, member: discord.User = None):
+        if member == None:
+            await ctx.send("Gimve me a user")
+        else:
+            self.chad_virgin_prob = random.randint(0, 100)
+            if self.chad_virgin_prob >= 50:
+                await ctx.send(f"{member.mention} is a chad! <:chad:741875439940665365>")
+            else:
+                await ctx.send(f"{member.mention} is a beta! <:virgin:741907301627199499>")
 
 
 def setup(bot):
