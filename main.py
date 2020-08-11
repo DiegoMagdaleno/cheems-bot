@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from helpers import config, reddit, embeds, randomBall, fourchan, nekoimg
+from helpers import config, reddit, embeds, random_operations, fourchan, nekoimg
 import os
 import random
 
@@ -14,7 +14,8 @@ session_config = config.Configuration(file_load)
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send('Im rumning from env tokem')
+    random_cheems = random_operations.get_cheems_phrase()
+    await ctx.send(random_cheems)
 
 
 @bot.command()
@@ -31,7 +32,7 @@ async def ask(ctx, *, question=None):
     if question == None:
         await ctx.send("I meed you to amsk somethimg")
     else:
-        ask_answer = randomBall.get_8_ball()
+        ask_answer = random_operations.get_8_ball()
         await ctx.send(f"{ctx.author.mention}, "+ask_answer)
 
 

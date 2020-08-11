@@ -5,3 +5,8 @@ def get_8_ball() -> str:
                         "Ask agaim later.", "Better mot tell you nomw.", "Canmot predict nomw.", 
                         "Concentramte and ask again.", "Don\'t coumt on it.", "My reply is mo.", "My soumrces say no", "Outloomk not so good.", "Very doumbtful."]
     return random.choice(possible_answers)
+
+def get_cheems_phrase() -> str:
+    possible_answers = ["I wamt a cheemsbubguer", "Hi, im cheems", "Hemlo domge", "Oh I cam give you a hamd", "cheems lovems everyone", "memxican",
+    "ni momdo", "tamco", "im humgry", "cheemsburguer", "soulmwax", "mmmmmm", "mimcromwave"]
+    return random.choice(possible_answers)
