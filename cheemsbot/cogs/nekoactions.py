@@ -1,4 +1,3 @@
-from discord.ext.commands.core import command
 from cheemsbot.helpers import nekoimg, embeds
 from discord.ext import commands
 import discord

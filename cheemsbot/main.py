@@ -12,7 +12,7 @@ file_load = open(config_path, 'r').read()
 
 session_config = config.Configuration(file_load)
 
-initial_extensions = ['cogs.fun', 'cogs.nekoactions']
+initial_extensions = ['cogs.fun', 'cogs.nekoactions', 'cogs.nsfw']
 if __name__ == '__main__':
     for extension in initial_extensions:
         try:
@@ -43,26 +43,6 @@ async def tech(ctx):
     embed_message = embeds.FourChanEmbed(discord.Color.green(
     ), fourchan_post.topic, fourchan_post.image_url, target_board, fourchan_post.url).getEmbedMessage()
     await ctx.send(embed=embed_message)
-
-
-@bot.command()
-async def lewdfemboy(ctx):
-    if ctx.channel.is_nsfw():
-        reddit_post = reddit.RedditPost(session_config.reddit_client_id,
-                                        session_config.reddit_client_secret, session_config.reddit_user_agent, session_config.reddit_user, session_config.reddit_password,
-                                        "femboys")
-        await ctx.send(reddit_post.post_image)
-    else:
-        await ctx.send('Not infromt of the childmren.')
-
-
-@bot.command()
-async def lewdneko(ctx):
-    if ctx.channel.is_nsfw():
-        await ctx.send(nekoimg.get_neko_nsfw())
-    else:
-        await ctx.send("Not infromt of the childmren.")
-
 
 @bot.command()
 async def redditmeme(ctx, *, subreddit=None):
