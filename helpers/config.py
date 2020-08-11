@@ -5,7 +5,7 @@ from typing import *
 
 class Configuration:
 
-    def __init__(self, json_file) -> None:
+    def __init__(self, json_file:str) -> None:
         load_json = str(json.loads(json_file)).replace('\'', '"')
         self.config_session = JSONObject(load_json)
         self.reddit_client_id = self.config_session.redditClientID

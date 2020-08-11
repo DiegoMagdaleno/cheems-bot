@@ -1,5 +1,5 @@
+# type: ignore
 import discord
-from discord import embeds
 from switch import Switch
 
 
@@ -7,7 +7,7 @@ ourEmbed = discord.Embed()
 
 
 class EmbedMessage():
-    def __init__(self, colour, title, image, source, author, author_icon, link) -> None:
+    def __init__(self, colour, title=None, image=None, source=None, author=None, author_icon=None, link=None) -> None:
         self.colour = colour
         self.title = title
         self.image = image
@@ -16,10 +16,11 @@ class EmbedMessage():
         self.author_icon = author_icon
         self.link = link
 
+
 class RedditEmbedMessage(EmbedMessage):
     def __init__(self, colour, title, image, source, author, author_icon, link) -> None:
         super().__init__(colour, title, image, source, author, author_icon, link)
-    
+
     def getEmbedMessage(self):
         ourEmbed.clear_fields()
         ourEmbed.title = self.title
@@ -27,29 +28,33 @@ class RedditEmbedMessage(EmbedMessage):
         ourEmbed.set_footer(text="Posted on: " + self.source +
                             "\nMeme by: " + self.author, icon_url=self.author_icon)
         ourEmbed.color = self.colour
-        ourEmbed.insert_field_at(20, name="Link to post", value='[Go to post]({})'.format(self.link), inline=True)
+        ourEmbed.insert_field_at(
+            20, name="Link to post", value='[Go to post]({})'.format(self.link), inline=True)
         return ourEmbed
+
 
 class FourChanEmbed(EmbedMessage):
     def __init__(self, colour, title, image, source, link) -> None:
-        super().__init__(colour, title, image, source, None, None, link)
-    
+        super().__init__(colour=colour, title=title, image=image, source=source, link=link)
+
     def getEmbedMessage(self):
         ourEmbed.clear_fields()
         ourEmbed.title = self.title
         ourEmbed.set_image(url=self.image)
         ourEmbed.set_footer(text="Posted on: 4chan\nOn board: " + self.source)
         ourEmbed.color = self.colour
-        ourEmbed.insert_field_at(20, name="Link to thread", value="[Go to thread]({})".format(self.link), inline=True)
+        ourEmbed.insert_field_at(
+            20, name="Link to thread", value="[Go to thread]({})".format(self.link), inline=True)
         return ourEmbed
+
 
 class NekoEmbed(EmbedMessage):
     def __init__(self, colour, image, user_a, user_b, action) -> None:
-        super().__init__(colour, None, image, None, None, None, None)
+        super().__init__(colour=colour, image=image)
         self.user_a = user_a
         self.user_b = user_b
         self.action = action
-    
+
     def getEmbedMessage(self):
         ourEmbed.clear_fields()
         with Switch(self.action) as case:

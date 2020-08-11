@@ -1,12 +1,9 @@
-from discord.embeds import Embed
 import discord
 from discord.ext import commands
-from nekos.nekos import textcat
 from helpers import config, reddit, embeds, randomBall, fourchan, nekoimg
 import os
-import basc_py4chan
 import random
-import nekos
+
 
 bot = commands.Bot(command_prefix='>')
 config_path = os.path.abspath("config.json")
@@ -98,7 +95,7 @@ async def lewdneko(ctx):
 
 
 @bot.command()
-async def meme(ctx, *, subreddit=None):
+async def redditmeme(ctx, *, subreddit=None):
     if subreddit == None:
         await ctx.send("Gimve me a sumbreddit")
     else:
@@ -126,7 +123,8 @@ async def cuddle(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_cuddle(), ctx.author.name, str(member.name), 'cuddle').getEmbedMessage()
+        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_cuddle(
+        ), ctx.author.name, str(member.name), 'cuddle').getEmbedMessage()
         await ctx.send(embed=neko_action)
 
 
@@ -135,7 +133,8 @@ async def headpat(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_pat(), ctx.author.name, str(member.name), 'pat').getEmbedMessage()
+        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_pat(
+        ), ctx.author.name, str(member.name), 'pat').getEmbedMessage()
         await ctx.send(embed=neko_action)
 
 
@@ -144,7 +143,8 @@ async def kiss(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_kiss(), ctx.author.name, str(member.name), 'kiss').getEmbedMessage()
+        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_kiss(
+        ), ctx.author.name, str(member.name), 'kiss').getEmbedMessage()
         await ctx.send(embed=neko_action)
 
 
@@ -153,7 +153,8 @@ async def slap(ctx, member: discord.User = None):
     if member == None:
         await ctx.send("Gimve me a user")
     else:
-        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_slap(), ctx.author.name, str(member.name), 'slap').getEmbedMessage()
+        neko_action = embeds.NekoEmbed(discord.Color.blurple(), nekoimg.NekoActions.neko_slap(
+        ), ctx.author.name, str(member.name), 'slap').getEmbedMessage()
         await ctx.send(embed=neko_action)
 
 
@@ -167,5 +168,6 @@ async def ischad(ctx, member: discord.User = None):
             await ctx.send(f"{member.mention} is a chad! <:chad:741875439940665365>")
         if randomno <= 49:
             await ctx.send(f"{member.mention} is a beta! <:virgin:741907301627199499>")
+
 
 bot.run(session_config.discord_token)

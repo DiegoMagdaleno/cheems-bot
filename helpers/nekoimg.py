@@ -1,13 +1,15 @@
 import random
+# type: ignore
 import nekos
 
 
-def get_neko_sfw():
+
+def get_neko_sfw() -> str:
     possible = ['waifu', 'fox_girl', 'neko', 'cuddle']
-    return nekos.img(random.choice(possible))
+    return str(nekos.img(random.choice(possible)))
 
 
-def get_neko_nsfw():
+def get_neko_nsfw() -> str:
     possible = [
         'feet', 'yuri', 'trap', 'futanari', 'hololewd', 'lewdkemo',
         'solog', 'feetg', 'cum', 'erokemo', 'les', 'wallpaper', 'lewdk',
@@ -18,22 +20,22 @@ def get_neko_nsfw():
         'pwankg', 'classic', 'kuni', 'waifu', 'pat', '8ball', 'kiss', 'femdom',
         'neko', 'spank', 'cuddle', 'erok', 'fox_girl', 'boobs', 'random_hentai_gif',
         'smallboobs', 'hug', 'ero', 'smug', 'goose', 'baka', 'woof']
-    return nekos.img(random.choice(possible))
+    return str(nekos.img(random.choice(possible)))
 
 
 class NekoActions:
-    def neko_slap():
-        return nekos.img('slap')
+    def neko_slap(self) -> str:
+        return str(nekos.img('slap'))
 
-    def neko_kiss():
-        return nekos.img('kiss')
+    def neko_kiss(self) -> str:
+        return str(nekos.img('kiss'))
 
-    def neko_pat():
-        return nekos.img('pat')
+    def neko_pat(self) -> str:
+        return str(nekos.img('pat'))
 
-    def neko_cuddle():
-        return nekos.img('cuddle')
+    def neko_cuddle(self) -> str:
+        return str(nekos.img('cuddle'))
 
 
-def owo_text(desired_text):
-    return nekos.owoify(desired_text)
+def owo_text(desired_text:str) -> str:
+    return str(nekos.owoify(desired_text))
