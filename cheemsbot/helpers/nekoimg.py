@@ -3,7 +3,6 @@ import random
 import nekos
 
 
-
 def get_neko_sfw() -> str:
     possible = ['waifu', 'fox_girl', 'neko', 'cuddle']
     return str(nekos.img(random.choice(possible)))
@@ -25,7 +24,7 @@ def get_neko_nsfw() -> str:
 
 class NekoActions:
     def neko_slap(self) -> str:
-        self.slap_image_url =str(nekos.img('slap'))
+        self.slap_image_url = str(nekos.img('slap'))
         return self.slap_image_url
 
     def neko_kiss(self) -> str:
@@ -38,7 +37,11 @@ class NekoActions:
 
     def neko_cuddle(self) -> str:
         self.cuddle_image_url = str(nekos.img('cuddle'))
-        return str(self.cuddle_image_url)
+        return self.cuddle_image_url
+
+    def neko_hug(self) -> str:
+        self.hug_image_url = str(nekos.img('hug'))
+        return self.hug_image_url
 
 
 def owo_text(desired_text:str) -> str:

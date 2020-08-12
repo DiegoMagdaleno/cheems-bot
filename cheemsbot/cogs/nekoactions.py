@@ -43,7 +43,6 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
         await ctx.send(embed=neko_action)
 
     @commands.command(name='kiss')
-    
     async def kiss(self, ctx, member: discord.User = None):
         self.current_member = member
         if self.current_member == None:
@@ -74,6 +73,22 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                                            str(member.name),
                                            'slap').getEmbedMessage()
         await ctx.send(embed=neko_action)
+
+    @commands.command(name='hug')
+    async def hug(self, ctx, member: discord.User = None):
+        self.current.member = member
+        if self.current_member == None:
+                await ctx.send("Gimve a user")
+        else:
+            if ctx.message.author == self.current_member:
+                await ctx.send("You camt humg yourmself")
+                return
+            neko_action = embeds.NekoEmbed(discord.Color.purple(),
+                                               self.our_neko_actions.neko_hug(), 
+                                               ctx.author.name, 
+                                               str(member.name), 
+                                               'hug').getEmbedMessage()
+            await ctx.send(embed=neko_action)
 
 
 def setup(bot):
