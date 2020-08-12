@@ -76,7 +76,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
 
     @commands.command(name='hug')
     async def hug(self, ctx, member: discord.User = None):
-        self.current.member = member
+        self.current_member = member
         if self.current_member == None:
                 await ctx.send("Gimve a user")
         else:
