@@ -73,7 +73,8 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
 
     @commands.command(name='ischad')
     async def ischad(self, ctx, member: discord.User = None):
-        if member == None:
+        self.current_member = member
+        if self.current_member == None:
             await ctx.send("Gimve me a user")
         else:
             self.chad_virgin_prob = random.randint(0, 100)

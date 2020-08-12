@@ -32,7 +32,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
         reddit_post.post_link).getEmbedMessage()
         await ctx.send(embed=embed_message)
     
-    @commands.command(name="redditmeme")
+    @commands.command(name="redditmeme", aliases=['rmeme'])
     async def redditmeme(self, ctx, *, subreddit=None):
         self.current_subreddit = subreddit
         if self.current_subreddit == None:
