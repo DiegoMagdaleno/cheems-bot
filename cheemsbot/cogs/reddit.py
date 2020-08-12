@@ -44,7 +44,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
         self.session_config.reddit_user,
         self.session_config.reddit_password,
         self.current_subreddit)
-            if reddit_post.is_nsfw:
+            if (reddit_post.is_nsfw) and (ctx.channel.is_nsfw() == False):
                 await ctx.send("Not infromt of the childrem")
                 return
             embed_message = embeds.RedditEmbedMessage(discord.Color.orange(),
