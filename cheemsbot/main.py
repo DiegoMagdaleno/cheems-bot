@@ -13,20 +13,15 @@ file_load = open(config_path, 'r').read()
 session_config = config.Configuration(file_load)
 
 initial_extensions = ['cogs.fun',
-                      'cogs.nekoactions', 'cogs.nsfw', 'cogs.reddit', 'cogs.fourchan']
+                      'cogs.nekoactions', 'cogs.nsfw', 'cogs.reddit', 'cogs.fourchan', 'cogs.root']
 if __name__ == '__main__':
+    bot.remove_command('help')
     for extension in initial_extensions:
         try:
             bot.load_extension(extension)
         except Exception as e:
             print(f'Failed to load extension {extension}.', file=sys.stderr)
             traceback.print_exc()
-
-
-@bot.command()
-async def ping(ctx):
-    random_cheems = random_operations.get_cheems_phrase()
-    await ctx.send(random_cheems)
 
 
 bot.run(session_config.discord_token)
