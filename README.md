@@ -27,19 +27,56 @@ Before you install and get Cheems running, Cheems requires some stuff to be able
 1. A bot Discord account.
 2. A Reddit account, with a "developer" application.
 
-You can skip this sections, if you already have this requirements, if not we teach you how to setup them there.
+You can skip this sections, if you already have this requirements.
 
-### Setting up our Reddit account, with a developer Application.
+Tutorials on how to setup these can be found here:
+- [Discord](https://github.com/DiegoMagdaleno/cheems-bot/blob/master/documentation/discord_bot.md)
+- [Reddit](https://github.com/DiegoMagdaleno/cheems-bot/blob/master/documentation/reddit_dev.md)
 
-1. First go to the [Reddit website](https://reddit.com)
-2. Click on your Reddit profile card, on the upper right, then click User Settings.
+After you have setup your account to perform any operations that Cheems might need, it is now time to run our setup script.
 
-![Reddit profile card](https://i.imgur.com/6qcqybb.png)
+Now this changes depending on your operating system.
 
-3. Once in there, click on the Safety and Privacy Tab
+A "UNIX" based operating system, needs to run `setup.sh` while an NT based operating system needs to run `setup.bat`. 
 
-![Safety and privacy tab](https://i.imgur.com/Dl2EQgK.png)
+To determine if your operating system is UNIX or NT based you can just find your operating system here:
 
-4. Scroll down and click on "Manage third-party app authorization"
+- **UNIX BASED**:
+    - macOS / OS X
+    - Linux
+    - *BSD (FreeBSD, OpenBSD)
+    - Android
+    - ChromeOS
+- **NT BASED**:
+    - Windows
 
-![Manage third party app authorization](https://i.imgur.com/citiip9.png)
+Once you determine what kind of operating system you have, it is now time to run the script, you need access to terminal in the case of UNIX based operating systems, and to Powershell/Terminal Windows app in the case of NT Operating systems.
+
+If you don't know how to open the terminal in your operating system, a quick Google search should be enough.
+
+Now run the script that is needed in your operating system, by dragging and dropping into the terminal, or changing directory `cd` into the location and executing `setup.sh` or `setup.bat`.
+
+Follow the configuration process, here is an example:
+
+```
+❯ ./setup.sh
+What's your Reddit client ID?:
+rerdasf
+What's your Reddit client secret?:
+afdsafadsfads
+What's your Reddit user agent?:
+fadsfadsfasd
+What's your Reddit username?
+fadsfadsfds
+What's your Reddit password?
+fdasfdasfdasfdasf
+What's your Discord bot token?
+fadsafadsfadsf
+```
+
+Once you are done, active the Python environment by using the following command `source ./venv/bin/activate`.
+
+Now execute main.py inside cheemsbot using your python installation.
+
+You are done and ready to have fun with cheems.
+
