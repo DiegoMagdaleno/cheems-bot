@@ -27,6 +27,8 @@ if __name__ == '__main__':
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
         await ctx.send('Thims command is on a %.2fs coolmdown, trym amgain lamter' % error.retry_after)
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send('Ummmmmmmmmmmmm I couldmt fimd that command')
     raise error
 
 
