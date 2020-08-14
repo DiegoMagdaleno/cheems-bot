@@ -38,7 +38,7 @@ class CheemsRootCommandsCog(commands.Cog, name='Root'):
     @commands.command(name='ping')
     async def ping(self, ctx):
         self.random_cheems = random_operations.get_cheems_phrase()
-        await ctx.send(self.random_cheems)
+        await ctx.send(self.random_cheems + ' \n**Pimg:** {0}'.format((round(self.bot.latency, 1))))
 
 
 def setup(bot):
