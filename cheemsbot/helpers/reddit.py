@@ -21,9 +21,11 @@ class RedditPost(RedditSession):
         self.subreddit = subreddit
         self.target = self.current_log.subreddit(self.subreddit).random()
         self.post_image = self.target.url
+        print(self.post_image)
         self.post_author = str(self.target.author)
         self.post_title = self.target.title
         self.post_subreddit = str(self.target.subreddit)
         self.post_author_avatar = str(self.target.author.icon_img)
         self.post_link = "https://reddit.com" + self.target.permalink
         self.is_nsfw = self.target.over_18
+        self.is_only_text = self.target.is_self
