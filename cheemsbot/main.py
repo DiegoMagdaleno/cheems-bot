@@ -23,5 +23,11 @@ if __name__ == '__main__':
             print(f'Failed to load extension {extension}.', file=sys.stderr)
             traceback.print_exc()
 
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandOnCooldown):
+        await ctx.send('Thims command is on a %.2fs coolmdown, trym amgain lamter' % error.retry_after)
+    raise error
+
 
 bot.run(session_config.discord_token)

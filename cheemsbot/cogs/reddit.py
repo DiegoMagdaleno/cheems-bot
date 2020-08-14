@@ -16,6 +16,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
         self.session_config = configuration
     
     @commands.command(name='dogememe', aliases=['dgmeme'])
+    @commands.cooldown(1, 5, commands.BucketType.user)
     async def dogememe(self, ctx):
         reddit_post = reddit.RedditPost(self.session_config.reddit_client_id,
         self.session_config.reddit_client_secret,
@@ -33,6 +34,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
         await ctx.send(embed=embed_message)
     
     @commands.command(name="redditmeme", aliases=['rmeme'])
+    @commands.cooldown(1, 5, commands.BucketType.user)
     async def redditmeme(self, ctx, *, subreddit=None):
         self.forbidden = ['cock', 'ass', 'sex', 'dick', 'penis', 'pussy']
         self.current_subreddit = subreddit
