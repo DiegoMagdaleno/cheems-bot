@@ -66,6 +66,8 @@ class NekoEmbed(EmbedMessage):
                 self.embed_object_session.title = self.user_a + " is slapping " + self.user_b
             if case("cuddle"):
                 self.embed_object_session.title = self.user_a + " is cludding with " + self.user_b
+            if case("tickle"):
+                self.embed_object_session.title = self.user_a + " is tickling " + self.user_b
         self.embed_object_session.set_image(url=self.image)
         self.embed_object_session.color = self.colour
         return self.embed_object_session

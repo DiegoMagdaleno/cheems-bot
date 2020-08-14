@@ -89,7 +89,22 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                                                str(member.name), 
                                                'hug').getEmbedMessage()
             await ctx.send(embed=neko_action)
-
+    
+    @commands.command(name='tickle')
+    async def tickle(self, ctx, member: discord.User = None):
+        self.current_member = member
+        if self.current_member == None:
+                await ctx.send("Gimve a user")
+        else:
+            if ctx.message.author == self.current_member:
+                await ctx.send("You camt tickle yourmself")
+                return
+            neko_action = embeds.NekoEmbed(discord.Color.purple(),
+                                               self.our_neko_actions.neko_tickle(), 
+                                               ctx.author.name, 
+                                               str(member.name), 
+                                               'tickle').getEmbedMessage()
+            await ctx.send(embed=neko_action)
 
 def setup(bot):
     bot.add_cog(NekoActionCog(bot))

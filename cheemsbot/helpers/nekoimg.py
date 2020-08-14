@@ -12,13 +12,12 @@ def get_neko_nsfw() -> str:
     possible = [
         'feet', 'yuri', 'trap', 'futanari', 'hololewd', 'lewdkemo',
         'solog', 'feetg', 'cum', 'les', 'lewdk',
-        'ngif', 'tickle', 'lewd', 'gecg', 'eron',
-        'cum_jpg', 'bj', 'nsfw_neko_gif', 'solo', 'kemonomimi', 'nsfw_avatar',
+        'ngif', 'lewd', 'cum_jpg', 'bj', 'nsfw_neko_gif', 'solo', 'nsfw_avatar',
         'anal', 'hentai', 'erofeet',
-        'keta', 'blowjob', 'pussy', 'tits', 'pussy_jpg',
+        'blowjob', 'pussy', 'tits', 'pussy_jpg',
         'pwankg', 'classic', 'kuni', 'femdom',
         'spank', 'erok', 'boobs', 'random_hentai_gif',
-        'smallboobs', 'ero', 'smug', 'goose', 'baka', 'woof']
+        'smallboobs', 'baka']
     return str(nekos.img(random.choice(possible)))
 
 
@@ -42,6 +41,10 @@ class NekoActions:
     def neko_hug(self) -> str:
         self.hug_image_url = str(nekos.img('hug'))
         return self.hug_image_url
+    
+    def neko_tickle(self) -> str:
+        self.tickle_image_url = str(nekos.img('tickle'))
+        return self.tickle_image_url
 
 
 def owo_text(desired_text:str) -> str:
