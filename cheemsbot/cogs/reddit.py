@@ -34,6 +34,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
     
     @commands.command(name="redditmeme", aliases=['rmeme'])
     async def redditmeme(self, ctx, *, subreddit=None):
+        self.forbidden = ['cock', 'ass', 'sex', 'dick', 'penis', 'pussy']
         self.current_subreddit = subreddit
         if self.current_subreddit == None:
             await ctx.send("Gimve a sumbreddit")
@@ -46,6 +47,10 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
         self.current_subreddit)
             if (reddit_post.is_nsfw) and (ctx.channel.is_nsfw() == False):
                 await ctx.send("Not infromt of the childrem")
+                return
+            self.string_test_result = any(element in self.current_subreddit for element in self.forbidden)
+            if self.string_test_result:
+                await ctx.send("Ummmm sumbreddit comtains formbidden wormd, somry")
                 return
             embed_message = embeds.RedditEmbedMessage(discord.Color.orange(),
             reddit_post.post_title,

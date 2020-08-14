@@ -21,7 +21,6 @@ class RedditPost(RedditSession):
         self.subreddit = subreddit
         self.target = self.current_log.subreddit(self.subreddit).random()
         self.post_image = self.target.url
-        print(self.post_image)
         self.post_author = str(self.target.author)
         self.post_title = self.target.title
         self.post_subreddit = str(self.target.subreddit)
