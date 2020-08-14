@@ -11,14 +11,14 @@ def get_neko_sfw() -> str:
 def get_neko_nsfw() -> str:
     possible = [
         'feet', 'yuri', 'trap', 'futanari', 'hololewd', 'lewdkemo',
-        'solog', 'feetg', 'cum', 'erokemo', 'les', 'wallpaper', 'lewdk',
+        'solog', 'feetg', 'cum', 'erokemo', 'les', 'lewdk',
         'ngif', 'tickle', 'lewd', 'feed', 'gecg', 'eroyuri', 'eron',
         'cum_jpg', 'bj', 'nsfw_neko_gif', 'solo', 'kemonomimi', 'nsfw_avatar',
-        'gasm', 'poke', 'anal', 'slap', 'hentai', 'avatar', 'erofeet', 'holo',
-        'keta', 'blowjob', 'pussy', 'tits', 'holoero', 'lizard', 'pussy_jpg',
-        'pwankg', 'classic', 'kuni', 'waifu', 'pat', '8ball', 'kiss', 'femdom',
-        'neko', 'spank', 'cuddle', 'erok', 'fox_girl', 'boobs', 'random_hentai_gif',
-        'smallboobs', 'hug', 'ero', 'smug', 'goose', 'baka', 'woof']
+        'gasm', 'poke', 'anal', 'hentai', 'erofeet', 'holo',
+        'keta', 'blowjob', 'pussy', 'tits', 'holoero', 'pussy_jpg',
+        'pwankg', 'classic', 'kuni', 'femdom',
+        'neko', 'spank', 'erok', 'boobs', 'random_hentai_gif',
+        'smallboobs', 'ero', 'smug', 'goose', 'baka', 'woof']
     return str(nekos.img(random.choice(possible)))
 
 
