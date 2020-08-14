@@ -11,14 +11,16 @@ def get_neko_sfw() -> str:
 def get_neko_nsfw() -> str:
     possible = [
         'feet', 'yuri', 'trap', 'futanari', 'hololewd', 'lewdkemo',
-        'solog', 'feetg', 'cum', 'les', 'lewdk',
-        'ngif', 'lewd', 'cum_jpg', 'bj', 'nsfw_neko_gif', 'solo', 'nsfw_avatar',
-        'anal', 'hentai', 'erofeet',
+        'solog', 'feetg', 'cum', 'les', 'lewdk', 'lewd', 'cum_jpg', 'bj', 
+        'nsfw_neko_gif', 'solo', 'nsfw_avatar', 'anal', 'hentai', 'erofeet',
         'blowjob', 'pussy', 'tits', 'pussy_jpg',
         'pwankg', 'classic', 'kuni', 'femdom',
         'spank', 'erok', 'boobs', 'random_hentai_gif',
-        'smallboobs', 'baka']
-    return str(nekos.img(random.choice(possible)))
+        'smallboobs']
+    nsfw_neko_img = str(nekos.img(random.choice(possible)))
+    while str(404) in nsfw_neko_img:
+        nsfw_neko_img = str(nekos.img(random.choice(possible)))
+    return nsfw_neko_img
 
 
 class NekoActions:
@@ -41,11 +43,11 @@ class NekoActions:
     def neko_hug(self) -> str:
         self.hug_image_url = str(nekos.img('hug'))
         return self.hug_image_url
-    
+
     def neko_tickle(self) -> str:
         self.tickle_image_url = str(nekos.img('tickle'))
         return self.tickle_image_url
 
 
-def owo_text(desired_text:str) -> str:
+def owo_text(desired_text: str) -> str:
     return str(nekos.owoify(desired_text))
