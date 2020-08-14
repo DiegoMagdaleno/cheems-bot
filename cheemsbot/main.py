@@ -13,7 +13,7 @@ file_load = open(config_path, 'r').read()
 session_config = config.Configuration(file_load)
 
 initial_extensions = ['cogs.fun',
-                      'cogs.nekoactions', 'cogs.nsfw', 'cogs.reddit', 'cogs.fourchan', 'cogs.root']
+                      'cogs.nekoactions', 'cogs.nsfw', 'cogs.reddit', 'cogs.fourchan', 'cogs.root', 'cogs.moderation']
 if __name__ == '__main__':
     bot.remove_command('help')
     for extension in initial_extensions:
