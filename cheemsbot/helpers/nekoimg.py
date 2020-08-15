@@ -1,6 +1,5 @@
 import random
 
-# type: ignore
 import nekos
 
 

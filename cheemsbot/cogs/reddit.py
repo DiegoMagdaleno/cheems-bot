@@ -39,7 +39,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
                 return
             self.string_test_result = any(
                 element in self.current_subreddit for element in self.forbidden
-                )
+            )
             if self.string_test_result and (ctx.channel.is_nsfw() == False):
                 await ctx.send(
                     "Subreddit contains a forbidden word. This detection will be improved eventually."

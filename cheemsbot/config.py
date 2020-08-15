@@ -1,3 +1,4 @@
+from cheemsbot.helpers.reddit import RedditPost
 import os
 from cheemsbot.helpers import config, reddit
 
@@ -11,7 +12,7 @@ our_reddit_credentials = reddit.RedditCredentials(session_config.reddit_client_i
 
 our_discord_token = session_config.discord_token
 
-def get_reddit_post(subreddit):
+def get_reddit_post(subreddit:str) ->  RedditPost:
     reddit_post = reddit.RedditPost(
         our_reddit_credentials,
         subreddit

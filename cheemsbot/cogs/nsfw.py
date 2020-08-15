@@ -2,6 +2,7 @@ from cheemsbot.helpers import nekoimg
 from discord.ext import commands
 import cheemsbot.config as conf
 
+
 class NSFWCommandsCog(commands.Cog, name="NSFW"):
     def __init__(self, bot) -> None:
         self.bot = bot
@@ -9,7 +10,7 @@ class NSFWCommandsCog(commands.Cog, name="NSFW"):
     @commands.command(name="lewdfemboy")
     async def lewdfemboy(self, ctx):
         if ctx.channel.is_nsfw():
-            self.reddit_post = conf.get_reddit_post('femboys')
+            self.reddit_post = conf.get_reddit_post("femboys")
             await ctx.send(self.reddit_post.post_image)
         else:
             await ctx.send("Not infromt of the childmren.")

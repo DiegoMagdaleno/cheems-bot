@@ -4,7 +4,7 @@ from cheemsbot.helpers import random_operations
 
 
 class CheemsRootCommandsCog(commands.Cog, name="Root"):
-    def __init__(self, bot) -> None:
+    def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
     @commands.command(name="help")

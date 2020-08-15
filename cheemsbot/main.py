@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
 
 @bot.event
-async def on_command_error(ctx, error):
+async def on_command_error(ctx: commands.Context, error: commands.errors):
     if isinstance(error, commands.CommandOnCooldown):
         await ctx.send(
             "Thims command is on a %.2fs coolmdown, trym amgain lamter"
