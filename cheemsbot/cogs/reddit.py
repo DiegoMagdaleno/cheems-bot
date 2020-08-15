@@ -2,6 +2,7 @@ from cheemsbot.helpers import embeds
 from discord.ext import commands
 import discord
 import cheemsbot.config as conf
+import random
 
 
 class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
@@ -26,7 +27,34 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
 
     @commands.command(name="redditmeme", aliases=["rmeme"])
     @commands.cooldown(1, 5, commands.BucketType.user)
-    async def redditmeme(self, ctx, *, subreddit=None):
+    async def redditmeme(self, ctx):
+        async with ctx.typing():
+            self.current_subreddit = random.choice(
+                [
+                    "me_irl",
+                    "okbuddyretard",
+                    "okbuddylinux",
+                    "surrealmemes",
+                    "comedyheaven",
+                    "comedynecrophilia",
+                ]
+            )
+            reddit_post = conf.get_reddit_post(self.current_subreddit, only_image=True)
+            embed_message = embeds.RedditEmbedMessage(
+                discord.Color.orange(),
+                reddit_post.post_title,
+                reddit_post.post_image,
+                reddit_post.post_subreddit,
+                reddit_post.post_author,
+                reddit_post.post_author_avatar,
+                reddit_post.post_link,
+                "meme",
+            ).get_embed_message()
+        await ctx.send(embed=embed_message)
+
+    @commands.command(name="redditpost", aliases=["rpost"])
+    @commands.cooldown(1, 5, commands.BucketType.user)
+    async def redditpost(self, ctx, *, subreddit=None):
         self.forbidden = ["cock", "ass", "sex", "dick", "penis", "pussy"]
         self.current_subreddit = subreddit
         if self.current_subreddit is None:
@@ -52,6 +80,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
                 reddit_post.post_author,
                 reddit_post.post_author_avatar,
                 reddit_post.post_link,
+                "post",
             ).get_embed_message()
             await ctx.send(embed=embed_message)
 

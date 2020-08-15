@@ -33,16 +33,23 @@ class RedditEmbedMessage(EmbedMessage):
         author: str,
         author_icon: str,
         link: str,
+        post_type: str,
     ) -> None:
         super().__init__(colour, title, image, source, author, author_icon, link)
+        self.type = post_type
 
     def get_embed_message(self):
         self.embed_object_session = discord.Embed()
         self.embed_object_session.clear_fields()
         self.embed_object_session.title = self.title
         self.embed_object_session.set_image(url=self.image)
+        with Switch(self.type) as case:
+            if case("post"):
+                self.credit_string = "Post by:"
+            if case("meme"):
+                self.credit_string = "Meme by:"
         self.embed_object_session.set_footer(
-            text="Posted on: " + self.source + "\nMeme by: " + self.author,
+            text="Posted on: {0}\n{1} {2}".format(self.source, self.credit_string, self.author),
             icon_url=self.author_icon,
         )
         self.embed_object_session.color = self.colour
