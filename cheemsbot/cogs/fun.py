@@ -1,6 +1,5 @@
 from discord.ext import commands
 from cheemsbot.helpers import nekoimg, random_operations
-import os
 import random
 import discord
 import cheemsbot.config as conf
@@ -27,13 +26,9 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
         self.reddit_post = conf.get_reddit_post("ladyboners")
         await ctx.send(self.reddit_post.post_image)
 
-    # TODO: Here it should be r/femboy, however, we tried to fix it, and it refuses to work.
-    # it returns a none type, this ofc makes an error, this however should be look up on
-    # as many users have requested this feature to be r/femboy and not r/crossdressing
-
     @commands.command(name="femboy")
     async def femboy(self, ctx):
-        reddit_post = conf.get_reddit_post("crossdressing")
+        reddit_post = conf.get_reddit_post("femboy")
         await ctx.send(reddit_post.post_image)
 
     @commands.command(name="neko")

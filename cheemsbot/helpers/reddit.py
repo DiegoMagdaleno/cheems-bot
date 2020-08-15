@@ -2,7 +2,7 @@
 
 import praw
 from dataclasses import dataclass
-
+import random
 
 @dataclass
 class RedditCredentials:
@@ -47,11 +47,18 @@ class RedditPost(RedditSession):
             self.reddit_credentials.password,
         )
 
+
         # The subreddit we want to targed
         self.subreddit = subreddit
 
         # We get the subreddit property from our praw session atribute in our main class, and we tell it to get a random post
         self.target = self.praw_session.subreddit(self.subreddit).random()
+
+        # Some subreddits don't support the random feature, so we do it ourselves.
+        if self.target == None:
+            self.random_id_choice = random.choice(list(self.praw_session.subreddit(self.subreddit).hot(limit=50)))
+            self.target = self.praw_session.submission(self.random_id_choice)
+
 
         self.post_image = self.target.url
         self.post_author = str(self.target.author)

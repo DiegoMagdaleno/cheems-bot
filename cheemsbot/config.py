@@ -17,4 +17,5 @@ def get_reddit_post(subreddit:str) ->  RedditPost:
         our_reddit_credentials,
         subreddit
     )
+    print (reddit_post.target)
     return reddit_post
