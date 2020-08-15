@@ -2,7 +2,7 @@ from cheemsbot.helpers import nekoimg, embeds
 from discord.ext import commands
 import discord
 
-bot = commands.Bot(command_prefix='>')
+bot = commands.Bot(command_prefix=">")
 
 
 class NekoActionCog(commands.Cog, name="Neko actions"):
@@ -10,7 +10,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
         self.bot = bot
         self.our_neko_actions = nekoimg.NekoActions()
 
-    @commands.command(name='cuddle')
+    @commands.command(name="cuddle")
     async def cuddle(self, ctx, member: discord.User = None):
         self.current_member = member
         if self.current_member == None:
@@ -19,14 +19,16 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
             if ctx.message.author == member:
                 await ctx.send("You camt cuddle wimth yourmself")
                 return
-            neko_action = embeds.NekoEmbed(discord.Color.blurple(),
-                                           self.our_neko_actions.neko_cuddle(),
-                                           ctx.author.name,
-                                           str(member.name),
-                                           'cuddle').getEmbedMessage()
+            neko_action = embeds.NekoEmbed(
+                discord.Color.blurple(),
+                self.our_neko_actions.neko_cuddle(),
+                ctx.author.name,
+                str(member.name),
+                "cuddle",
+            ).getEmbedMessage()
         await ctx.send(embed=neko_action)
 
-    @commands.command(name='pat')
+    @commands.command(name="pat")
     async def headpat(self, ctx, member: discord.User = None):
         self.current_member = member
         if self.current_member == None:
@@ -35,14 +37,16 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
             if ctx.message.author == self.current_member:
                 await ctx.send("You camt pat yourselmf.")
                 return
-            neko_action = embeds.NekoEmbed(discord.Color.blurple(),
-                                           self.our_neko_actions.neko_pat(),
-                                           ctx.author.name,
-                                           str(member.name),
-                                           'pat').getEmbedMessage()
+            neko_action = embeds.NekoEmbed(
+                discord.Color.blurple(),
+                self.our_neko_actions.neko_pat(),
+                ctx.author.name,
+                str(member.name),
+                "pat",
+            ).getEmbedMessage()
         await ctx.send(embed=neko_action)
 
-    @commands.command(name='kiss')
+    @commands.command(name="kiss")
     async def kiss(self, ctx, member: discord.User = None):
         self.current_member = member
         if self.current_member == None:
@@ -51,14 +55,16 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
             if ctx.message.author == self.current_member:
                 await ctx.send("You camt kiss yourmself.")
                 return
-            neko_action = embeds.NekoEmbed(discord.Color.blurple(),
-                                           self.our_neko_actions.neko_kiss(),
-                                           ctx.author.name,
-                                           str(member.name),
-                                           'kiss').getEmbedMessage()
+            neko_action = embeds.NekoEmbed(
+                discord.Color.blurple(),
+                self.our_neko_actions.neko_kiss(),
+                ctx.author.name,
+                str(member.name),
+                "kiss",
+            ).getEmbedMessage()
         await ctx.send(embed=neko_action)
 
-    @commands.command(name='slap')
+    @commands.command(name="slap")
     async def slap(self, ctx, member: discord.User = None):
         self.current_member = member
         if self.current_member == None:
@@ -67,27 +73,31 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
             if ctx.message.author == self.current_member:
                 await ctx.send("You camt slap yourmself")
                 return
-            neko_action = embeds.NekoEmbed(discord.Color.blurple(),
-                                           self.our_neko_actions.neko_slap(),
-                                           ctx.author.name,
-                                           str(member.name),
-                                           'slap').getEmbedMessage()
+            neko_action = embeds.NekoEmbed(
+                discord.Color.blurple(),
+                self.our_neko_actions.neko_slap(),
+                ctx.author.name,
+                str(member.name),
+                "slap",
+            ).getEmbedMessage()
         await ctx.send(embed=neko_action)
 
-    @commands.command(name='hug')
+    @commands.command(name="hug")
     async def hug(self, ctx, member: discord.User = None):
         self.current_member = member
         if self.current_member == None:
-                await ctx.send("Gimve a user")
+            await ctx.send("Gimve a user")
         else:
             if ctx.message.author == self.current_member:
                 await ctx.send("You camt humg yourmself")
                 return
-            neko_action = embeds.NekoEmbed(discord.Color.purple(),
-                                               self.our_neko_actions.neko_hug(), 
-                                               ctx.author.name, 
-                                               str(member.name), 
-                                               'hug').getEmbedMessage()
+            neko_action = embeds.NekoEmbed(
+                discord.Color.purple(),
+                self.our_neko_actions.neko_hug(),
+                ctx.author.name,
+                str(member.name),
+                "hug",
+            ).getEmbedMessage()
             await ctx.send(embed=neko_action)
 
 

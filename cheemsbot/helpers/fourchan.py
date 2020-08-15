@@ -1,9 +1,10 @@
 import random
+
 # type: ignore
 import basc_py4chan
 
 
-class FourChan():
+class FourChan:
     def __init__(self, board: str) -> None:
         self.board = basc_py4chan.Board(board)
 

@@ -1,6 +1,9 @@
-
 import discord
-async def require_proper_permissions(ctx, user:discord.User, bot: discord.ext.commands.Bot):
+
+
+async def require_proper_permissions(
+    ctx, user: discord.User, bot: discord.ext.commands.Bot
+):
     our_member = await ctx.guild.fetch_member(user.id)
     bot_member = await ctx.guild.fetch_member(bot.user.id)
 
@@ -12,5 +15,5 @@ async def require_proper_permissions(ctx, user:discord.User, bot: discord.ext.co
 
     if is_user_admin or is_higher_than:
         return False
-    
+
     return True
