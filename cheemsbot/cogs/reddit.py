@@ -1,5 +1,4 @@
-import os
-from cheemsbot.helpers import config, reddit, embeds
+from cheemsbot.helpers import embeds
 from discord.ext import commands
 import discord
 import cheemsbot.config as conf
@@ -30,19 +29,19 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
     async def redditmeme(self, ctx, *, subreddit=None):
         self.forbidden = ["cock", "ass", "sex", "dick", "penis", "pussy"]
         self.current_subreddit = subreddit
-        if self.current_subreddit == None:
+        if self.current_subreddit is None:
             await ctx.send("Give a subreddit")
         else:
             reddit_post = conf.get_reddit_post(self.current_subreddit)
-            if (reddit_post.is_nsfw) and (ctx.channel.is_nsfw() == False):
+            if (reddit_post.is_nsfw) and (ctx.channel.is_nsfw() is False):
                 await ctx.send("Not in front of the children.")
                 return
             self.string_test_result = any(
                 element in self.current_subreddit for element in self.forbidden
             )
-            if self.string_test_result and (ctx.channel.is_nsfw() == False):
+            if self.string_test_result and (ctx.channel.is_nsfw() is False):
                 await ctx.send(
-                    "Subreddit contains a forbidden word. This detection will be improved eventually."
+                    "Subreddit contains a forbidden word. This detection will be improved eventually."  # noqa: E501
                 )
                 return
             embed_message = embeds.RedditEmbedMessage(

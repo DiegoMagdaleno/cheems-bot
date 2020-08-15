@@ -24,7 +24,16 @@ class EmbedMessage:
 
 
 class RedditEmbedMessage(EmbedMessage):
-    def __init__(self, colour, title, image, source, author, author_icon, link) -> None:
+    def __init__(
+        self,
+        colour: str,
+        title: str,
+        image: str,
+        source: str,
+        author: str,
+        author_icon: str,
+        link: str,
+    ) -> None:
         super().__init__(colour, title, image, source, author, author_icon, link)
 
     def get_embed_message(self):
@@ -47,10 +56,10 @@ class RedditEmbedMessage(EmbedMessage):
 
 
 class FourChanEmbed(EmbedMessage):
-    def __init__(self, colour, title, image, source, link) -> None:
-        super().__init__(
-            colour=colour, title=title, image=image, source=source, link=link
-        )
+    def __init__(
+        self, colour: str, title: str, image: str, src: str, link: str
+    ) -> None:
+        super().__init__(colour=colour, title=title, image=image, source=src, link=link)
 
     def get_embed_message(self):
         self.embed_object_session = discord.Embed()
@@ -70,7 +79,9 @@ class FourChanEmbed(EmbedMessage):
 
 
 class NekoEmbed(EmbedMessage):
-    def __init__(self, colour, image, user_a, user_b, action) -> None:
+    def __init__(
+        self, colour: str, image: str, user_a: str, user_b: str, action: str
+    ) -> None:
         super().__init__(colour=colour, image=image)
         self.user_a = user_a
         self.user_b = user_b

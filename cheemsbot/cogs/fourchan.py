@@ -1,5 +1,4 @@
 from discord.ext import commands
-from discord.ext.commands.core import command
 from cheemsbot.helpers import fourchan, embeds
 import discord
 

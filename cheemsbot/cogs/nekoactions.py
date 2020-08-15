@@ -13,7 +13,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
     @commands.command(name="cuddle")
     async def cuddle(self, ctx, member: discord.User = None):
         self.current_member = member
-        if self.current_member == None:
+        if self.current_member is None:
             await ctx.send("Gimve me a user")
         else:
             if ctx.message.author == member:
@@ -31,7 +31,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
     @commands.command(name="pat")
     async def headpat(self, ctx, member: discord.User = None):
         self.current_member = member
-        if self.current_member == None:
+        if self.current_member is None:
             await ctx.send("Gimve me a user")
         else:
             if ctx.message.author == self.current_member:
@@ -49,7 +49,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
     @commands.command(name="kiss")
     async def kiss(self, ctx, member: discord.User = None):
         self.current_member = member
-        if self.current_member == None:
+        if self.current_member is None:
             await ctx.send("Gimve me a user")
         else:
             if ctx.message.author == self.current_member:
@@ -67,7 +67,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
     @commands.command(name="slap")
     async def slap(self, ctx, member: discord.User = None):
         self.current_member = member
-        if self.current_member == None:
+        if self.current_member is None:
             await ctx.send("Gimve me a user")
         else:
             if ctx.message.author == self.current_member:
@@ -85,7 +85,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
     @commands.command(name="hug")
     async def hug(self, ctx, member: discord.User = None):
         self.current_member = member
-        if self.current_member == None:
+        if self.current_member is None:
             await ctx.send("Gimve a user")
         else:
             if ctx.message.author == self.current_member:
@@ -103,7 +103,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
     @commands.command(name="tickle")
     async def tickle(self, ctx, member: discord.User = None):
         self.current_member = member
-        if self.current_member == None:
+        if self.current_member is None:
             await ctx.send("Gimve a user")
         else:
             if ctx.message.author == self.current_member:

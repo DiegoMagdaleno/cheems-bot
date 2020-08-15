@@ -31,7 +31,7 @@ class CheemsRootCommandsCog(commands.Cog, name="Root"):
         self.embed.add_field(name="Reddit", value="dogememe, redditmeme", inline=True)
         self.embed.add_field(name="Root ", value="help, ping", inline=True)
         self.embed.set_footer(
-            text="Cheemsburguer is free software. And it is licensed under the WTFPL license. Copyright Diego Magdaleno 2020 et al."
+            text="Cheemsburguer is free software. And it is licensed under the WTFPL license. Copyright Diego Magdaleno 2020 et al."  # noqa: E501
         )
         await ctx.send(embed=self.embed)
 

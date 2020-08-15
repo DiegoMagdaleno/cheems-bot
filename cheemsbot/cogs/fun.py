@@ -11,7 +11,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
 
     @commands.command(name="ask", aliases=["8b"])
     async def ask(self, ctx, *, question=None):
-        if question == None:
+        if question is None:
             await ctx.send("I meed you to amsk somethimg")
         else:
             ask_answer = random_operations.get_8_ball()
@@ -39,7 +39,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
 
     @commands.command(name="owofy")
     async def owofy(self, ctx, *, our_input=None):
-        if our_input == None:
+        if our_input is None:
             await ctx.send("Gimve me a memsage")
         else:
             self.owofied_input = nekoimg.owo_text(our_input)
@@ -48,7 +48,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
     @commands.command(name="ischad")
     async def ischad(self, ctx, member: discord.User = None):
         self.current_member = member
-        if self.current_member == None:
+        if self.current_member is None:
             await ctx.send("Gimve me a user")
         else:
             self.chad_virgin_prob = random.randint(0, 100)
