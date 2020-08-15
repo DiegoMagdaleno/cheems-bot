@@ -1,16 +1,9 @@
-import discord
 from discord.ext import commands
-from helpers import config, embeds, random_operations, fourchan
-import os
 import sys
 import traceback
-
+import cheemsbot.config as conf
 
 bot = commands.Bot(command_prefix=">")
-config_path = os.path.abspath("config.json")
-file_load = open(config_path, "r").read()
-
-session_config = config.Configuration(file_load)
 
 initial_extensions = [
     "cogs.fun",
@@ -42,4 +35,4 @@ async def on_command_error(ctx, error):
     raise error
 
 
-bot.run(session_config.discord_token)
+bot.run(conf.our_discord_token)

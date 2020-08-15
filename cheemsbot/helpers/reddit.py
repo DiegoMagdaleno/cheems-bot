@@ -14,7 +14,14 @@ class RedditCredentials:
 
 
 class RedditSession:
-    def __init__(self, client_id: str, client_secret: str, user_agent: str, user: str, password: str) -> None:
+    def __init__(
+        self,
+        client_id: str,
+        client_secret: str,
+        user_agent: str,
+        user: str,
+        password: str,
+    ) -> None:
         self.client_id = str(client_id)
         self.client_secret = str(client_secret)
         self.user_agent = str(user_agent)
@@ -30,12 +37,15 @@ class RedditSession:
 
 
 class RedditPost(RedditSession):
-    def __init__(
-        self, reddit_credentials: RedditCredentials, subreddit: str
-    ) -> None:
+    def __init__(self, reddit_credentials: RedditCredentials, subreddit: str) -> None:
         self.reddit_credentials = reddit_credentials
-        super().__init__(self.reddit_credentials.client_id, self.reddit_credentials.client_secret,
-                         self.reddit_credentials.user_agent, self.reddit_credentials.user, self.reddit_credentials.password)
+        super().__init__(
+            self.reddit_credentials.client_id,
+            self.reddit_credentials.client_secret,
+            self.reddit_credentials.user_agent,
+            self.reddit_credentials.user,
+            self.reddit_credentials.password,
+        )
 
         # The subreddit we want to targed
         self.subreddit = subreddit

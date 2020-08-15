@@ -2,7 +2,8 @@ import os
 from cheemsbot.helpers import config, reddit, embeds
 from discord.ext import commands
 import discord
-from cheemsbot.cogs.vitals import config_handler
+import cheemsbot.config as conf
+
 
 class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
     def __init__(self, bot):
@@ -12,7 +13,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def dogememe(self, ctx):
         async with ctx.typing():
-            self.reddit_post = config_handler.get_reddit_post("dogelore")
+            self.reddit_post = conf.get_reddit_post("dogelore")
             embed_message = embeds.RedditEmbedMessage(
                 discord.Color.orange(),
                 self.reddit_post.post_title,
@@ -32,27 +33,28 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
         if self.current_subreddit == None:
             await ctx.send("Give a subreddit")
         else:
-            async with ctx.typing():
-                reddit_post = config_handler.get_reddit_post(self.subreddit)
-                if (reddit_post.is_nsfw) and (ctx.channel.is_nsfw() == False):
-                    await ctx.send("Not in front of the children.")
-                    return
-                self.string_test_result = any(
-                    element in self.current_subreddit for element in self.forbidden
+            reddit_post = conf.get_reddit_post(self.current_subreddit)
+            if (reddit_post.is_nsfw) and (ctx.channel.is_nsfw() == False):
+                await ctx.send("Not in front of the children.")
+                return
+            self.string_test_result = any(
+                element in self.current_subreddit for element in self.forbidden
                 )
-                if self.string_test_result and (ctx.channel.is_nsfw() == False):
-                    await ctx.send("Subreddit contains a forbidden word. This detection will be improved eventually.")
-                    return
-                embed_message = embeds.RedditEmbedMessage(
-                    discord.Color.orange(),
-                    reddit_post.post_title,
-                    reddit_post.post_image,
-                    reddit_post.post_subreddit,
-                    reddit_post.post_author,
-                    reddit_post.post_author_avatar,
-                    reddit_post.post_link,
-                ).getEmbedMessage()
-            await ctx.send(embed=embed_message)
+            if self.string_test_result and (ctx.channel.is_nsfw() == False):
+                await ctx.send(
+                    "Subreddit contains a forbidden word. This detection will be improved eventually."
+                )
+                return
+            embed_message = embeds.RedditEmbedMessage(
+                discord.Color.orange(),
+                reddit_post.post_title,
+                reddit_post.post_image,
+                reddit_post.post_subreddit,
+                reddit_post.post_author,
+                reddit_post.post_author_avatar,
+                reddit_post.post_link,
+            ).getEmbedMessage()
+        await ctx.send(embed=embed_message)
 
 
 def setup(bot):

@@ -3,7 +3,7 @@ from cheemsbot.helpers import reddit, config, nekoimg, random_operations
 import os
 import random
 import discord
-from cheemsbot.cogs.vitals import config_handler
+import cheemsbot.config as conf
 
 class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
     def __init__(self, bot):
@@ -19,12 +19,12 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
 
     @commands.command(name="gf")
     async def girlfriend(self, ctx):
-        self.reddit_post = config_handler.get_reddit_post("gentlemanboners")
+        self.reddit_post = conf.get_reddit_post("gentlemanboners")
         await ctx.send(self.reddit_post.post_image)
 
     @commands.command(name="bf")
     async def boyfriend(self, ctx):
-        self.reddit_post = config_handler.get_reddit_post('ladyboners')
+        self.reddit_post = conf.get_reddit_post("ladyboners")
         await ctx.send(self.reddit_post.post_image)
 
     # TODO: Here it should be r/femboy, however, we tried to fix it, and it refuses to work.
@@ -33,7 +33,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
 
     @commands.command(name="femboy")
     async def femboy(self, ctx):
-        reddit_post = config_handler.get_reddit_post('crossdressing')
+        reddit_post = conf.get_reddit_post("crossdressing")
         await ctx.send(reddit_post.post_image)
 
     @commands.command(name="neko")
