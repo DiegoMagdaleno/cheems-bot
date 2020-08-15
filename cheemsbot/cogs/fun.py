@@ -1,5 +1,5 @@
 from discord.ext import commands
-from cheemsbot.helpers import reddit, config, nekoimg, random_operations
+from cheemsbot.helpers import nekoimg, random_operations
 import os
 import random
 import discord
@@ -15,7 +15,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
             await ctx.send("I meed you to amsk somethimg")
         else:
             ask_answer = random_operations.get_8_ball()
-        await ctx.send(f"{ctx.author.mention}, " + ask_answer)
+            await ctx.send("{0}, {1}".format(ctx.author.mention, ask_answer))
 
     @commands.command(name="gf")
     async def girlfriend(self, ctx):

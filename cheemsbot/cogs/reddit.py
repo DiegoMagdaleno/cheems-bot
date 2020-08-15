@@ -54,7 +54,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
                 reddit_post.post_author_avatar,
                 reddit_post.post_link,
             ).getEmbedMessage()
-        await ctx.send(embed=embed_message)
+            await ctx.send(embed=embed_message)
 
 
 def setup(bot):

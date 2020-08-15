@@ -26,7 +26,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                 str(member.name),
                 "cuddle",
             ).getEmbedMessage()
-        await ctx.send(embed=neko_action)
+            await ctx.send(embed=neko_action)
 
     @commands.command(name="pat")
     async def headpat(self, ctx, member: discord.User = None):
@@ -44,7 +44,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                 str(member.name),
                 "pat",
             ).getEmbedMessage()
-        await ctx.send(embed=neko_action)
+            await ctx.send(embed=neko_action)
 
     @commands.command(name="kiss")
     async def kiss(self, ctx, member: discord.User = None):
@@ -62,7 +62,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                 str(member.name),
                 "kiss",
             ).getEmbedMessage()
-        await ctx.send(embed=neko_action)
+            await ctx.send(embed=neko_action)
 
     @commands.command(name="slap")
     async def slap(self, ctx, member: discord.User = None):
@@ -80,7 +80,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                 str(member.name),
                 "slap",
             ).getEmbedMessage()
-        await ctx.send(embed=neko_action)
+            await ctx.send(embed=neko_action)
 
     @commands.command(name="hug")
     async def hug(self, ctx, member: discord.User = None):
