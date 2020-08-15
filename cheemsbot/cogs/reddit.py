@@ -40,15 +40,41 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
                     "comedynecrophilia",
                 ]
             )
-            reddit_post = conf.get_reddit_post(self.current_subreddit, only_image=True)
+            self.reddit_post = conf.get_reddit_post(self.current_subreddit, only_image=True)
             embed_message = embeds.RedditEmbedMessage(
                 discord.Color.orange(),
-                reddit_post.post_title,
-                reddit_post.post_image,
-                reddit_post.post_subreddit,
-                reddit_post.post_author,
-                reddit_post.post_author_avatar,
-                reddit_post.post_link,
+                self.reddit_post.post_title,
+                self.reddit_post.post_image,
+                self.reddit_post.post_subreddit,
+                self.reddit_post.post_author,
+                self.reddit_post.post_author_avatar,
+                self.reddit_post.post_link,
+                "meme",
+            ).get_embed_message()
+        await ctx.send(embed=embed_message)
+
+    @commands.command(name="cringe")
+    @commands.cooldown(1, 5, commands.BucketType.user)
+    async def cringe(self, ctx):
+        async with ctx.typing():
+            self.current_subreddit = random.choice(
+                [
+                    "pewdiepiesubmissions",
+                    "dankmemes",
+                    "meme",
+                    "memes",
+                    "gaming",
+                ]
+            )
+            self.reddit_post = conf.get_reddit_post(self.current_subreddit, only_image=True)
+            embed_message = embeds.RedditEmbedMessage(
+                discord.Color.orange(),
+                self.reddit_post.post_title,
+                self.reddit_post.post_image,
+                self.reddit_post.post_subreddit,
+                self.reddit_post.post_author,
+                self.reddit_post.post_author_avatar,
+                self.reddit_post.post_link,
                 "meme",
             ).get_embed_message()
         await ctx.send(embed=embed_message)
