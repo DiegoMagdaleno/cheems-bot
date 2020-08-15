@@ -29,6 +29,6 @@ def get_reddit_post(subreddit: str, only_image: bool = False) -> reddit.RedditPo
     if only_image:
         while reddit_post.is_only_text:
             reddit_post = reddit.RedditPost(our_reddit_credentials, subreddit)
-        while 'i.redd.it' not in reddit_post.post_image:
+        while "i.redd.it" not in reddit_post.post_image:
             reddit_post = reddit.RedditPost(our_reddit_credentials, subreddit)
     return reddit_post

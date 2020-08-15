@@ -49,7 +49,9 @@ class RedditEmbedMessage(EmbedMessage):
             if case("meme"):
                 self.credit_string = "Meme by:"
         self.embed_object_session.set_footer(
-            text="Posted on: {0}\n{1} {2}".format(self.source, self.credit_string, self.author),
+            text="Posted on: {0}\n{1} {2}".format(
+                self.source, self.credit_string, self.author
+            ),
             icon_url=self.author_icon,
         )
         self.embed_object_session.color = self.colour
