@@ -19,4 +19,15 @@ our_discord_token = session_config.discord_token
 
 def get_reddit_post(subreddit: str) -> reddit.RedditPost:
     reddit_post = reddit.RedditPost(our_reddit_credentials, subreddit)
+
+    # ! NOTICE: This method significaly slow downs our bot (about 30%) but its
+    # ! our only solution, until support for Reddit galleries is added.
+    # ! Note that Reddit will never be perfect, as we don't have a way to be 100%
+    # ! What we grabbed is an image, still it is recommended for maintainers
+    # ! And contributors of this project to keep an eye on Praw documentation and this
+    # ! issue: https://github.com/praw-dev/praw/issues/1549
+    while reddit_post.is_only_text:
+        reddit_post = reddit.RedditPost(our_reddit_credentials, subreddit)
+    while 'i.redd.it' not in reddit_post.post_image:
+        reddit_post = reddit.RedditPost(our_reddit_credentials, subreddit)
     return reddit_post
