@@ -3,18 +3,11 @@ from cheemsbot.helpers import reddit, config, nekoimg, random_operations
 import os
 import random
 import discord
-
-bot = commands.Bot(command_prefix=">")
-config_path = os.path.abspath("config.json")
-file_load = open(config_path, "r").read()
-
-session_config = config.Configuration(file_load)
-
+from cheemsbot.cogs.vitals import config_handler
 
 class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
-    def __init__(self, bot, configuration=None):
+    def __init__(self, bot):
         self.bot = bot
-        self.session_config = configuration
 
     @commands.command(name="ask", aliases=["8b"])
     async def ask(self, ctx, *, question=None):
@@ -26,27 +19,13 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
 
     @commands.command(name="gf")
     async def girlfriend(self, ctx):
-        reddit_post = reddit.RedditPost(
-            self.session_config.reddit_client_id,
-            self.session_config.reddit_client_secret,
-            self.session_config.reddit_user_agent,
-            self.session_config.reddit_user,
-            self.session_config.reddit_password,
-            "gentlemanboners",
-        )
-        await ctx.send(reddit_post.post_image)
+        self.reddit_post = config_handler.get_reddit_post("gentlemanboners")
+        await ctx.send(self.reddit_post.post_image)
 
     @commands.command(name="bf")
     async def boyfriend(self, ctx):
-        reddit_post = reddit.RedditPost(
-            self.session_config.reddit_client_id,
-            self.session_config.reddit_client_secret,
-            self.session_config.reddit_user_agent,
-            self.session_config.reddit_user,
-            self.session_config.reddit_password,
-            "ladyboners",
-        )
-        await ctx.send(reddit_post.post_image)
+        self.reddit_post = config_handler.get_reddit_post('ladyboners')
+        await ctx.send(self.reddit_post.post_image)
 
     # TODO: Here it should be r/femboy, however, we tried to fix it, and it refuses to work.
     # it returns a none type, this ofc makes an error, this however should be look up on
@@ -54,14 +33,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
 
     @commands.command(name="femboy")
     async def femboy(self, ctx):
-        reddit_post = reddit.RedditPost(
-            self.session_config.reddit_client_id,
-            self.session_config.reddit_client_secret,
-            self.session_config.reddit_user_agent,
-            self.session_config.reddit_user,
-            self.session_config.reddit_password,
-            "crossdressing",
-        )
+        reddit_post = config_handler.get_reddit_post('crossdressing')
         await ctx.send(reddit_post.post_image)
 
     @commands.command(name="neko")
@@ -95,4 +67,4 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
 
 
 def setup(bot):
-    bot.add_cog(FunWithCheemsCog(bot, session_config))
+    bot.add_cog(FunWithCheemsCog(bot))

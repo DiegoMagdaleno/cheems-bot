@@ -1,3 +1,4 @@
+import typing
 from discord.ext.commands.core import command
 from cheemsbot.helpers import config, reddit, nekoimg
 from discord.ext import commands
@@ -19,25 +20,27 @@ class NSFWCommandsCog(commands.Cog, name="NSFW"):
 
     @commands.command(name="lewdfemboy")
     async def lewdfemboy(self, ctx):
-        if ctx.channel.is_nsfw():
-            reddit_post = reddit.RedditPost(
-                self.session_config.reddit_client_id,
-                self.session_config.reddit_client_secret,
-                self.session_config.reddit_user_agent,
-                self.session_config.reddit_user,
-                self.session_config.reddit_password,
-                "femboys",
-            )
-            await ctx.send(reddit_post.post_image)
-        else:
-            await ctx.send("Not infromt of the childmren.")
+        async with ctx.typing():
+            if ctx.channel.is_nsfw():
+                reddit_post = reddit.RedditPost(
+                    self.session_config.reddit_client_id,
+                    self.session_config.reddit_client_secret,
+                    self.session_config.reddit_user_agent,
+                    self.session_config.reddit_user,
+                    self.session_config.reddit_password,
+                    "femboys",
+                )
+                await ctx.send(reddit_post.post_image)
+            else:
+                await ctx.send("Not infromt of the childmren.")
 
     @commands.command(name="lewdneko")
     async def lewdneko(self, ctx):
-        if ctx.channel.is_nsfw():
-            await ctx.send(nekoimg.get_neko_nsfw())
-        else:
-            await ctx.send("Not infromt of the childmren.")
+        async with ctx.typing():
+            if ctx.channel.is_nsfw():
+                await ctx.send(nekoimg.get_neko_nsfw())
+            else:
+                await ctx.send("Not infromt of the childmren.")
 
 
 def setup(bot):

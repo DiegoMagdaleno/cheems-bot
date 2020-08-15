@@ -1,6 +1,5 @@
 import json
-from .misc import JSONObject
-from typing import *
+from cheemsbot.helpers.misc import JSONObject
 
 
 class Configuration:
