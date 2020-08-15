@@ -4,6 +4,7 @@ import random
 import discord
 import cheemsbot.config as conf
 
+
 class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
     def __init__(self, bot):
         self.bot = bot

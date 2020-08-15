@@ -4,6 +4,7 @@ import praw
 from dataclasses import dataclass
 import random
 
+
 @dataclass
 class RedditCredentials:
     client_id: str
@@ -47,7 +48,6 @@ class RedditPost(RedditSession):
             self.reddit_credentials.password,
         )
 
-
         # The subreddit we want to targed
         self.subreddit = subreddit
 
@@ -56,9 +56,10 @@ class RedditPost(RedditSession):
 
         # Some subreddits don't support the random feature, so we do it ourselves.
         if self.target == None:
-            self.random_id_choice = random.choice(list(self.praw_session.subreddit(self.subreddit).hot(limit=50)))
+            self.random_id_choice = random.choice(
+                list(self.praw_session.subreddit(self.subreddit).hot(limit=50))
+            )
             self.target = self.praw_session.submission(self.random_id_choice)
-
 
         self.post_image = self.target.url
         self.post_author = str(self.target.author)
