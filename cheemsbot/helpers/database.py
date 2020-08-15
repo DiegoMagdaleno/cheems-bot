@@ -1,6 +1,7 @@
 import sqlite3
 
-class DataBaseHandlers():
+
+class DataBaseHandlers:
     def __init__(self, connection) -> None:
         self.connection = connection
 
@@ -20,9 +21,9 @@ class DataBaseHandlers():
             raise
         finally:
             self.conn.close()
-        
+
         return self.conn
-    
+
     def __init_tables(self):
         self.create_server_configuration_table = """ CREATE TABLE IF NOT EXITS server_configurations (
             guild_id text,
@@ -34,7 +35,7 @@ class DataBaseHandlers():
             self.__create_tables(self.create_server_configuration_table)
         else:
             print("Error")
-    
+
     def configure_server(self, conn, configuration):
         self.conn = conn
         self.configuration = configuration
@@ -44,4 +45,3 @@ class DataBaseHandlers():
         self.cursor.execute(sql, self.configuration)
         self.conn.commit()
         return self.cursor.lastrowid
-

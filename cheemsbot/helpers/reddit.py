@@ -3,7 +3,7 @@
 import praw
 
 
-class RedditSession():
+class RedditSession:
     def __init__(self, client_id, client_secret, user_agent, user, password):
         self.client_id = str(client_id)
         self.client_secret = str(client_secret)
@@ -11,11 +11,18 @@ class RedditSession():
         self.user = str(user)
         self.password = str(password)
         self.current_log = praw.Reddit(
-            client_id=self.client_id, client_secret=self.client_secret, user_agent=self.user_agent, user=self.user, password=self.password)
+            client_id=self.client_id,
+            client_secret=self.client_secret,
+            user_agent=self.user_agent,
+            user=self.user,
+            password=self.password,
+        )
 
 
 class RedditPost(RedditSession):
-    def __init__(self, client_id, client_secret, user_agent, user, password, subreddit) -> None:
+    def __init__(
+        self, client_id, client_secret, user_agent, user, password, subreddit
+    ) -> None:
         self.subreddit = subreddit
         super().__init__(client_id, client_secret, user_agent, user, password)
         self.subreddit = subreddit
