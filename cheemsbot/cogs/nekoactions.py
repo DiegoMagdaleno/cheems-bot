@@ -25,7 +25,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                 ctx.author.name,
                 str(member.name),
                 "cuddle",
-            ).getEmbedMessage()
+            ).get_embed_message()
             await ctx.send(embed=neko_action)
 
     @commands.command(name="pat")
@@ -43,7 +43,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                 ctx.author.name,
                 str(member.name),
                 "pat",
-            ).getEmbedMessage()
+            ).get_embed_message()
             await ctx.send(embed=neko_action)
 
     @commands.command(name="kiss")
@@ -61,7 +61,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                 ctx.author.name,
                 str(member.name),
                 "kiss",
-            ).getEmbedMessage()
+            ).get_embed_message()
             await ctx.send(embed=neko_action)
 
     @commands.command(name="slap")
@@ -79,7 +79,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                 ctx.author.name,
                 str(member.name),
                 "slap",
-            ).getEmbedMessage()
+            ).get_embed_message()
             await ctx.send(embed=neko_action)
 
     @commands.command(name="hug")
@@ -97,7 +97,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                 ctx.author.name,
                 str(member.name),
                 "hug",
-            ).getEmbedMessage()
+            ).get_embed_message()
             await ctx.send(embed=neko_action)
 
     @commands.command(name="tickle")
@@ -115,7 +115,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
                 ctx.author.name,
                 str(member.name),
                 "tickle",
-            ).getEmbedMessage()
+            ).get_embed_message()
             await ctx.send(embed=neko_action)
 
 

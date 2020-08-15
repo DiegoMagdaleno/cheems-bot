@@ -20,5 +20,4 @@ our_discord_token = session_config.discord_token
 
 def get_reddit_post(subreddit: str) -> RedditPost:
     reddit_post = reddit.RedditPost(our_reddit_credentials, subreddit)
-    print(reddit_post.target)
     return reddit_post

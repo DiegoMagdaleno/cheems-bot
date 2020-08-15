@@ -22,7 +22,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
                 self.reddit_post.post_author,
                 self.reddit_post.post_author_avatar,
                 self.reddit_post.post_link,
-            ).getEmbedMessage()
+            ).get_embed_message()
         await ctx.send(embed=embed_message)
 
     @commands.command(name="redditmeme", aliases=["rmeme"])
@@ -53,7 +53,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
                 reddit_post.post_author,
                 reddit_post.post_author_avatar,
                 reddit_post.post_link,
-            ).getEmbedMessage()
+            ).get_embed_message()
             await ctx.send(embed=embed_message)
 
 

@@ -18,7 +18,7 @@ class FourChanCommandsCog(commands.Cog, name="4chan commands"):
             fourchan_post.image_url,
             target_board,
             fourchan_post.url,
-        ).getEmbedMessage()
+        ).get_embed_message()
         await ctx.send(embed=embed_message)
 
 
