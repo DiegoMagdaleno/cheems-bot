@@ -21,7 +21,7 @@ nekos.py==1.0.3
 pipx==0.15.4.0
 praw==7.1.0
 prawcore==1.5.0
-protobuf==3.12.4
+protobuf==3.13.0
 pycodestyle==2.6.0
 pylint==2.5.3
 requests==2.24.0
