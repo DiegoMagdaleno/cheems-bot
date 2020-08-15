@@ -16,7 +16,7 @@ class CheemsRootCommandsCog(commands.Cog, name="Root"):
         )
         self.embed.set_author(
             name="Cheemsburguer help",
-            icon_url="https://cdn140.picsart.com/314611123258211.png?type=webp&to=min&r=480",
+            icon_url="https://shorturl.at/msHO8",
         )
         self.embed.add_field(name="4chan", value="tech", inline=False)
         self.embed.add_field(
