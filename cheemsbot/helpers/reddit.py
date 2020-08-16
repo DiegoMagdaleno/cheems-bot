@@ -13,6 +13,15 @@ class RedditCredentials:
     user: str
     password: str
 
+@dataclass
+class RedditPostContents:
+    post_title: str
+    post_image: str
+    post_subreddit: str
+    post_author: str
+    post_author_avatar: str
+    post_link: str
+
 
 class RedditSession:
     def __init__(

@@ -33,4 +33,7 @@ def get_reddit_post(subreddit: str, only_image: bool = False) -> reddit.RedditPo
             reddit_post = reddit.RedditPost(our_reddit_credentials, subreddit)
         while "i.redd.it" not in reddit_post.post_image:
             reddit_post = reddit.RedditPost(our_reddit_credentials, subreddit)
-    return reddit_post
+    reddit_contents = reddit.RedditPostContents(
+        reddit_post.post_title, reddit_post.post_image, reddit_post.post_subreddit, reddit_post.post_author, reddit_post.post_author_avatar, reddit_post.post_link
+    )
+    return reddit_contents

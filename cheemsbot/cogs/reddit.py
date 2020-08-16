@@ -2,7 +2,6 @@ import cheemsbot.config as conf
 import random
 from cheemsbot.helpers import embeds
 
-import discord
 from discord.errors import NotFound
 from discord.ext import commands
 from prawcore.exceptions import NotFound
@@ -18,14 +17,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
         async with ctx.typing():
             self.reddit_post = conf.get_reddit_post("dogelore")
             embed_message = embeds.RedditEmbedMessage(
-                discord.Color.orange(),
-                self.reddit_post.post_title,
-                self.reddit_post.post_image,
-                self.reddit_post.post_subreddit,
-                self.reddit_post.post_author,
-                self.reddit_post.post_author_avatar,
-                self.reddit_post.post_link,
-                "meme",
+                self.reddit_post, "meme",
             ).get_embed_message()
         await ctx.send(embed=embed_message)
 
@@ -50,14 +42,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
                 self.current_subreddit, only_image=True
             )
             embed_message = embeds.RedditEmbedMessage(
-                discord.Color.orange(),
-                self.reddit_post.post_title,
-                self.reddit_post.post_image,
-                self.reddit_post.post_subreddit,
-                self.reddit_post.post_author,
-                self.reddit_post.post_author_avatar,
-                self.reddit_post.post_link,
-                "meme",
+                self.reddit_post, "meme",
             ).get_embed_message()
         await ctx.send(embed=embed_message)
 
@@ -72,14 +57,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
                 self.current_subreddit, only_image=True
             )
             embed_message = embeds.RedditEmbedMessage(
-                discord.Color.orange(),
-                self.reddit_post.post_title,
-                self.reddit_post.post_image,
-                self.reddit_post.post_subreddit,
-                self.reddit_post.post_author,
-                self.reddit_post.post_author_avatar,
-                self.reddit_post.post_link,
-                "meme",
+                self.reddit_post, "meme",
             ).get_embed_message()
         await ctx.send(embed=embed_message)
 
@@ -108,14 +86,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
             )
             return
         embed_message = embeds.RedditEmbedMessage(
-            discord.Color.orange(),
-            reddit_post.post_title,
-            reddit_post.post_image,
-            reddit_post.post_subreddit,
-            reddit_post.post_author,
-            reddit_post.post_author_avatar,
-            reddit_post.post_link,
-            "post",
+            self.reddit_post, "post",
         ).get_embed_message()
         await ctx.send(embed=embed_message)
 

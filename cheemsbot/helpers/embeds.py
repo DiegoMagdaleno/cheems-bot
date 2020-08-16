@@ -1,4 +1,5 @@
 # type: ignore
+from cheemsbot.helpers.reddit import RedditPostContents, RedditSession
 import discord
 from switch import Switch
 
@@ -24,18 +25,16 @@ class EmbedMessage:
 
 
 class RedditEmbedMessage(EmbedMessage):
-    def __init__(
-        self,
-        colour: str,
-        title: str,
-        image: str,
-        source: str,
-        author: str,
-        author_icon: str,
-        link: str,
-        post_type: str,
-    ) -> None:
-        super().__init__(colour, title, image, source, author, author_icon, link)
+    def __init__(self, post: RedditPostContents, post_type: str) -> None:
+        super().__init__(
+            discord.Color.orange(),
+            post.post_title,
+            post.post_image,
+            post.post_subreddit,
+            post.post_author,
+            post.post_author_avatar,
+            post.post_link,
+        )
         self.type = post_type
 
     def get_embed_message(self):
