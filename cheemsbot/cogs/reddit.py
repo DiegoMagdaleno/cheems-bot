@@ -76,7 +76,7 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
                 return
             if (self.reddit_post.is_nsfw) and (ctx.channel.is_nsfw() is False):
                 await ctx.send("Not in front of the children.")
-                return  
+                return
             self.string_test_result = any(
                 element in self.current_subreddit for element in self.forbidden
             )

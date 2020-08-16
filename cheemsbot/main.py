@@ -5,6 +5,8 @@ from discord.ext import commands
 
 import cheemsbot.config as conf
 
+import asyncio
+
 bot = commands.Bot(command_prefix=">")
 
 initial_extensions = [
@@ -28,12 +30,17 @@ if __name__ == "__main__":
 @bot.event
 async def on_command_error(ctx: commands.Context, error: commands.errors):
     if isinstance(error, commands.CommandOnCooldown):
-        await ctx.send(
+        await(await ctx.send(
             "Thims command is on a %.2fs coolmdown, trym amgain lamter"
             % error.retry_after
-        )
+        )).delete(delay=3)
+        await asyncio.sleep(4)
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send("Ummmmmmmmmmmmm I couldmt fimd that command")
+        await(await ctx.send("Ummmmmmmmmmmmm I couldmt fimd that command")).delete(delay=3)
+        await asyncio.sleep(4)
+    if isinstance(error, commands.CommandInvokeError):
+        await(await ctx.send("Ummmm there wams am emrror on thims command, prombably some bamd api response.")).delete(delay=3)
+        await asyncio.sleep(4)
     raise error
 
 
