@@ -1,8 +1,10 @@
+from discord.errors import NotFound
 from cheemsbot.helpers import embeds
 from discord.ext import commands
 import discord
 import cheemsbot.config as conf
 import random
+from prawcore.exceptions import NotFound
 
 
 class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
@@ -38,9 +40,14 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
                     "surrealmemes",
                     "comedyheaven",
                     "comedynecrophilia",
+                    "ComedySeizure",
+                    "ComedyCemetery",
+                    "DeepFriedMemes",
                 ]
             )
-            self.reddit_post = conf.get_reddit_post(self.current_subreddit, only_image=True)
+            self.reddit_post = conf.get_reddit_post(
+                self.current_subreddit, only_image=True
+            )
             embed_message = embeds.RedditEmbedMessage(
                 discord.Color.orange(),
                 self.reddit_post.post_title,
@@ -58,15 +65,11 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
     async def cringe(self, ctx):
         async with ctx.typing():
             self.current_subreddit = random.choice(
-                [
-                    "pewdiepiesubmissions",
-                    "dankmemes",
-                    "meme",
-                    "memes",
-                    "gaming",
-                ]
+                ["pewdiepiesubmissions", "dankmemes", "meme", "memes", "gaming",]
             )
-            self.reddit_post = conf.get_reddit_post(self.current_subreddit, only_image=True)
+            self.reddit_post = conf.get_reddit_post(
+                self.current_subreddit, only_image=True
+            )
             embed_message = embeds.RedditEmbedMessage(
                 discord.Color.orange(),
                 self.reddit_post.post_title,
@@ -86,30 +89,34 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
         self.current_subreddit = subreddit
         if self.current_subreddit is None:
             await ctx.send("Give a subreddit")
-        else:
+            return
+        try:
             reddit_post = conf.get_reddit_post(self.current_subreddit)
-            if (reddit_post.is_nsfw) and (ctx.channel.is_nsfw() is False):
-                await ctx.send("Not in front of the children.")
-                return
-            self.string_test_result = any(
-                element in self.current_subreddit for element in self.forbidden
+        except NotFound:
+            await ctx.send("Post not found")
+            return
+        if (reddit_post.is_nsfw) and (ctx.channel.is_nsfw() is False):
+            await ctx.send("Not in front of the children.")
+            return
+        self.string_test_result = any(
+            element in self.current_subreddit for element in self.forbidden
+        )
+        if self.string_test_result and (ctx.channel.is_nsfw() is False):
+            await ctx.send(
+                "Subreddit contains a forbidden word. This detection will be improved eventually."  # noqa: E501
             )
-            if self.string_test_result and (ctx.channel.is_nsfw() is False):
-                await ctx.send(
-                    "Subreddit contains a forbidden word. This detection will be improved eventually."  # noqa: E501
-                )
-                return
-            embed_message = embeds.RedditEmbedMessage(
-                discord.Color.orange(),
-                reddit_post.post_title,
-                reddit_post.post_image,
-                reddit_post.post_subreddit,
-                reddit_post.post_author,
-                reddit_post.post_author_avatar,
-                reddit_post.post_link,
-                "post",
-            ).get_embed_message()
-            await ctx.send(embed=embed_message)
+            return
+        embed_message = embeds.RedditEmbedMessage(
+            discord.Color.orange(),
+            reddit_post.post_title,
+            reddit_post.post_image,
+            reddit_post.post_subreddit,
+            reddit_post.post_author,
+            reddit_post.post_author_avatar,
+            reddit_post.post_link,
+            "post",
+        ).get_embed_message()
+        await ctx.send(embed=embed_message)
 
 
 def setup(bot):

@@ -33,7 +33,7 @@ class CheemsRootCommandsCog(commands.Cog, name="Root"):
             text="Cheemsburguer is free software. And it is licensed under the WTFPL license. Copyright Diego Magdaleno 2020 et al."  # noqa: E501
         )
         await ctx.send(embed=self.embed)
-
+    
     @commands.command(name="ping")
     async def ping(self, ctx):
         self.random_cheems = random_operations.get_cheems_phrase()
