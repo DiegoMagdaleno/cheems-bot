@@ -22,17 +22,17 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
     @commands.command(name="gf")
     async def girlfriend(self, ctx):
         self.reddit_post = conf.get_reddit_post("gentlemanboners")
-        await ctx.send(self.reddit_post.post_image)
+        await ctx.send(self.reddit_post.image)
 
     @commands.command(name="bf")
     async def boyfriend(self, ctx):
         self.reddit_post = conf.get_reddit_post("ladyboners")
-        await ctx.send(self.reddit_post.post_image)
+        await ctx.send(self.reddit_post.image)
 
     @commands.command(name="femboy")
     async def femboy(self, ctx):
         reddit_post = conf.get_reddit_post("femboy")
-        await ctx.send(reddit_post.post_image)
+        await ctx.send(reddit_post.image)
 
     @commands.command(name="neko")
     async def neko(self, ctx):

@@ -29,14 +29,15 @@ def get_reddit_post(subreddit: str, only_image: bool = False) -> reddit.RedditPo
     # ! And contributors of this project to keep an eye on Praw documentation and this
     # ! issue: https://github.com/praw-dev/praw/issues/1549
     if only_image:
-        while reddit_post.is_only_text and "i.redd.it" not in reddit_post.post_image:
+        while reddit_post.is_only_text and "i.redd.it" not in reddit_post.image:
             reddit_post = reddit.RedditPost(our_reddit_credentials, subreddit)
     reddit_contents = reddit.RedditPostContents(
-        reddit_post.post_title,
-        reddit_post.post_image,
-        reddit_post.post_subreddit,
-        reddit_post.post_author,
-        reddit_post.post_author_avatar,
-        reddit_post.post_link,
+        reddit_post.title,
+        reddit_post.image,
+        reddit_post.subreddit,
+        reddit_post.author,
+        reddit_post.author_avatar,
+        reddit_post.link,
+        reddit_post.is_nsfw
     )
     return reddit_contents

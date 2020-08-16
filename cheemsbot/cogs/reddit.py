@@ -70,11 +70,11 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
             await ctx.send("Give a subreddit")
             return
         try:
-            reddit_post = conf.get_reddit_post(self.current_subreddit)
+            self.reddit_post = conf.get_reddit_post(self.current_subreddit)
         except NotFound:
             await ctx.send("Post not found")
             return
-        if (reddit_post.is_nsfw) and (ctx.channel.is_nsfw() is False):
+        if (self.reddit_post.is_nsfw) and (ctx.channel.is_nsfw() is False):
             await ctx.send("Not in front of the children.")
             return
         self.string_test_result = any(

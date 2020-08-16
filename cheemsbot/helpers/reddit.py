@@ -13,14 +13,16 @@ class RedditCredentials:
     user: str
     password: str
 
+
 @dataclass
 class RedditPostContents:
-    post_title: str
-    post_image: str
-    post_subreddit: str
-    post_author: str
-    post_author_avatar: str
-    post_link: str
+    title: str
+    image: str
+    subreddit: str
+    author: str
+    author_avatar: str
+    link: str
+    is_nsfw: bool
 
 
 class RedditSession:
@@ -32,12 +34,12 @@ class RedditSession:
         user: str,
         password: str,
     ) -> None:
-        self.client_id = str(client_id)
-        self.client_secret = str(client_secret)
-        self.user_agent = str(user_agent)
-        self.user = str(user)
-        self.password = str(password)
-        self.praw_session = praw.Reddit(
+        self.client_id: str = str(client_id)
+        self.client_secret: str = str(client_secret)
+        self.user_agent: str = str(user_agent)
+        self.user: str = str(user)
+        self.password: str = str(password)
+        self.praw_session: praw.Reddit = praw.Reddit(
             client_id=self.client_id,
             client_secret=self.client_secret,
             user_agent=self.user_agent,
@@ -71,11 +73,11 @@ class RedditPost(RedditSession):
             )
             self.target = self.praw_session.submission(self.random_id_choice)
 
-        self.post_image = self.target.url
-        self.post_author = str(self.target.author)
-        self.post_title = self.target.title
-        self.post_subreddit = str(self.target.subreddit)
-        self.post_author_avatar = str(self.target.author.icon_img)
-        self.post_link = "https://reddit.com{0}".format(self.target.permalink)
+        self.image = self.target.url
+        self.author = str(self.target.author)
+        self.title = self.target.title
+        self.subreddit = str(self.target.subreddit)
+        self.author_avatar = str(self.target.author.icon_img)
+        self.link = "https://reddit.com{0}".format(self.target.permalink)
         self.is_nsfw = self.target.over_18
         self.is_only_text = self.target.is_self

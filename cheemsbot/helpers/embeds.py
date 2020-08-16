@@ -28,12 +28,12 @@ class RedditEmbedMessage(EmbedMessage):
     def __init__(self, post: RedditPostContents, post_type: str) -> None:
         super().__init__(
             discord.Color.orange(),
-            post.post_title,
-            post.post_image,
-            post.post_subreddit,
-            post.post_author,
-            post.post_author_avatar,
-            post.post_link,
+            post.title,
+            post.image,
+            post.subreddit,
+            post.author,
+            post.author_avatar,
+            post.link,
         )
         self.type = post_type
 

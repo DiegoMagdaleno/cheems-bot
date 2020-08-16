@@ -12,7 +12,7 @@ class NSFWCommandsCog(commands.Cog, name="NSFW"):
     async def lewdfemboy(self, ctx):
         if ctx.channel.is_nsfw():
             self.reddit_post = conf.get_reddit_post("femboys")
-            await ctx.send(self.reddit_post.post_image)
+            await ctx.send(self.reddit_post.image)
         else:
             await ctx.send("Not infromt of the childmren.")
 
