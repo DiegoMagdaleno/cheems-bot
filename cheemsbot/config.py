@@ -1,5 +1,7 @@
 import os
-from cheemsbot.helpers import config, reddit
+
+from cheemsbot.helpers import config
+from cheemsbot.helpers import reddit
 
 config_path = os.path.abspath("config.json")
 file_load = open(config_path, "r").read()

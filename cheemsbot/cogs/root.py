@@ -1,6 +1,7 @@
-from discord.ext import commands
-import discord
 from cheemsbot.helpers import random_operations
+
+import discord
+from discord.ext import commands
 
 
 class CheemsRootCommandsCog(commands.Cog, name="Root"):

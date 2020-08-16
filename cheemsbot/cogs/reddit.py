@@ -1,9 +1,10 @@
-from discord.errors import NotFound
-from cheemsbot.helpers import embeds
-from discord.ext import commands
-import discord
 import cheemsbot.config as conf
 import random
+from cheemsbot.helpers import embeds
+
+import discord
+from discord.errors import NotFound
+from discord.ext import commands
 from prawcore.exceptions import NotFound
 
 

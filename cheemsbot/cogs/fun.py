@@ -1,8 +1,10 @@
-from discord.ext import commands
-from cheemsbot.helpers import nekoimg, random_operations
-import random
-import discord
 import cheemsbot.config as conf
+import random
+from cheemsbot.helpers import nekoimg
+from cheemsbot.helpers import random_operations
+
+import discord
+from discord.ext import commands
 
 
 class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):

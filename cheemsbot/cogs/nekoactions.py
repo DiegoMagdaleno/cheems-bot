@@ -1,6 +1,8 @@
-from cheemsbot.helpers import nekoimg, embeds
-from discord.ext import commands
+from cheemsbot.helpers import embeds
+from cheemsbot.helpers import nekoimg
+
 import discord
+from discord.ext import commands
 
 bot = commands.Bot(command_prefix=">")
 

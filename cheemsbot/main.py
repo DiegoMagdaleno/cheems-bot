@@ -1,6 +1,8 @@
-from discord.ext import commands
 import sys
 import traceback
+
+from discord.ext import commands
+
 import cheemsbot.config as conf
 
 bot = commands.Bot(command_prefix=">")

@@ -1,8 +1,8 @@
 # type: ignore
+import random
+from dataclasses import dataclass
 
 import praw
-from dataclasses import dataclass
-import random
 
 
 @dataclass

@@ -1,6 +1,7 @@
-from cheemsbot.helpers import nekoimg
-from discord.ext import commands
 import cheemsbot.config as conf
+from cheemsbot.helpers import nekoimg
+
+from discord.ext import commands
 
 
 class NSFWCommandsCog(commands.Cog, name="NSFW"):

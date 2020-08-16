@@ -1,6 +1,8 @@
-from discord.ext import commands
-from cheemsbot.helpers import fourchan, embeds
+from cheemsbot.helpers import embeds
+from cheemsbot.helpers import fourchan
+
 import discord
+from discord.ext import commands
 
 
 class FourChanCommandsCog(commands.Cog, name="4chan commands"):
