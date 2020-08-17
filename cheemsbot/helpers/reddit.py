@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 import praw
 
+import pprint
 
 @dataclass
 class RedditCredentials:
@@ -74,10 +75,16 @@ class RedditPost(RedditSession):
             self.target = self.praw_session.submission(self.random_id_choice)
 
         self.image = self.target.url
-        self.author = str(self.target.author)
+        self.link = "https://reddit.com{0}".format(self.target.permalink)
+        if hasattr(self.target.author, 'name'):
+            self.author = self.target.author.name
+        else:
+            self.author = "deleted"
         self.title = self.target.title
         self.subreddit = str(self.target.subreddit)
-        self.author_avatar = str(self.target.author.icon_img)
-        self.link = "https://reddit.com{0}".format(self.target.permalink)
+        if hasattr(self.target.author, 'icon_img'):
+                self.author_avatar = str(self.target.author.icon_img)
+        else:
+                self.author_avatar = "https://www.redditinc.com/assets/images/site/reddit-logo.png"
         self.is_nsfw = self.target.over_18
         self.is_only_text = self.target.is_self

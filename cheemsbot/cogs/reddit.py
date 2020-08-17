@@ -4,7 +4,7 @@ from cheemsbot.helpers import embeds
 
 from discord.errors import NotFound
 from discord.ext import commands
-from prawcore.exceptions import NotFound
+from prawcore.exceptions import Forbidden, NotFound
 
 class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
     def __init__(self, bot):
@@ -72,7 +72,10 @@ class RedditCommandsCog(commands.Cog, name="Reddit posts and memes"):
             try:
                 self.reddit_post = conf.get_reddit_post(self.current_subreddit)
             except NotFound:
-                await ctx.send("Post not found")
+                await ctx.send("Subreddit not found")
+                return
+            except Forbidden:
+                await ctx.send("I don't have permissions to watch that subreddit. Perhaps it is quarantined.")
                 return
             if (self.reddit_post.is_nsfw) and (ctx.channel.is_nsfw() is False):
                 await ctx.send("Not in front of the children.")
