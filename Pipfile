@@ -15,6 +15,7 @@ praw = "*"
 basc-py4chan = "*"
 switch = "*"
 cheemsbot = {editable = true, path = "."}
+lmgtfyreborn = "*"
 
 [requires]
 python_version = "3.8"

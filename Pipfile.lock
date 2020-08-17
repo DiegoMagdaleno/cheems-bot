@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cbb468fdcfbd09267049457f05540fc955c597c98b69378f52ef637b1399249f"
+            "sha256": "cc8cab0ca83888b1c04e327f1de18c57f4322723ae8f17502c10aafce9aa7e88"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -90,6 +90,13 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.10"
+        },
+        "lmgtfyreborn": {
+            "hashes": [
+                "sha256:f837b2b72e7e5369c419cbb3dd8e8327ced53636b8a9dde2a9ce6cfa4d3dedb8"
+            ],
+            "index": "pypi",
+            "version": "==0.2"
         },
         "multidict": {
             "hashes": [

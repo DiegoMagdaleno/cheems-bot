@@ -5,7 +5,7 @@ from cheemsbot.helpers import random_operations
 
 import discord
 from discord.ext import commands
-
+from lmgtfyreborn.main import Lmgtfy
 
 class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
     def __init__(self, bot):
@@ -62,6 +62,14 @@ class FunWithCheemsCog(commands.Cog, name="Fun with cheemsburger"):
                 await ctx.send(
                     f"{member.mention} is a beta! <:virgin:741907301627199499>"
                 )
+
+    @commands.command(name="lmgtfy")
+    async def lmgtfy(self, ctx, *, our_terms=None):
+        if our_terms is None:
+            await ctx.send("Ummm whamt do you wamt to lmgtfy")
+        else:
+            self.lmgtfy_list = our_terms.split()
+            await ctx.send(Lmgtfy(self.lmgtfy_list).get_url())
 
 
 def setup(bot):

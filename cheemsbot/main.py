@@ -43,5 +43,9 @@ async def on_command_error(ctx: commands.Context, error: commands.errors):
         await asyncio.sleep(4)
     raise error
 
+@bot.event
+async def on_ready():
+    print("Cheems is ready to run.")
+
 
 bot.run(conf.our_discord_token)
