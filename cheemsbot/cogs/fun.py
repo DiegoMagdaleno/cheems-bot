@@ -3,6 +3,7 @@ import random
 from cheemsbot.helpers import nekoimg
 from cheemsbot.helpers import random_operations
 from cheemsbot.helpers import fourchan
+from cheemsbot.helpers import stringchecker
 
 import discord
 from discord.ext import commands
@@ -53,9 +54,16 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         """Description: Owofies sewected input UwU\nArguments: `1`"""
         if our_input is None:
             await ctx.send("Gimve me a memsage")
-        else:
-            self.owofied_input = nekoimg.owo_text(our_input)
-            await ctx.send(self.owofied_input)
+            return
+        self.string_check_session = stringchecker.StringChecker(our_input)
+        if self.string_check_session.is_unicode() is False:
+            await ctx.send("Nice try on bypassing. However Cheems doesn't accept unicode.")
+            return
+        if self.string_check_session.contains_racism():
+            await ctx.send("Cheems does not repeat or talks to racists. Please take in count that after the moderation update your message will be logged and sent to moderators.")
+            return
+        self.owofied_input = nekoimg.owo_text(our_input)
+        await ctx.send(self.owofied_input)
 
     @commands.command(name="ischad")
     async def ischad(self, ctx, member: discord.User = None):
