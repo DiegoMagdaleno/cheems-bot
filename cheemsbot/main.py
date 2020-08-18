@@ -10,6 +10,7 @@ import asyncio
 bot = commands.Bot(command_prefix=">")
 
 initial_extensions = [
+    "cogs.help",
     "cogs.fun",
     "cogs.nekoactions",
     "cogs.nsfw",

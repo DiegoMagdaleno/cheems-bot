@@ -7,7 +7,7 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix=">")
 
 
-class NekoActionCog(commands.Cog, name="Neko actions"):
+class NekoActionCog(commands.Cog, name="NekoActions"):
     def __init__(self, bot) -> None:
         self.bot = bot
         self.our_neko_actions = nekoimg.NekoActions()

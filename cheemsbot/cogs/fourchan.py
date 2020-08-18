@@ -5,7 +5,7 @@ import discord
 from discord.ext import commands
 
 
-class FourChanCommandsCog(commands.Cog, name="4chan commands"):
+class FourChanCommandsCog(commands.Cog, name="4chan"):
     def __init__(self, bot):
         self.bot = bot
 
