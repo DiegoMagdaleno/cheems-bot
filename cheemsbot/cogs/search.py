@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 import requests
 import datetime
-from cheemsbot.helpers.wikipedia import Wikipedia
+from cheemsbot.helpers.wikipedia import NoArticlesOrNotFound, Wikipedia
 
 bot = commands.Bot(command_prefix=">")
 
@@ -16,11 +16,16 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
 
     @commands.command(name="wikipedia")
     async def wikipedia(self, ctx, *, query):
+    """Description:  Displays information about a Wikipedia article in channel.\nArguments: `1`"""
         self.query = query
         if self.query is None:
-            await ctx.send("Youm neemd to give something to search")
+            await ctx.send("Youm neemd to give something to search.")
             return
-        self.our_wikipedia_message = Wikipedia(self.query).get_wikipedia_article()
+        try:
+            self.our_wikipedia_message = Wikipedia(self.query).get_wikipedia_article()
+        except NoArticlesOrNotFound:
+            await ctx.send("Ummm I coumlndt fimd anymthing.")
+            return
         self.embed_message = embeds.WikipediaEmbed(discord.Color.blue(), self.our_wikipedia_message).get_embed_message()
 
         await ctx.send(embed=self.embed_message)
