@@ -6,6 +6,7 @@ import praw
 
 import pprint
 
+
 @dataclass
 class RedditCredentials:
     client_id: str
@@ -76,15 +77,17 @@ class RedditPost(RedditSession):
 
         self.image = self.target.url
         self.link = "https://reddit.com{0}".format(self.target.permalink)
-        if hasattr(self.target.author, 'name'):
+        if hasattr(self.target.author, "name"):
             self.author = self.target.author.name
         else:
             self.author = "deleted"
         self.title = self.target.title
         self.subreddit = str(self.target.subreddit)
-        if hasattr(self.target.author, 'icon_img'):
-                self.author_avatar = str(self.target.author.icon_img)
+        if hasattr(self.target.author, "icon_img"):
+            self.author_avatar = str(self.target.author.icon_img)
         else:
-                self.author_avatar = "https://www.redditinc.com/assets/images/site/reddit-logo.png"
+            self.author_avatar = (
+                "https://www.redditinc.com/assets/images/site/reddit-logo.png"
+            )
         self.is_nsfw = self.target.over_18
         self.is_only_text = self.target.is_self

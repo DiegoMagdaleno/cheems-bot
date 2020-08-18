@@ -6,6 +6,7 @@ from discord.ext import commands
 
 class CheemsRootCommandsCog(commands.Cog, name="Root"):
     """Root is a set of actions for general debugging of the bot"""
+
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 

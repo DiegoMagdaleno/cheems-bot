@@ -6,10 +6,10 @@ from discord.ext import commands
 
 class NSFWCommandsCog(commands.Cog, name="NSFW"):
     """Actions that can only be run on NSFW channels. Contains adult content."""
+
     def __init__(self, bot) -> None:
         self.bot = bot
-    
-        
+
     @commands.command(name="lewdfemboy")
     async def lewdfemboy(self, ctx):
         """Description:  Grabs an image from r/femboys and shows it to the user.\nArguments: `None`"""

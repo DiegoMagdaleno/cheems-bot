@@ -9,7 +9,7 @@ bot = commands.Bot(command_prefix=">")
 
 class NekoActionCog(commands.Cog, name="NekoActions"):
     """Displays a Neko gif performing some action a desired user"""
-    
+
     def __init__(self, bot) -> None:
         self.bot = bot
         self.our_neko_actions = nekoimg.NekoActions()

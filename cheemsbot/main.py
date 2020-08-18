@@ -31,18 +31,27 @@ if __name__ == "__main__":
 @bot.event
 async def on_command_error(ctx: commands.Context, error: commands.errors):
     if isinstance(error, commands.CommandOnCooldown):
-        await(await ctx.send(
-            "Thims command is on a %.2fs coolmdown, trym amgain lamter"
-            % error.retry_after
-        )).delete(delay=3)
+        await (
+            await ctx.send(
+                "Thims command is on a %.2fs coolmdown, trym amgain lamter"
+                % error.retry_after
+            )
+        ).delete(delay=3)
         await asyncio.sleep(4)
     if isinstance(error, commands.CommandNotFound):
-        await(await ctx.send("Ummmmmmmmmmmmm I couldmt fimd that command")).delete(delay=3)
+        await (await ctx.send("Ummmmmmmmmmmmm I couldmt fimd that command")).delete(
+            delay=3
+        )
         await asyncio.sleep(4)
     if isinstance(error, commands.CommandInvokeError):
-        await(await ctx.send("Ummmm there wams am emrror on thims command, prombably some bamd api response.")).delete(delay=3)
+        await (
+            await ctx.send(
+                "Ummmm there wams am emrror on thims command, prombably some bamd api response."
+            )
+        ).delete(delay=3)
         await asyncio.sleep(4)
     raise error
+
 
 @bot.event
 async def on_ready():
