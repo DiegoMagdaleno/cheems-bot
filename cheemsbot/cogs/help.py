@@ -5,11 +5,13 @@ from discord.ext import commands
 
 
 class HelpCog(commands.Cog):
+    """Internal cog that handles help operations"""
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name="help")
     async def help(self, ctx, *cog):
+        """Displays the help message what else"""
         try:
             if not cog:
                 our_help_embed = discord.Embed(
