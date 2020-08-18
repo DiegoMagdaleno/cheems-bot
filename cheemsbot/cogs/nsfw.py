@@ -5,11 +5,14 @@ from discord.ext import commands
 
 
 class NSFWCommandsCog(commands.Cog, name="NSFW"):
+    """Actions that can only be run on NSFW channels. Contains adult content."""
     def __init__(self, bot) -> None:
         self.bot = bot
-
+    
+        
     @commands.command(name="lewdfemboy")
     async def lewdfemboy(self, ctx):
+        """Description:  Grabs an image from r/femboys and shows it to the user.\nArguments: `None`"""
         if ctx.channel.is_nsfw():
             self.reddit_post = conf.get_reddit_post("femboys")
             await ctx.send(self.reddit_post.image)
@@ -18,6 +21,7 @@ class NSFWCommandsCog(commands.Cog, name="NSFW"):
 
     @commands.command(name="lewdneko")
     async def lewdneko(self, ctx):
+        """Description: Grabs a hentai image or gif and it gets displayed.\nArguments: `None`"""
         async with ctx.typing():
             if ctx.channel.is_nsfw():
                 await ctx.send(nekoimg.get_neko_nsfw())

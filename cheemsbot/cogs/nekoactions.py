@@ -7,13 +7,16 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix=">")
 
 
-class NekoActionCog(commands.Cog, name="Neko actions"):
+class NekoActionCog(commands.Cog, name="NekoActions"):
+    """Displays a Neko gif performing some action a desired user"""
+    
     def __init__(self, bot) -> None:
         self.bot = bot
         self.our_neko_actions = nekoimg.NekoActions()
 
     @commands.command(name="cuddle")
     async def cuddle(self, ctx, member: discord.User = None):
+        """Description:  Displays a gif of two anime characters cudling, with a title formatted as User A is cuddling with User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
             await ctx.send("Gimve me a user")
@@ -32,6 +35,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
 
     @commands.command(name="pat")
     async def headpat(self, ctx, member: discord.User = None):
+        """Description:  Displays a gif of one anime character patting the other, with a title formatted as User A is patting User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
             await ctx.send("Gimve me a user")
@@ -50,6 +54,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
 
     @commands.command(name="kiss")
     async def kiss(self, ctx, member: discord.User = None):
+        """Description:  Displays a gif of two anime characters kissing with a title formatted as User A is kissing User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
             await ctx.send("Gimve me a user")
@@ -68,6 +73,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
 
     @commands.command(name="slap")
     async def slap(self, ctx, member: discord.User = None):
+        """Description:  Displays a gif of one anime character slapping another, with a title formatted as User A is slapping User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
             await ctx.send("Gimve me a user")
@@ -86,6 +92,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
 
     @commands.command(name="hug")
     async def hug(self, ctx, member: discord.User = None):
+        """Description:  Displays a gif of two anime characters hugging, with a title formatted as User A is hugging User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
             await ctx.send("Gimve a user")
@@ -104,6 +111,7 @@ class NekoActionCog(commands.Cog, name="Neko actions"):
 
     @commands.command(name="tickle")
     async def tickle(self, ctx, member: discord.User = None):
+        """Description:  Displays a gif of one anime character tickling another, with a title formatted as User A tickling User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
             await ctx.send("Gimve a user")

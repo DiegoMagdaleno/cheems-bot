@@ -5,41 +5,18 @@ from discord.ext import commands
 
 
 class CheemsRootCommandsCog(commands.Cog, name="Root"):
+    """Root is a set of actions for general debugging of the bot"""
     def __init__(self, bot: commands.Bot) -> None:
         self.bot = bot
 
-    @commands.command(name="help")
-    async def help(self, ctx):
-        self.embed = discord.Embed(
-            title="Cheems advanced technologies",
-            description="Official help sheet",
-            color=0x00FF7B,
-        )
-        self.embed.set_author(
-            name="Cheemsburguer help", icon_url="https://shorturl.at/msHO8",
-        )
-        self.embed.add_field(name="4chan", value="tech", inline=False)
-        self.embed.add_field(
-            name="Fun with cheemsburguer",
-            value="ask, bf, femboy, gf, ischad, neko, owofy",
-            inline=False,
-        )
-        self.embed.add_field(name="NSFW", value="lewdfemboy, lewdneko", inline=True)
-        self.embed.add_field(
-            name="Neko Actions", value="cuddle, kiss, pat, slap", inline=True
-        )
-        self.embed.add_field(name="Reddit", value="dogememe, redditmeme", inline=True)
-        self.embed.add_field(name="Root ", value="help, ping", inline=True)
-        self.embed.set_footer(
-            text="Cheemsburguer is free software. And it is licensed under the WTFPL license. Copyright Diego Magdaleno 2020 et al."  # noqa: E501
-        )
-        await ctx.send(embed=self.embed)
-    
     @commands.command(name="ping")
     async def ping(self, ctx):
+        """Tells you the client latency between the bot and the Discord client"""
         self.random_cheems = random_operations.get_cheems_phrase()
         self.ping_in_ms = round(self.bot.latency * 1000, 1)
-        await ctx.send(self.random_cheems + " \n**{:.0f}{}".format(self.ping_in_ms, "ms** pimg")) 
+        await ctx.send(
+            self.random_cheems + " \n**{:.0f}{}".format(self.ping_in_ms, "ms** pimg")
+        )
 
 
 def setup(bot):
