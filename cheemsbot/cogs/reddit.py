@@ -69,6 +69,7 @@ class RedditCommandsCog(commands.Cog, name="RedditActions"):
     @commands.command(name="redditpost", aliases=["rpost"])
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def redditpost(self, ctx, *, subreddit=None):
+        """Description: Grabs a post from a desired subreddit, provided by the user, if the post is NSFW it will only display on NSFw channels\nArguments: `1`"""
         self.forbidden = ["cock", "ass", "sex", "dick", "penis", "pussy"]
         self.current_subreddit = subreddit
         if self.current_subreddit is None:

@@ -17,7 +17,7 @@ class HelpCog(commands.Cog):
                 cogs_desc= ''
                 for each_cog in self.bot.cogs:
                     
-                    cogs_desc += ('{} - {}'.format(each_cog, self.bot.cogs[each_cog].__doc__)+'\n')
+                    cogs_desc += ('**{}**\n• {}'.format(each_cog, self.bot.cogs[each_cog].__doc__)+'\n')
                 our_help_embed.add_field(name='Categories', value=cogs_desc[0:len(cogs_desc)-1], inline=False)
                 commands_desc = ''
                 for command in self.bot.walk_commands():
