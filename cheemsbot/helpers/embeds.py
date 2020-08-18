@@ -1,4 +1,6 @@
 # type: ignore
+from cheemsbot.helpers.wikipedia import WikipediaArticle
+from prawcore import auth
 from cheemsbot.helpers.reddit import RedditPostContents, RedditSession
 import discord
 from switch import Switch
@@ -128,6 +130,22 @@ class NekoEmbed(EmbedMessage):
         return self.embed_object_session
 
 class WikipediaEmbed(EmbedMessage):
-    def __init__(
-        self, colour:str, article_name: str, article_description: str, article_last_modified:str, article_url: str
-    )
+    def __init__(self, colour:str, article: WikipediaArticle) -> None:
+        super().__init__(colour=colour, author=article.author, author_icon=article.icon_url)
+
+        self.article = article
+
+    def get_embed_message(self):
+        self.embed_object_session = discord.Embed()
+        self.embed_object_session.clear_fields()
+        self.embed_object_session.title="**{}**".format(self.article.name)
+        self.embed_object_session.url=self.article.url
+        self.embed_object_session.description=self.article.description
+
+        self.embed_object_session.set_footer(
+            text="Article last modified:", icon_url=self.author_icon
+        )
+
+        self.embed_object_session.set_author(name="Wikipedia", url="https://wikipedia.org", icon_url=self.author_icon)
+        self.embed_object_session.timestamp = self.article.last_modified
+        return self.embed_object_session

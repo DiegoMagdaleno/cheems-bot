@@ -15,6 +15,8 @@ class WikipediaArticle:
     description: str
     last_modified: str
     url: str
+    author: str = "Wikipedia"
+    icon_url: str = "https://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png"
 
 
 class Wikipedia:
