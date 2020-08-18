@@ -16,7 +16,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
 
     @commands.command(name="wikipedia")
     async def wikipedia(self, ctx, *, query):
-    """Description:  Displays information about a Wikipedia article in channel.\nArguments: `1`"""
+        """Description:  Displays information about a Wikipedia article in channel.\nArguments: `1`"""
         self.query = query
         if self.query is None:
             await ctx.send("Youm neemd to give something to search.")
