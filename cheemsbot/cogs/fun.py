@@ -122,7 +122,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         if member is None and message is None:
             await ctx.send("Gimve me am user, and a memsage")
             return
-        if "@" in message or "<" in message:
+        if "@" in message or "<" in message or "&" in message:
             await ctx.send("I will not pimg")
             return
         self.target_to_clone = member
