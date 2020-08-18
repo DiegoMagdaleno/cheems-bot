@@ -126,3 +126,8 @@ class NekoEmbed(EmbedMessage):
         self.embed_object_session.set_image(url=self.image)
         self.embed_object_session.color = self.colour
         return self.embed_object_session
+
+class WikipediaEmbed(EmbedMessage):
+    def __init__(
+        self, colour:str, article_name: str, article_description: str, article_last_modified:str, article_url: str
+    )
