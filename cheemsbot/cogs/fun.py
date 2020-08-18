@@ -8,7 +8,7 @@ from discord.ext import commands
 from lmgtfyreborn.main import Lmgtfy
 
 class FunWithCheemsCog(commands.Cog, name="Fun"):
-    """A set of misc actions, that allow users to perform some fun operations. Listed below."""
+    """A set of misc actions, that allow users to perform some fun operations."""
     def __init__(self, bot):
         self.bot = bot
 
