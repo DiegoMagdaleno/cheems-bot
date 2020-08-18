@@ -17,6 +17,7 @@ initial_extensions = [
     "cogs.reddit",
     "cogs.fourchan",
     "cogs.root",
+    "cogs.search",
 ]
 if __name__ == "__main__":
     bot.remove_command("help")

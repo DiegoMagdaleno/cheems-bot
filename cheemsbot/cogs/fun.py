@@ -1,13 +1,16 @@
+from discord import user
 import cheemsbot.config as conf
 import random
 from cheemsbot.helpers import nekoimg
 from cheemsbot.helpers import random_operations
 from cheemsbot.helpers import fourchan
 from cheemsbot.helpers import stringchecker
+from discord.ext.commands import MemberConverter
 
 import discord
 from discord.ext import commands
 from lmgtfyreborn.main import Lmgtfy
+import requests
 
 
 class FunWithCheemsCog(commands.Cog, name="Fun"):
@@ -15,6 +18,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
 
     def __init__(self, bot):
         self.bot = bot
+        self.converter = MemberConverter()
 
     @commands.command(name="ask", aliases=["8b"])
     async def ask(self, ctx, *, question=None):
@@ -57,10 +61,14 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
             return
         self.string_check_session = stringchecker.StringChecker(our_input)
         if self.string_check_session.is_unicode() is False:
-            await ctx.send("Nice try on bypassing. However Cheems doesn't accept unicode.")
+            await ctx.send(
+                "Nice try on bypassing. However Cheems doesn't accept unicode."
+            )
             return
         if self.string_check_session.contains_racism():
-            await ctx.send("Cheems does not repeat or talks to racists. Please take in count that after the moderation update your message will be logged and sent to moderators.")
+            await ctx.send(
+                "Cheems does not repeat or talks to racists. Please take in count that after the moderation update your message will be logged and sent to moderators."
+            )
             return
         self.owofied_input = nekoimg.owo_text(our_input)
         await ctx.send(self.owofied_input)
@@ -105,6 +113,27 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         self.fourchan_image = fourchan.FourChanImage(self.target_board).image_url
         await ctx.send(self.fourchan_image)
 
+    # TODO: Right now we can't do our self.target.clone = ctx.author because of Python limitations
+    # however with python 3.10 we will be able to do membed: discord.user | str
+    # or no :p
+    @commands.command(name="clone")
+    async def clone(self, ctx, member:discord.User = None, *, message=None):
+        """Description: Replicates what an user says, if no user is provided it will clone the message author\nArguments: `1 up to 2`"""
+        if member is None:
+            await ctx.send("Gimve me am user")
+            return
+        else:
+            self.target_to_clone = member
+        self.profile_picture = requests.get(
+            self.target_to_clone.avatar_url_as(format="png", size=256)
+        ).content
+        self.hook = await ctx.channel.create_webhook(
+            name=self.target_to_clone.display_name, avatar=self.profile_picture
+        )
+
+        await self.hook.send(message)
+        await self.hook.delete()
+    
 
 def setup(bot):
     bot.add_cog(FunWithCheemsCog(bot))
