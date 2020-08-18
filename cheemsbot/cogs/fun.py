@@ -2,13 +2,16 @@ import cheemsbot.config as conf
 import random
 from cheemsbot.helpers import nekoimg
 from cheemsbot.helpers import random_operations
+from cheemsbot.helpers import fourchan
 
 import discord
 from discord.ext import commands
 from lmgtfyreborn.main import Lmgtfy
 
+
 class FunWithCheemsCog(commands.Cog, name="Fun"):
     """A set of misc actions, that allow users to perform some fun operations."""
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -79,6 +82,20 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         else:
             self.lmgtfy_list = our_terms.split()
             await ctx.send(Lmgtfy(self.lmgtfy_list).get_url())
+
+    @commands.command(name="animegf")
+    async def animegf(self, ctx):
+        """Description: Grabs an image from 4chan's /c/ board and displays it \nArguments: `None`"""
+        self.target_board = "c"
+        self.fourchan_image = fourchan.FourChanImage(self.target_board).image_url
+        await ctx.send(self.fourchan_image)
+
+    @commands.command(name="animebf")
+    async def animebf(self, ctx):
+        """Description: Grabs an image from 4chan's /cm/ board and displays it \nArguments: `None`"""
+        self.target_board = "cm"
+        self.fourchan_image = fourchan.FourChanImage(self.target_board).image_url
+        await ctx.send(self.fourchan_image)
 
 
 def setup(bot):

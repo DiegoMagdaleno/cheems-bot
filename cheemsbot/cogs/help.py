@@ -6,6 +6,7 @@ from discord.ext import commands
 
 class HelpCog(commands.Cog):
     """Internal cog that handles help operations"""
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -80,7 +81,9 @@ class HelpCog(commands.Cog):
                     if not found:
                         our_help_embed = discord.Embed(
                             title="Error!",
-                            description='Are you sure the command"' + cog[0] + '"Exits?',
+                            description='Are you sure the command"'
+                            + cog[0]
+                            + '"Exits?',
                             color=discord.Color.red(),
                         )
                     else:
@@ -91,4 +94,3 @@ class HelpCog(commands.Cog):
 
 def setup(bot):
     bot.add_cog(HelpCog(bot))
-

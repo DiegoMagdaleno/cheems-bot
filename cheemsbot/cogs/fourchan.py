@@ -7,6 +7,7 @@ from discord.ext import commands
 
 class FourChanCommandsCog(commands.Cog, name="4chan"):
     """For now it is only a command, with more to come! Allows you to get technology from the /g/ board"""
+
     def __init__(self, bot):
         self.bot = bot
 

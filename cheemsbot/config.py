@@ -19,7 +19,9 @@ our_reddit_credentials = reddit.RedditCredentials(
 our_discord_token = session_config.discord_token
 
 
-def get_reddit_post(subreddit: str, only_image: bool = False) -> reddit.RedditPostContents:
+def get_reddit_post(
+    subreddit: str, only_image: bool = False
+) -> reddit.RedditPostContents:
     reddit_post = reddit.RedditPost(our_reddit_credentials, subreddit)
 
     # ! NOTICE: This method significaly slow downs our bot (about 30%) but its
@@ -38,6 +40,6 @@ def get_reddit_post(subreddit: str, only_image: bool = False) -> reddit.RedditPo
         reddit_post.author,
         reddit_post.author_avatar,
         reddit_post.link,
-        reddit_post.is_nsfw
+        reddit_post.is_nsfw,
     )
     return reddit_contents
