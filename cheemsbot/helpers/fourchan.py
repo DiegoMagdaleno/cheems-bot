@@ -21,3 +21,4 @@ class FourChanImage(FourChan):
 
         self.topic = str(thread.topic.subject)
         self.url = str(thread.url)
+        self.is_nsfw = self.board.is_worksafe
