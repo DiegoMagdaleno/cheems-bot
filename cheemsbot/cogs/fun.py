@@ -119,11 +119,13 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     @commands.command(name="clone")
     async def clone(self, ctx, member:discord.User = None, *, message=None):
         """Description: Replicates what an user says, if no user is provided it will clone the message author\nArguments: `1 up to 2`"""
-        if member is None:
-            await ctx.send("Gimve me am user")
+        if member is None and message is None:
+            await ctx.send("Gimve me am user, and a memsage")
             return
-        else:
-            self.target_to_clone = member
+        if "@" in message or "<" in message or "&" in message:
+            await ctx.send("I will not pimg")
+            return
+        self.target_to_clone = member
         self.profile_picture = requests.get(
             self.target_to_clone.avatar_url_as(format="png", size=256)
         ).content
