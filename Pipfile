@@ -16,6 +16,8 @@ basc-py4chan = "*"
 switch = "*"
 cheemsbot = {editable = true, path = "."}
 lmgtfyreborn = "*"
+duckduckpy = "*"
+beautifulsoup4 = "*"
 
 [requires]
 python_version = "3.8"
