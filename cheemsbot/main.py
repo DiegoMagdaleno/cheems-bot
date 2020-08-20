@@ -18,6 +18,7 @@ initial_extensions = [
     "cogs.fourchan",
     "cogs.root",
     "cogs.search",
+    "cogs.animals",
 ]
 if __name__ == "__main__":
     bot.remove_command("help")
