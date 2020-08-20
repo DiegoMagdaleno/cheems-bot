@@ -5,9 +5,6 @@ import requests
 import datetime
 from cheemsbot.helpers.wikipedia import NoArticlesOrNotFound, Wikipedia
 
-bot = commands.Bot(command_prefix=">")
-
-
 class SearchUtilitiesCog(commands.Cog, name="Search"):
     """A collection of commands to help you search without leaving Discord"""
 

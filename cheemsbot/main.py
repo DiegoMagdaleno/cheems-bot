@@ -7,7 +7,7 @@ import cheemsbot.config as conf
 
 import asyncio
 
-bot = commands.Bot(command_prefix=">")
+bot = commands.Bot(command_prefix=">", case_insensitive=True)
 
 initial_extensions = [
     "cogs.help",
