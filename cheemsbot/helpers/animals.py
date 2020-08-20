@@ -13,3 +13,7 @@ class Animals:
     def dog(self):
         self.dog_image_url = str(nekos.img('woof'))
         return self.dog_image_url
+    
+    def fox(self):
+        self.fox_img_url = requests.get("https://randomfox.ca/floof/").json()
+        return self.fox_img_url['image']
