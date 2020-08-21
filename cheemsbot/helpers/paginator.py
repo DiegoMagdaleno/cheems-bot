@@ -1,6 +1,6 @@
 # Paginator.py is hugely based on this contributions:
 # pagination.py by runerw0lf https://gist.github.com/runew0lf/fce60414d7a4ee9dfac8f442eca39687
-# The Discord bot https://github.com/python-discord/bot community 
+# The Discord bot https://github.com/python-discord/bot community
 # And more! Check them out they did all the work here.
 # This acts as a collection of Master classes, this are overriden in "embeds.py", but
 # many of the methods are kept
@@ -82,12 +82,13 @@ class LinePaginator(Paginator):
     ):
         def event_checker(reaction_: Reaction, user_: Member):
             no_restrictions = not restrict_to_user or user_.id == restrict_to_user.id
-            return all([
-                reaction_.message.id == message.id,
-                reaction_.emoji in PAGINATION_EMOJI,
-                user_.id != bot.user.id,
-                no_restrictions,
-            ]
+            return all(
+                [
+                    reaction_.message.id == message.id,
+                    reaction_.emoji in PAGINATION_EMOJI,
+                    user_.id != bot.user.id,
+                    no_restrictions,
+                ]
             )
 
         paginator = cls(
@@ -281,9 +282,11 @@ class ImagePaginator(Paginator):
     ):
         def event_checker(reaction_: Reaction, member: Member) -> bool:
             return all(
-                [reaction_.message.id == message.id,
-                reaction_.emoji in PAGINATION_EMOJI,
-                not member.bot]
+                [
+                    reaction_.message.id == message.id,
+                    reaction_.emoji in PAGINATION_EMOJI,
+                    not member.bot,
+                ]
             )
 
         paginator = cls(prefix=prefix, suffix=suffix)
@@ -296,11 +299,9 @@ class ImagePaginator(Paginator):
             paginator.add_image(image)
 
         image = paginator.images[current_page]
-            
 
         if image:
             embed.set_image(url=image)
-        
 
         if len(paginator.pages) <= 1:
             return await ctx.send(embed=embed)
@@ -378,6 +379,7 @@ class ImagePaginator(Paginator):
             )
 
             await message.edit(embed=embed)
+
 
 class TabPaginator(Paginator):
     """

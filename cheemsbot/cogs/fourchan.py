@@ -7,6 +7,7 @@ from discord.ext import commands
 
 class FourChanCommandsCog(commands.Cog, name="4chan"):
     """A set of commands to get 4chan content without leaving Discord"""
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -23,9 +24,9 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
             self.four_chan_post.url,
         ).get_embed_message()
         await ctx.send(embed=self.embed_message)
-    
+
     @commands.command(name="4chan")
-    async def fourchanpost(self, ctx,  *, target_board=None):
+    async def fourchanpost(self, ctx, *, target_board=None):
         """Description:  Grabs a random post from a user provided board and posts it on the chat, prevents NSFW\nArguments: `None`"""
         self.target_board = target_board
         if self.target_board is None:
@@ -40,9 +41,10 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
             self.four_chan_post.topic,
             self.four_chan_post.image_url,
             self.target_board,
-            self.four_chan_post.url
+            self.four_chan_post.url,
         ).get_embed_message()
         await ctx.send(embed=self.embed_message)
+
 
 def setup(bot):
     bot.add_cog(FourChanCommandsCog(bot))

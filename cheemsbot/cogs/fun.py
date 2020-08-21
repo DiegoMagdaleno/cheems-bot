@@ -117,7 +117,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     # however with python 3.10 we will be able to do membed: discord.user | str
     # or no :p
     @commands.command(name="clone")
-    async def clone(self, ctx, member:discord.User = None, *, message=None):
+    async def clone(self, ctx, member: discord.User = None, *, message=None):
         """Description: Replicates what an user says, if no user is provided it will clone the message author\nArguments: `1 up to 2`"""
         if member is None and message is None:
             await ctx.send("Gimve me am user, and a memsage")
@@ -135,7 +135,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
 
         await self.hook.send(message)
         await self.hook.delete()
-    
+
 
 def setup(bot):
     bot.add_cog(FunWithCheemsCog(bot))

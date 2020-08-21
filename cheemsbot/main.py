@@ -32,8 +32,9 @@ if __name__ == "__main__":
         except Exception:
             log.critical(f"Failed to load extension {extension}.")
 
+
 @bot.event
-async def on_command_error(ctx: commands.Context, error: commands.errors):    
+async def on_command_error(ctx: commands.Context, error: commands.errors):
     if isinstance(error, commands.CommandOnCooldown):
         await (
             await ctx.send(
@@ -56,11 +57,11 @@ async def on_command_error(ctx: commands.Context, error: commands.errors):
         await asyncio.sleep(4)
     raise error
 
+
 @bot.event
 async def on_ready():
     log.debug("Cheems is ready to run.")
     log.debug(f" The following cogs were loaded loadead {bot.cogs}")
-
 
 
 bot.run(conf.our_discord_token)

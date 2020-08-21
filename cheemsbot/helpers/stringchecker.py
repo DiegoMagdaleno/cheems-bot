@@ -1,5 +1,6 @@
 import re
 
+
 class StringChecker:
     def __init__(self, string: str) -> None:
         self.string = string
@@ -89,4 +90,3 @@ class StringChecker:
                 self.positive_match = True
                 break
         return self.positive_match
-

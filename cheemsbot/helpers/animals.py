@@ -5,7 +5,7 @@ from loguru import logger as log
 
 
 class Animals:
-    def shiba(self):
+    def shiba(self) -> str:
         try:
             self.api_response = requests.get(
                 "http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true"
@@ -28,7 +28,7 @@ class Animals:
         )
         return self.api_response.json()[0]
 
-    def cat(self):
+    def cat(self) -> str:
         try:
             self.cat_image_url = nekos.cat()
         except nekos.errors.NothingFound:
@@ -48,7 +48,7 @@ class Animals:
         )
         return str(self.cat_image_url)
 
-    def dog(self):
+    def dog(self) -> str:
         try:
             self.dog_image_url = nekos.img("woof")
         except nekos.errors.NothingFound:
@@ -68,7 +68,7 @@ class Animals:
         )
         return self.dog_image_url
 
-    def fox(self):
+    def fox(self) -> str:
         try:
             self.fox_img_url = requests.get("https://randomfox.ca/floof/")
             self.fox_img_url.raise_for_status()

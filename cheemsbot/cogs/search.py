@@ -6,6 +6,7 @@ from cheemsbot.helpers.wikipedia import NoArticlesOrNotFound, Wikipedia
 import cheemsbot.config as conf
 from cheemsbot.helpers.paginator import ImagePaginator
 
+
 class SearchUtilitiesCog(commands.Cog, name="Search"):
     """A collection of commands to help you search without leaving Discord"""
 
@@ -34,8 +35,10 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
     async def image(self, ctx: commands.Context, *, query=None):
         self.query = query
         self.our_embed_session = discord.Embed()
-        self.our_embed_session.title = '**Search results for {}**'.format(self.query)
-        self.our_embed_session.description = 'Requested by:  {}'.format(ctx.message.author.display_name)
+        self.our_embed_session.title = "**Search results for {}**".format(self.query)
+        self.our_embed_session.description = "Requested by:  {}".format(
+            ctx.message.author.display_name
+        )
         if self.query is None:
             await ctx.send("Ummmm, an imamge for whamt")
             return
@@ -48,7 +51,10 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             await ctx.send("Ummm couldmt fimd anything")
             return
         await ImagePaginator.paginate(
-            pages=self.array_of_images, ctx=ctx, embed=self.our_embed_session, bot=self.bot
+            pages=self.array_of_images,
+            ctx=ctx,
+            embed=self.our_embed_session,
+            bot=self.bot,
         )
 
 
