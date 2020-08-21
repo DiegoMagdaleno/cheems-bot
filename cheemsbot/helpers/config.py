@@ -12,3 +12,5 @@ class Configuration:
         self.reddit_user = self.config_session.redditUser
         self.reddit_password = self.config_session.redditPassword
         self.discord_token = self.config_session.discordToken
+        self.google_api_key = self.config_session.googleAPIKey
+        self.google_cx = self.config_session.googleCx

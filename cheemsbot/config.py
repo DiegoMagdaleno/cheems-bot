@@ -1,7 +1,9 @@
 import os
+from typing import List
 
 from cheemsbot.helpers import config
 from cheemsbot.helpers import reddit
+from cheemsbot.helpers import ghelper
 
 config_path = os.path.abspath("config.json")
 file_load = open(config_path, "r").read()
@@ -17,6 +19,10 @@ our_reddit_credentials = reddit.RedditCredentials(
 
 
 our_discord_token = session_config.discord_token
+
+our_google_credentials = ghelper.GoogleCredentials(
+    session_config.google_api_key, session_config.google_cx
+)
 
 
 def get_reddit_post(
@@ -43,3 +49,12 @@ def get_reddit_post(
         reddit_post.is_nsfw,
     )
     return reddit_contents
+
+
+def get_images(term: str, safe_search: str) -> List:
+    list_of_images = ghelper.GoogleImageSearch(
+        google_credentials=our_google_credentials,
+        search_term=term,
+        safe_search=safe_search,
+    ).link_list
+    return list_of_images
