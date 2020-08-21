@@ -17,10 +17,10 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
         self.four_chan_post = fourchan.FourChanImage(self.target_board)
         self.embed_message = embeds.FourChanEmbed(
             discord.Color.green(),
-            self.fourchan_post.topic,
-            self.fourchan_post.image_url,
+            self.four_chan_post.topic,
+            self.four_chan_post.image_url,
             self.target_board,
-            self.fourchan_post.url,
+            self.four_chan_post.url,
         ).get_embed_message()
         await ctx.send(embed=self.embed_message)
     
