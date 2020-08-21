@@ -1,11 +1,12 @@
 import sys
-import traceback
 
 from discord.ext import commands
 
 import cheemsbot.config as conf
 
 import asyncio
+
+from loguru import logger as log
 
 bot = commands.Bot(command_prefix=">", case_insensitive=True)
 
@@ -19,19 +20,20 @@ initial_extensions = [
     "cogs.root",
     "cogs.search",
     "cogs.animals",
+    "cogs.credits",
 ]
+
+
 if __name__ == "__main__":
     bot.remove_command("help")
     for extension in initial_extensions:
         try:
             bot.load_extension(extension)
         except Exception:
-            print(f"Failed to load extension {extension}.", file=sys.stderr)
-            traceback.print_exc()
-
+            log.critical(f"Failed to load extension {extension}.")
 
 @bot.event
-async def on_command_error(ctx: commands.Context, error: commands.errors):
+async def on_command_error(ctx: commands.Context, error: commands.errors):    
     if isinstance(error, commands.CommandOnCooldown):
         await (
             await ctx.send(
@@ -54,10 +56,11 @@ async def on_command_error(ctx: commands.Context, error: commands.errors):
         await asyncio.sleep(4)
     raise error
 
-
 @bot.event
 async def on_ready():
-    print("Cheems is ready to run.")
+    log.debug("Cheems is ready to run.")
+    log.debug(f" The following cogs were loaded loadead {bot.cogs}")
+
 
 
 bot.run(conf.our_discord_token)

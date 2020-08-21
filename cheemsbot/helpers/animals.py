@@ -1,6 +1,7 @@
 import requests
 import nekos
 
+from loguru import logger as log
 class Animals:
     def shiba(self):
         self.api_response = requests.get("http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true").json()

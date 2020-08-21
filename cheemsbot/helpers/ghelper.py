@@ -1,11 +1,15 @@
 from dataclasses import dataclass
 from google_images_search import GoogleImagesSearch
+from loguru import logger as log
+
 
 @dataclass
 class GoogleCredentials:
     api_key: str
     cx: str
 
+class NoResults(Exception):
+    pass
 
 class GoogleSession:
     def __init__(self, api_key, cx) -> None:
@@ -33,6 +37,12 @@ class GoogleImageSearch(GoogleSession):
         }
 
         self.google_session.search(search_params=_search_params)
+        if len(self.google_session.results()) <= 0:
+            log.warning("Nothing found for this query. Raising exception.")
+            raise NoResults
+
+
         for image in self.google_session.results():
+            log.info(f"Appending {image} to image results list")
             self.link_list.append(image.url)
         

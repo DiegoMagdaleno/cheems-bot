@@ -247,7 +247,7 @@ class LinePaginator(Paginator):
                     )
                 await message.edit(embed=embed)
         log.debug("Ending pagination and removing all reactions...")
-        await message.clear_reaction()
+        await message.clear_reactions()
 
 
 class ImagePaginator(Paginator):

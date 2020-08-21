@@ -1,17 +1,10 @@
+from cheemsbot.helpers.ghelper import NoResults
 from cheemsbot.helpers import embeds
 import discord
 from discord.ext import commands
 from cheemsbot.helpers.wikipedia import NoArticlesOrNotFound, Wikipedia
 import cheemsbot.config as conf
 from cheemsbot.helpers.paginator import ImagePaginator
-
-
-def create_tuples(name, urls):
-    our_thingy = []
-    for i in range(len(urls)):
-        our_thingy.append((name, urls[i]))
-    return our_thingy
-
 
 class SearchUtilitiesCog(commands.Cog, name="Search"):
     """A collection of commands to help you search without leaving Discord"""
@@ -46,8 +39,14 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         if self.query is None:
             await ctx.send("Ummmm, an imamge for whamt")
             return
-        self.array_of_images = conf.get_images(self.query, "off")
-        self.thing = create_tuples(self.query, self.array_of_images)
+        try:
+            if ctx.channel.is_nsfw() is False:
+                self.array_of_images = conf.get_images(self.query, "high")
+            else:
+                self.array_of_images = conf.get_images(self.query, "off")
+        except NoResults:
+            await ctx.send("Ummm couldmt fimd anything")
+            return
         await ImagePaginator.paginate(
             pages=self.array_of_images, ctx=ctx, embed=self.our_embed_session, bot=self.bot
         )
