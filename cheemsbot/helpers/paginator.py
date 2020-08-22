@@ -295,7 +295,7 @@ class ImagePaginator(Paginator):
         for image in pages:
             #! HACKY METHOD.
             # TODO: Rewrite after more research is done
-            paginator.pages.append([None for _ in range(10)])
+            paginator.pages.append([None for _ in range(len(pages))])
             paginator.add_image(image)
 
         image = paginator.images[current_page]

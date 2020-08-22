@@ -4,6 +4,9 @@ from typing import List
 from cheemsbot.helpers import config
 from cheemsbot.helpers import reddit
 from cheemsbot.helpers import ghelper
+import time
+from loguru import logger as log
+
 
 config_path = os.path.abspath("config.json")
 file_load = open(config_path, "r").read()
@@ -52,9 +55,12 @@ def get_reddit_post(
 
 
 def get_images(term: str, safe_search: str) -> List:
+    t = time.process_time()
     list_of_images = ghelper.GoogleImageSearch(
         google_credentials=our_google_credentials,
         search_term=term,
         safe_search=safe_search,
     ).link_list
+    elapsed_time = time.process_time() - t
+    log.debug(f"Images are ready to Go took {elapsed_time}")
     return list_of_images

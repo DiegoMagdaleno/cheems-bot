@@ -5,6 +5,7 @@ from discord.ext import commands
 from cheemsbot.helpers.wikipedia import NoArticlesOrNotFound, Wikipedia
 import cheemsbot.config as conf
 from cheemsbot.helpers.paginator import ImagePaginator
+from cheemsbot.helpers.github import GitHub
 
 
 class SearchUtilitiesCog(commands.Cog, name="Search"):
@@ -56,6 +57,12 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             embed=self.our_embed_session,
             bot=self.bot,
         )
+
+    @commands.command(name="github")
+    async def github(self, ctx: commands.Context, *, repository=None):
+        self.repository = repository
+        self.github_session = GitHub(self.repository)
+
 
 
 def setup(bot):
