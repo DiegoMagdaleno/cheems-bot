@@ -30,11 +30,11 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
         """Description:  Grabs a random post from a user provided board and posts it on the chat, prevents NSFW\nArguments: `None`"""
         self.target_board = target_board
         if self.target_board is None:
-            await ctx.send("Ummmmm, gimve me a boarmd")
+            await ctx.send("You need to provide a board.")
             return
         self.four_chan_post = fourchan.FourChanImage(self.target_board)
         if (self.four_chan_post.is_nsfw is False) and (ctx.channel.is_nsfw() is False):
-            await ctx.send("Not imfront of the chilmdren")
+            await ctx.send("Can't display NSFW content in non-NSFW channels.")
             return
         self.embed_message = embeds.FourChanEmbed(
             discord.Color.green(),

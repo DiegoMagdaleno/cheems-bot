@@ -20,12 +20,12 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         """Description:  Displays information about a Wikipedia article in channel.\nArguments: `1`"""
         self.query = query
         if self.query is None:
-            await ctx.send("Youm neemd to give something to search.")
+            await ctx.send("You need to give me a query.")
             return
         try:
             self.our_wikipedia_message = Wikipedia(self.query).get_wikipedia_article()
         except NoArticlesOrNotFound:
-            await ctx.send("Ummm I coumlndt fimd anymthing.")
+            await ctx.send(f"Couldn't find an article for {self.query}")
             return
         self.embed_message = embeds.WikipediaEmbed(
             discord.Color.blue(), self.our_wikipedia_message
@@ -42,7 +42,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             ctx.message.author.display_name
         )
         if self.query is None:
-            await ctx.send("Ummmm, an imamge for whamt")
+            await ctx.send("You need to give me a query.")
             return
         try:
             if ctx.channel.is_nsfw() is False:
@@ -50,7 +50,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             else:
                 self.array_of_images = conf.get_images(self.query, "off")
         except NoResults:
-            await ctx.send("Ummm couldmt fimd anything")
+            await ctx.send(f"Couldn't find anything for that query {self.query}")
             return
         await ImagePaginator.paginate(
             pages=self.array_of_images,
@@ -63,14 +63,13 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
     async def github(self, ctx: commands.Context, *, repository=None):
         self.repository = repository
         if self.repository is None:
-            await ctx.send("You neemd do gimve me a rempository")
+            await ctx.send("You need do give me a repository")
             return
         try:
             self.github_session = GitHub(self.repository)
         except GitHubRepositoryError:
-            await ctx.send("Had an error getting that repository.")
+            await ctx.send(f"Had an error getting that repository. Are you sure {self.repository} exists?")
             return
-        
 
 
 def setup(bot):

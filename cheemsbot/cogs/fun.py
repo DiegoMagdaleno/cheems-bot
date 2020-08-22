@@ -24,7 +24,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     async def ask(self, ctx, *, question=None):
         """Description: Gives an answer to a question asked by a user. Similar to 8ball.\nArguments: `1`"""
         if question is None:
-            await ctx.send("I meed you to amsk somethimg")
+            await ctx.send("You need to ask something")
         else:
             ask_answer = random_operations.get_8_ball()
             await ctx.send("{0}, {1}".format(ctx.author.mention, ask_answer))
@@ -57,7 +57,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     async def owofy(self, ctx, *, our_input=None):
         """Description: Owofies sewected input UwU\nArguments: `1`"""
         if our_input is None:
-            await ctx.send("Gimve me a memsage")
+            await ctx.send("You need to give a message to owofy")
             return
         self.string_check_session = stringchecker.StringChecker(our_input)
         if self.string_check_session.is_unicode() is False:
@@ -78,7 +78,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         """Description: Tells you if an user is a Chad or a Beta based on luck.\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("Gimve me a user")
+            await ctx.send("You need to provide an user.")
         else:
             self.chad_virgin_prob = random.randint(0, 100)
             if self.chad_virgin_prob >= 50:
@@ -94,7 +94,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     async def lmgtfy(self, ctx, *, our_terms=None):
         """Description: Generates an URL to lmgtfy containing your desired search terms\nArguments: `1`"""
         if our_terms is None:
-            await ctx.send("Ummm whamt do you wamt to lmgtfy")
+            await ctx.send("You need to provide a query.")
         else:
             self.lmgtfy_list = our_terms.split()
             await ctx.send(Lmgtfy(self.lmgtfy_list).get_url())
@@ -120,10 +120,10 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     async def clone(self, ctx, member: discord.User = None, *, message=None):
         """Description: Replicates what an user says, if no user is provided it will clone the message author\nArguments: `1 up to 2`"""
         if member is None and message is None:
-            await ctx.send("Gimve me am user, and a memsage")
+            await ctx.send("You need to provide an user and a message.")
             return
         if "@" in message or "<" in message or "&" in message:
-            await ctx.send("I will not pimg")
+            await ctx.send("I will not ping another user/a role/or everyone")
             return
         self.target_to_clone = member
         self.profile_picture = requests.get(
