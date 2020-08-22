@@ -1,3 +1,4 @@
+from requests.api import request
 from cheemsbot.helpers.ghelper import NoResults
 from cheemsbot.helpers import embeds
 import discord
@@ -5,7 +6,7 @@ from discord.ext import commands
 from cheemsbot.helpers.wikipedia import NoArticlesOrNotFound, Wikipedia
 import cheemsbot.config as conf
 from cheemsbot.helpers.paginator import ImagePaginator
-from cheemsbot.helpers.github import GitHub
+from cheemsbot.helpers.github import GitHub, GitHubRepositoryError
 
 
 class SearchUtilitiesCog(commands.Cog, name="Search"):
@@ -61,8 +62,15 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
     @commands.command(name="github")
     async def github(self, ctx: commands.Context, *, repository=None):
         self.repository = repository
-        self.github_session = GitHub(self.repository)
-
+        if self.repository is None:
+            await ctx.send("You neemd do gimve me a rempository")
+            return
+        try:
+            self.github_session = GitHub(self.repository)
+        except GitHubRepositoryError:
+            await ctx.send("Had an error getting that repository.")
+            return
+        
 
 
 def setup(bot):

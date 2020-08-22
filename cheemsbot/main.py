@@ -7,6 +7,8 @@ import cheemsbot.config as conf
 import asyncio
 
 from loguru import logger as log
+import traceback
+
 
 bot = commands.Bot(command_prefix=">", case_insensitive=True)
 
@@ -30,7 +32,8 @@ if __name__ == "__main__":
         try:
             bot.load_extension(extension)
         except Exception:
-            log.critical(f"Failed to load extension {extension}.")
+            print(f"Failed to load extension {extension}.", file=sys.stderr)
+            traceback.print_exc()
 
 
 @bot.event

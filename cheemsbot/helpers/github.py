@@ -1,8 +1,10 @@
 from dataclasses import dataclass
 import requests
 from loguru import logger as log
-from requests import exceptions
-from requests.api import request
+
+
+class GitHubRepositoryError(Exception):
+    pass
 
 
 @dataclass
@@ -26,17 +28,9 @@ class GitHub:
                 f"https://api.github.com/repos/{self.repository}"
             )
             self.repository_request.raise_for_status()
-        except requests.exceptions.HTTPError:
-            log.exception("Fatal! HTTP Error")
-            return
-        except requests.exceptions.ConnectionError:
-            log.exception("Connection error")
-            return
-        except requests.exceptions.Timeout:
-            log.exception("The API returned a timeout")
-        except requests.exceptions.RequestException:
-            log.exception("Some critical error happened")
-            return
+        except Exception as e:
+            log.warning(f"Had an trying to load user desired repository {e}")
+            raise GitHubRepositoryError
 
     def get_github_repo(self):
         self.json_response = self.repository_request.json()
