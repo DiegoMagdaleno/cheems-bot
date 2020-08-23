@@ -23,6 +23,7 @@ initial_extensions = [
     "cogs.search",
     "cogs.animals",
     "cogs.credits",
+    "cogs.generator",
 ]
 
 

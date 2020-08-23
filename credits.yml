@@ -1,0 +1,47 @@
+# This file holds the credits. 
+# See documentation for information on how to add yourself
+# or resources you used to this list.
+
+# This file gets parsed into the bot to display 
+# some messages, make sure to validate it
+# before commiting
+
+libraries:
+  - discord.py:
+      github_url: "https://github.com/Rapptz/discord.py"
+      use: "Interactions with Discord, like sending messages, embeds."
+  - PRAW:
+      github_url: "https://github.com/praw-dev/praw"
+      use: Grabbing information from Reddit!
+  - Nekos.py:
+      github_url: "https://github.com/Nekos-life/nekos.py"
+      use: Getting anime images
+  - basc_py4chan:
+      github_url: "https://github.com/bibanon/BASC-py4chan"
+      use: Interactions with 4chan
+  - lmgtify_reborn:
+      github_url: "https://github.com/DiegoMagdaleno/lmgtfyreborn"
+      use: Getting lmgtify URLS
+  - Google-Image-Search:
+      github_url: "https://github.com/arrrlo/Google-Images-Search"
+      use: Getting Image search results from Google!
+  - Loguru:
+      github_url: "https://github.com/Delgan/loguru"
+      use: Internal logging and debugging
+  - Beatifulsoup4:
+      github_url: None
+      use: Website scrapping
+  - Switch:
+      github_url: "https://github.com/ssanderson/switchcase"
+      use: "Switch case for Python, so the code is cleaner"
+
+authors:
+  - Diego_Magdaleno:
+    role: Main author of the bot
+  - Stkc:
+    role: Implementation of Nekos.py actions
+  - Clyde:
+    role: Implementation of ping in milliseconds
+  - Luth:
+    role: Testing
+

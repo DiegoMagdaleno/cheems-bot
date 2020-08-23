@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2bb6c2de2f5104a6162c3b690c9eb2e19a447818b839b38969c49f603e902455"
+            "sha256": "1139972e3b4a78d2ac402113be1a410261d32a025f8d6d031dc89df8538cba7a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -199,6 +199,13 @@
             ],
             "index": "pypi",
             "version": "==0.5.1"
+        },
+        "markovify": {
+            "hashes": [
+                "sha256:254405c5b2f819ae388c39a53e6bc038bfbc24713441869ce90a1cd67e4a89ce"
+            ],
+            "index": "pypi",
+            "version": "==0.8.3"
         },
         "multidict": {
             "hashes": [
@@ -401,6 +408,13 @@
                 "sha256:1d6d69ce66211143803fbc56652b41d73b4a400a2891d7bf7a1cdf4c02de613b"
             ],
             "version": "==1.1.0"
+        },
+        "unidecode": {
+            "hashes": [
+                "sha256:1d7a042116536098d05d599ef2b8616759f02985c85b4fef50c78a5aaf10822a",
+                "sha256:2b6aab710c2a1647e928e36d69c21e76b453cd455f4e2621000e54b2a9b8cce8"
+            ],
+            "version": "==1.1.1"
         },
         "update-checker": {
             "hashes": [
