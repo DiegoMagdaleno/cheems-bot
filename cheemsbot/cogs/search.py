@@ -68,8 +68,16 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         try:
             self.github_session = GitHub(self.repository)
         except GitHubRepositoryError:
-            await ctx.send(f"Had an error getting that repository. Are you sure {self.repository} exists?")
+            await ctx.send(
+                f"Had an error getting that repository. Are you sure {self.repository} exists?"
+            )
             return
+        async with ctx.typing():
+            self.our_github_respostory = self.github_session.get_github_repo()
+            self.our_embed = embeds.GitHubEmbed(
+                discord.Color.greyple(), self.our_github_respostory
+            )
+        await ctx.send(embed=self.our_embed.get_embed_message())
 
 
 def setup(bot):
