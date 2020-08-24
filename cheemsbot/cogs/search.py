@@ -7,7 +7,7 @@ from cheemsbot.helpers.wikipedia import NoArticlesOrNotFound, Wikipedia
 import cheemsbot.config as conf
 from cheemsbot.helpers.paginator import ImagePaginator
 from cheemsbot.helpers.github import GitHub, GitHubRepositoryError
-
+from cheemsbot.helpers.urban_dictionary import UrbanDictionary, UrbanDictionaryError
 
 class SearchUtilitiesCog(commands.Cog, name="Search"):
     """A collection of commands to help you search without leaving Discord"""
@@ -79,6 +79,17 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             )
         await ctx.send(embed=self.our_embed.get_embed_message())
 
+    @commands.command(name="urban")
+    async def urban(self, ctx, *, term=None):
+        self.term = term
+        if self.term is None:
+            await ctx.send("Please provide a search term")
+            return
+        try:
+            self.urban_request(self.term)
+            ctx.send(f"test {self.term}")
+        except UrbanDictionaryError:
+            await ctx.send("fuck")
 
 def setup(bot):
     bot.add_cog(SearchUtilitiesCog(bot))

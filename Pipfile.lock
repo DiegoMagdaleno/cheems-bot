@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1139972e3b4a78d2ac402113be1a410261d32a025f8d6d031dc89df8538cba7a"
+            "sha256": "105e69b3a753a561c19c545e366d4811b747956c3bff63bc00df7caf381d3c6d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -379,6 +379,10 @@
             "markers": "python_version >= '3.5'",
             "version": "==4.6"
         },
+        "setuptools": {
+            "editable": true,
+            "path": "."
+        },
         "six": {
             "hashes": [
                 "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259",
@@ -408,6 +412,14 @@
                 "sha256:1d6d69ce66211143803fbc56652b41d73b4a400a2891d7bf7a1cdf4c02de613b"
             ],
             "version": "==1.1.0"
+        },
+        "udpy": {
+            "hashes": [
+                "sha256:5f1e45d346af1f63b648bbd06b9a44f5b930b8a7c8cc21ddada383ea3e26cb1b",
+                "sha256:d0026abf16b2a616bd9a10ceb0d3d2a49b046aa53295fd6d2735ad051cc7271e"
+            ],
+            "index": "pypi",
+            "version": "==2.0.0"
         },
         "unidecode": {
             "hashes": [
