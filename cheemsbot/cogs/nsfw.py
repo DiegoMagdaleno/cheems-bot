@@ -17,7 +17,7 @@ class NSFWCommandsCog(commands.Cog, name="NSFW"):
             self.reddit_post = conf.get_reddit_post("femboys")
             await ctx.send(self.reddit_post.image)
         else:
-            await ctx.send("Not infromt of the childmren.")
+            await ctx.send("Can't post NSFW in non-NSFW channels.")
 
     @commands.command(name="lewdneko")
     async def lewdneko(self, ctx):
@@ -26,7 +26,7 @@ class NSFWCommandsCog(commands.Cog, name="NSFW"):
             if ctx.channel.is_nsfw():
                 await ctx.send(nekoimg.get_neko_nsfw())
             else:
-                await ctx.send("Not infromt of the childmren.")
+                await ctx.send("Can't post NSFW in non-NSFW channels.")
 
 
 def setup(bot):

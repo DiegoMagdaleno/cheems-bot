@@ -1,4 +1,6 @@
 # type: ignore
+from re import T
+from cheemsbot.helpers.github import GitHubRepository
 from cheemsbot.helpers.wikipedia import WikipediaArticle
 from prawcore import auth
 from cheemsbot.helpers.reddit import RedditPostContents, RedditSession
@@ -129,23 +131,56 @@ class NekoEmbed(EmbedMessage):
         self.embed_object_session.color = self.colour
         return self.embed_object_session
 
+
 class WikipediaEmbed(EmbedMessage):
-    def __init__(self, colour:str, article: WikipediaArticle) -> None:
-        super().__init__(colour=colour, author=article.author, author_icon=article.icon_url)
+    def __init__(self, colour: str, article: WikipediaArticle) -> None:
+        super().__init__(
+            colour=colour, author=article.author, author_icon=article.icon_url
+        )
 
         self.article = article
 
     def get_embed_message(self):
         self.embed_object_session = discord.Embed()
         self.embed_object_session.clear_fields()
-        self.embed_object_session.title="**{}**".format(self.article.name)
-        self.embed_object_session.url=self.article.url
-        self.embed_object_session.description=self.article.description
+        self.embed_object_session.title = "**{}**".format(self.article.name)
+        self.embed_object_session.url = self.article.url
+        self.embed_object_session.description = self.article.description
 
         self.embed_object_session.set_footer(
             text="Article last modified:", icon_url=self.author_icon
         )
 
-        self.embed_object_session.set_author(name="Wikipedia", url="https://wikipedia.org", icon_url=self.author_icon)
+        self.embed_object_session.set_author(
+            name="Wikipedia", url="https://wikipedia.org", icon_url=self.author_icon
+        )
         self.embed_object_session.timestamp = self.article.last_modified
+        return self.embed_object_session
+
+class GitHubEmbed(EmbedMessage):
+    def __init__(self, colour:str, repository: GitHubRepository) -> None:
+        super().__init__(
+            colour=colour
+        )
+        self.repository = repository
+    
+    def get_embed_message(self):
+        self.embed_object_session = discord.Embed()
+        self.embed_object_session.title = self.repository.full_name
+        self.embed_object_session.url = self.repository.url
+        self.embed_object_session.description = self.repository.description
+        self.embed_object_session.add_field(name="Stars", value=self.repository.stars, inline=True)
+        self.embed_object_session.add_field(name="Forks", value=self.repository.forks, inline=True)
+        self.embed_object_session.add_field(name="Issues", value=self.repository.open_issues, inline=True)
+        self.embed_object_session.add_field(name="Private", value=str(self.repository.is_private), inline=True)
+        self.embed_object_session.set_author(name="GitHub Repository info", icon_url="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
+        self.embed_object_session.set_thumbnail(url=self.repository.avatar_url)
+        if self.repository.license_id  == "NOASSERTION":
+            self.embed_object_session.add_field(name="License", value="Other Non-standard license.", inline=True)
+        elif self.repository.license_id is None:
+            self.embed_object_session.add_field(name="License", value="All rights reserved.", inline=True)
+        else:
+            self.embed_object_session.add_field(name="License", value=self.repository.license_id, inline=True)
+        
+
         return self.embed_object_session

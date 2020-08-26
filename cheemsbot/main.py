@@ -1,11 +1,14 @@
 import sys
-import traceback
 
 from discord.ext import commands
 
 import cheemsbot.config as conf
 
 import asyncio
+
+from loguru import logger as log
+import traceback
+
 
 bot = commands.Bot(command_prefix=">", case_insensitive=True)
 
@@ -19,7 +22,11 @@ initial_extensions = [
     "cogs.root",
     "cogs.search",
     "cogs.animals",
+    "cogs.credits",
+    "cogs.generator",
 ]
+
+
 if __name__ == "__main__":
     bot.remove_command("help")
     for extension in initial_extensions:
@@ -57,7 +64,8 @@ async def on_command_error(ctx: commands.Context, error: commands.errors):
 
 @bot.event
 async def on_ready():
-    print("Cheems is ready to run.")
+    log.debug("Cheems is ready to run.")
+    log.debug(f" The following cogs were loaded loadead {bot.cogs}")
 
 
 bot.run(conf.our_discord_token)

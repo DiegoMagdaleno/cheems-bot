@@ -19,10 +19,10 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of two anime characters cudling, with a title formatted as User A is cuddling with User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("Gimve me a user")
+            await ctx.send("You need to provide an user.")
         else:
             if ctx.message.author == member:
-                await ctx.send("You camt cuddle wimth yourmself")
+                await ctx.send("You can't cuddle with yourself")
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.blurple(),
@@ -38,10 +38,10 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of one anime character patting the other, with a title formatted as User A is patting User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("Gimve me a user")
+            await ctx.send("You need to provide an user.")
         else:
             if ctx.message.author == self.current_member:
-                await ctx.send("You camt pat yourselmf.")
+                await ctx.send("You can't pat yourself.")
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.blurple(),
@@ -57,10 +57,10 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of two anime characters kissing with a title formatted as User A is kissing User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("Gimve me a user")
+            await ctx.send("You need to provide an user.")
         else:
             if ctx.message.author == self.current_member:
-                await ctx.send("You camt kiss yourmself.")
+                await ctx.send("You can't kiss yourself.")
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.blurple(),
@@ -76,10 +76,10 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of one anime character slapping another, with a title formatted as User A is slapping User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("Gimve me a user")
+            await ctx.send("You need to provide an user.")
         else:
             if ctx.message.author == self.current_member:
-                await ctx.send("You camt slap yourmself")
+                await ctx.send("You can't slap yourself")
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.blurple(),
@@ -95,10 +95,10 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of two anime characters hugging, with a title formatted as User A is hugging User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("Gimve a user")
+            await ctx.send("You need to provide an user.")
         else:
             if ctx.message.author == self.current_member:
-                await ctx.send("You camt humg yourmself")
+                await ctx.send("You can't hug yourself")
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.purple(),
@@ -114,10 +114,10 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of one anime character tickling another, with a title formatted as User A tickling User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("Gimve a user")
+            await ctx.send("You need to provide an user.")
         else:
             if ctx.message.author == self.current_member:
-                await ctx.send("You camt tickle yourmself")
+                await ctx.send("You can't tickle yourself")
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.purple(),

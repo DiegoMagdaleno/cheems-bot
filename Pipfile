@@ -18,6 +18,10 @@ cheemsbot = {editable = true, path = "."}
 lmgtfyreborn = "*"
 duckduckpy = "*"
 beautifulsoup4 = "*"
+google-images-search = "*"
+loguru = "*"
+markovify = "*"
+udpy = "*"
 
 [requires]
 python_version = "3.8"
