@@ -6,16 +6,15 @@ import udpy
 class UrbanDictionaryError(Exception):
     pass
 
-@dataclass
-class UrbanDictionaryEntry:
-    word: str
-    definition: str
-    example: str
-    upvotes: int
-    downvotes: int
 
 class UrbanDictionary:
     def __init__(self, term) -> None:
         self.term = term
-        self.client = UrbanClient() # init UrbanClient
+        self.client = udpy.UrbanClient()
+    
+    def get_urban_definitions(self):
         self.urban_request = self.client.get_definition(self.term)
+        if len(self.urban_request) == 0:
+            raise UrbanDictionaryError
+        return self.urban_request
+        

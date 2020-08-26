@@ -86,10 +86,10 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             await ctx.send("Please provide a search term")
             return
         try:
-            self.urban_request(self.term)
-            ctx.send(f"test {self.term}")
+            self.definitions = UrbanDictionary(self.term).get_urban_definitions()
         except UrbanDictionaryError:
-            await ctx.send("fuck")
-
+            await ctx.send(f"Couldn't find anything for your query {self.term}")
+            return
+        await ctx.send(self.definitions)
 def setup(bot):
     bot.add_cog(SearchUtilitiesCog(bot))
