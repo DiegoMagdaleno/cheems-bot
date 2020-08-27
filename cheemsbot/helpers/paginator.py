@@ -523,14 +523,15 @@ class TabPaginator(Paginator):
         await TabPaginator.create_paginator(
             tabs, bot, prefix, suffix, timeout, color
         ).send(ctx)
-        
+
+
 class UrbanPagintor(Paginator):
     def __init__(self, prefix="", suffix="") -> None:
         super().__init__(prefix, suffix)
         self._current_page = [prefix]
         self.urban_objects = []
         self._pages = []
-        
+
     def add_line(self, line: str = "") -> None:
         print("here")
         if line:
@@ -539,7 +540,7 @@ class UrbanPagintor(Paginator):
             self._count = 0
         self._current_page.append(line)
         self.close_page()
-    
+
     @classmethod
     async def paginate(
         cls,
@@ -552,36 +553,37 @@ class UrbanPagintor(Paginator):
         timeout: int = 30,
     ):
         def event_checker(reaction_: Reaction, member: Member) -> bool:
-            return all([reaction_.message.id == message.id, 
-                        reaction_.emoji in PAGINATION_EMOJI,
-                        not member.bot])
-        
+            return all(
+                [
+                    reaction_.message.id == message.id,
+                    reaction_.emoji in PAGINATION_EMOJI,
+                    not member.bot,
+                ]
+            )
+
         paginator = cls(prefix=prefix, suffix=suffix)
         current_page = 0
-        
+
         for _ in definitions:
-            paginator.pages.append(None for _ in range (len(definitions)))
-        
+            paginator.pages.append(None for _ in range(len(definitions)))
+
         ub_def = definitions[current_page]
-        
+
         if ub_def:
             embed.title = ub_def.word
             embed.description = "From Urban Dictionary"
-            embed.add_field(name="Definition", value=ub_def.definition, inline=True)
-            embed.add_field(name="Examples", value=ub_def.example, inline= True)
-            
+            embed.add_field(name="Definition", value=(str(ub_def.definition).replace("[", "")).replace("]",""), inline=True)
+            embed.add_field(name="Examples", value=(str(ub_def.example).replace("[", "")).replace("]", ""), inline=True)
 
-            
-        
         if len(paginator.pages) <= 1:
             return await ctx.send(embed=embed)
-        
+
         embed.set_footer(text=f"Page {current_page + 1}/{len(paginator.pages)}")
         message = await ctx.send(embed=embed)
-        
+
         for emoji in PAGINATION_EMOJI:
             await message.add_reaction(emoji)
-            
+
         while True:
             try:
                 reaction, user = await bot.wait_for(
@@ -637,17 +639,16 @@ class UrbanPagintor(Paginator):
                 reaction_type = "next"
 
             await message.edit(embed=embed)
-            
+
             ub_def = definitions[current_page]
 
-            
             if ub_def:
                 embed.clear_fields()
                 embed.title = ub_def.word
                 embed.description = "From Urban Dictionary"
-                embed.add_field(name="Definition", value=ub_def.definition, inline=True)
-                embed.add_field(name="Examples", value=ub_def.example, inline= True)
-            
+                embed.add_field(name="Definition", value=(str(ub_def.definition).replace("[", "")).replace("]",""), inline=True)
+                embed.add_field(name="Examples", value=(str(ub_def.example).replace("[", "")).replace("]", ""), inline=True)
+
             embed.set_footer(text=f"Page {current_page + 1}/{len(paginator.pages)}")
             log.debug(
                 f"Got {reaction_type} page reaction - changing to page {current_page + 1}/{len(paginator.pages)}"

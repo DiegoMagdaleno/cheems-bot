@@ -3,6 +3,7 @@ from google_images_search import GoogleImagesSearch
 from loguru import logger as log
 import time
 
+
 @dataclass
 class GoogleCredentials:
     api_key: str
@@ -38,8 +39,9 @@ class GoogleImageSearch(GoogleSession):
             "num": 10,
             "safe": self.safe_search,
         }
-        log.debug(f"Initialized search. with the following search params {_search_params}")
-
+        log.debug(
+            f"Initialized search. with the following search params {_search_params}"
+        )
 
         self.google_session.search(search_params=_search_params)
         self.start = time.time()
