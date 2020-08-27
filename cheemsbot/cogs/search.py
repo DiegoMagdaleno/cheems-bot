@@ -84,7 +84,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
     @commands.command(name="urban")
     async def urban(self, ctx, *, term=None):
         self.term = term
-        self.our_embed_session = discord.Embed()
+        self.our_embed_session = discord.Embed(color=0x3e9cbf)
         if self.term is None:
             await ctx.send("Please provide a search term")
             return

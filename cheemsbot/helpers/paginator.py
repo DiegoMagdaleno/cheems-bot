@@ -572,8 +572,8 @@ class UrbanPagintor(Paginator):
         if ub_def:
             embed.title = ub_def.word
             embed.description = "From Urban Dictionary"
-            embed.add_field(name="Definition", value=ub_def.definition, inline=True)
-            embed.add_field(name="Examples", value=ub_def.example, inline=True)
+            embed.add_field(name="Definition", value=(str(ub_def.definition).replace("[", "")).replace("]",""), inline=True)
+            embed.add_field(name="Examples", value=(str(ub_def.example).replace("[", "")).replace("]", ""), inline=True)
 
         if len(paginator.pages) <= 1:
             return await ctx.send(embed=embed)
@@ -646,8 +646,8 @@ class UrbanPagintor(Paginator):
                 embed.clear_fields()
                 embed.title = ub_def.word
                 embed.description = "From Urban Dictionary"
-                embed.add_field(name="Definition", value=ub_def.definition, inline=True)
-                embed.add_field(name="Examples", value=ub_def.example, inline=True)
+                embed.add_field(name="Definition", value=(str(ub_def.definition).replace("[", "")).replace("]",""), inline=True)
+                embed.add_field(name="Examples", value=(str(ub_def.example).replace("[", "")).replace("]", ""), inline=True)
 
             embed.set_footer(text=f"Page {current_page + 1}/{len(paginator.pages)}")
             log.debug(
