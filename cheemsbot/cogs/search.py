@@ -9,6 +9,8 @@ from cheemsbot.helpers.paginator import ImagePaginator, UrbanPagintor
 from cheemsbot.helpers.github import GitHub, GitHubRepositoryError
 from cheemsbot.helpers.urban_dictionary import UrbanDictionary, UrbanDictionaryError
 import pprint
+
+
 class SearchUtilitiesCog(commands.Cog, name="Search"):
     """A collection of commands to help you search without leaving Discord"""
 
@@ -96,8 +98,9 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             definitions=self.definitions,
             ctx=ctx,
             embed=self.our_embed_session,
-            bot=self.bot
+            bot=self.bot,
         )
-        
+
+
 def setup(bot):
     bot.add_cog(SearchUtilitiesCog(bot))

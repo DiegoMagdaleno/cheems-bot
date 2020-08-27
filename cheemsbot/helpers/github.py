@@ -22,6 +22,7 @@ class GitHubRepository:
     avatar_url: str
     license_id: str = None
 
+
 class GitHub:
     def __init__(self, repository) -> None:
         self.repository = repository
@@ -46,10 +47,10 @@ class GitHub:
             self.json_response["forks"],
             self.json_response["open_issues"],
             self.json_response["watchers"],
-            self.json_response['stargazers_count'],
+            self.json_response["stargazers_count"],
             self.json_response["html_url"],
-            self.json_response['owner']['avatar_url'],
+            self.json_response["owner"]["avatar_url"],
         )
-        if self.json_response['license'] is not None:
-            self.githubrepo.license_id = self.json_response['license']['spdx_id']
+        if self.json_response["license"] is not None:
+            self.githubrepo.license_id = self.json_response["license"]["spdx_id"]
         return self.githubrepo
