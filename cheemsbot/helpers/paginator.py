@@ -568,6 +568,7 @@ class UrbanPagintor(Paginator):
             paginator.pages.append(None for _ in range(len(definitions)))
 
         ub_def = definitions[current_page]
+        print(ub_def)
 
         if ub_def:
             embed.title = ub_def.word
@@ -577,13 +578,21 @@ class UrbanPagintor(Paginator):
             urban_definition_limits = len(our_definition)
             urban_example_limits = len(our_example)
             if urban_definition_limits >= 1000:
-                our_definition = our_definition[0:999]+"..."
+                our_definition = our_definition[0:999] + "..."
             if urban_example_limits >= 1000:
-                our_example = our_example[0:999]+"..."
+                our_example = our_example[0:999] + "..."
             if urban_example_limits == 0 or urban_example_limits == None:
                 our_example = "No examples provided."
-            embed.add_field(name="Definition", value=(str(our_definition).replace("[", "")).replace("]",""), inline=True)
-            embed.add_field(name="Examples", value=(str(our_example).replace("[", "")).replace("]", ""), inline=True)
+            embed.add_field(
+                name="Definition",
+                value=(str(our_definition).replace("[", "")).replace("]", ""),
+                inline=True,
+            )
+            embed.add_field(
+                name="Examples",
+                value=(str(our_example).replace("[", "")).replace("]", ""),
+                inline=True,
+            )
 
         if len(paginator.pages) <= 1:
             return await ctx.send(embed=embed)
@@ -652,21 +661,30 @@ class UrbanPagintor(Paginator):
 
             ub_def = definitions[current_page]
 
-        if ub_def:
-            embed.title = ub_def.word
-            embed.description = "From Urban Dictionary"
-            our_definition = ub_def.definition
-            our_example = ub_def.example
-            urban_definition_limits = len(our_definition)
-            urban_example_limits = len(our_example)
-            if urban_definition_limits >= 1000:
-                our_definition = our_definition[0:999]+"..."
-            if urban_example_limits >= 1000:
-                our_example = our_example[0:999]+"..."
-            if urban_example_limits == 0 or urban_example_limits == None:
-                our_example = "No examples provided."
-            embed.add_field(name="Definition", value=(str(our_definition).replace("[", "")).replace("]",""), inline=True)
-            embed.add_field(name="Examples", value=(str(our_example).replace("[", "")).replace("]", ""), inline=True)
+            if ub_def:
+                embed.clear_fields()
+                embed.title = ub_def.word
+                embed.description = "From Urban Dictionary"
+                our_definition = ub_def.definition
+                our_example = ub_def.example
+                urban_definition_limits = len(our_definition)
+                urban_example_limits = len(our_example)
+                if urban_definition_limits >= 1000:
+                    our_definition = our_definition[0:999] + "..."
+                if urban_example_limits >= 1000:
+                    our_example = our_example[0:999] + "..."
+                if urban_example_limits == 0 or urban_example_limits == None:
+                    our_example = "No examples provided."
+                embed.add_field(
+                    name="Definition",
+                    value=(str(our_definition).replace("[", "")).replace("]", ""),
+                    inline=True,
+                )
+                embed.add_field(
+                    name="Examples",
+                    value=(str(our_example).replace("[", "")).replace("]", ""),
+                    inline=True,
+                )
 
             embed.set_footer(text=f"Page {current_page + 1}/{len(paginator.pages)}")
             log.debug(
