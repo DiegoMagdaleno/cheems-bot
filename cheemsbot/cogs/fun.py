@@ -9,6 +9,7 @@ from cheemsbot.helpers import stringchecker
 from discord.ext.commands import MemberConverter
 from cheemsbot.helpers import poll
 from disputils import BotMultipleChoice
+from cheemsbot.helpers import errorhandler
 
 import discord
 from discord.ext import commands
@@ -148,9 +149,10 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         self.question = self.split_questions[0]
         self.split_questions.pop(0)
         try:
-            self.poll_verify = poll.PollHelper(self.split_questions)
+            self.poll_verify = poll.PollHelper(self.split_questions).verify_poll()
         except poll.PollException:
-            await ctx.send("More items than max allowed")
+            await ctx.send(embed=errorhandler.BotAlert(2, "Limit exeded").get_error_embed())
+            return
         self.multiple_choice = BotMultipleChoice(ctx, self.split_questions, self.question)
         await self.multiple_choice.run()
 
