@@ -1,8 +1,10 @@
+from cheemsbot.helpers.errorhandler import BotAlert
 import sys
 
 from discord.ext import commands
 
 import cheemsbot.config as conf
+from cheemsbot.helpers import errorhandler
 
 import asyncio
 
@@ -42,20 +44,19 @@ async def on_command_error(ctx: commands.Context, error: commands.errors):
     if isinstance(error, commands.CommandOnCooldown):
         await (
             await ctx.send(
-                "Thims command is on a %.2fs coolmdown, trym amgain lamter"
-                % error.retry_after
+                embed=errorhandler.BotAlert(1, "This command is in a %.2fs cooldown, try againt later" % error.retry_after).get_error_embed()
             )
         ).delete(delay=3)
         await asyncio.sleep(4)
     if isinstance(error, commands.CommandNotFound):
-        await (await ctx.send("Ummmmmmmmmmmmm I couldmt fimd that command")).delete(
+        await (await ctx.send(embed=errorhandler.BotAlert(1, "That command isn't in my command list!").get_error_embed())).delete(
             delay=3
         )
         await asyncio.sleep(4)
     if isinstance(error, commands.CommandInvokeError):
         await (
             await ctx.send(
-                "Ummmm there wams am emrror on thims command, prombably some bamd api response."
+                embed=errorhandler.BotAlert(2, "There was an error running this command. Internal bot error!.").get_error_embed()
             )
         ).delete(delay=3)
         await asyncio.sleep(4)
