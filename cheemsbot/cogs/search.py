@@ -8,6 +8,7 @@ import cheemsbot.config as conf
 from cheemsbot.helpers.paginator import ImagePaginator, UrbanPagintor
 from cheemsbot.helpers.github import GitHub, GitHubRepositoryError
 from cheemsbot.helpers.urban_dictionary import UrbanDictionary, UrbanDictionaryError
+from cheemsbot.helpers import errorhandler
 import pprint
 
 
@@ -18,16 +19,24 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         self.bot = bot
 
     @commands.command(name="wikipedia")
-    async def wikipedia(self, ctx, *, query):
+    async def wikipedia(self, ctx, *, query=None):
         """Description:  Displays information about a Wikipedia article in channel.\nArguments: `1`"""
         self.query = query
         if self.query is None:
-            await ctx.send("You need to give me a query.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to give me a query!"
+                ).get_error_embed()
+            )
             return
         try:
             self.our_wikipedia_message = Wikipedia(self.query).get_wikipedia_article()
         except NoArticlesOrNotFound:
-            await ctx.send(f"Couldn't find an article for {self.query}")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    2, f"I couldn't find anything for {self.query}"
+                ).get_error_embed()
+            )
             return
         self.embed_message = embeds.WikipediaEmbed(
             discord.Color.blue(), self.our_wikipedia_message
@@ -44,7 +53,11 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             ctx.message.author.display_name
         )
         if self.query is None:
-            await ctx.send("You need to give me a query.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to give me a query!"
+                ).get_error_embed()
+            )
             return
         try:
             if ctx.channel.is_nsfw() is False:
@@ -52,7 +65,11 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             else:
                 self.array_of_images = conf.get_images(self.query, "off")
         except NoResults:
-            await ctx.send(f"Couldn't find anything for that query {self.query}")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    2, f"I couldn't find anything for {self.query}"
+                ).get_error_embed()
+            )
             return
         await ImagePaginator.paginate(
             pages=self.array_of_images,
@@ -65,13 +82,20 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
     async def github(self, ctx: commands.Context, *, repository=None):
         self.repository = repository
         if self.repository is None:
-            await ctx.send("You need do give me a repository")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to give me a repository!"
+                ).get_error_embed()
+            )
             return
         try:
             self.github_session = GitHub(self.repository)
         except GitHubRepositoryError:
             await ctx.send(
-                f"Had an error getting that repository. Are you sure {self.repository} exists?"
+                embed=errorhandler.BotAlert(
+                    2,
+                    f"Had an error getting that repository. Are you sure {self.repository} exists?",
+                ).get_error_embed()
             )
             return
         async with ctx.typing():
@@ -86,13 +110,21 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         self.term = term
         self.our_embed_session = discord.Embed(color=0x3E9CBF)
         if self.term is None:
-            await ctx.send("Please provide a search term")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to provide a term!"
+                ).get_error_embed()
+            )
             return
         try:
             self.definitions = UrbanDictionary(self.term).get_urban_definitions()
         except UrbanDictionaryError:
             self.pure_term = discord.utils.escape_mentions(self.term)
-            await ctx.send(f"Couldn't find anything for your query {self.pure_term}")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    2, f"Couldn't find anything for that query {self.pure_term}"
+                ).get_error_embed()
+            )
             return
         await UrbanPagintor.paginate(
             definitions=self.definitions,
