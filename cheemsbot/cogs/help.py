@@ -9,8 +9,9 @@ class HelpCog(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.hidden = True
 
-    @commands.command(name="help")
+    @commands.command(name="help", hidden=True)
     async def help(self, ctx, *cog):
         """Displays the help message what else"""
         try:
@@ -27,12 +28,14 @@ class HelpCog(commands.Cog):
                     text="Cheemsburguer is free software. And it is licensed under the WTFPL license. Copyright Diego Magdaleno 2020 et al."
                 )
                 cogs_desc = ""
+                
                 for each_cog in self.bot.cogs:
-
-                    cogs_desc += (
-                        "**{}**\n• {}".format(each_cog, self.bot.cogs[each_cog].__doc__)
-                        + "\n"
-                    )
+                    
+                    if vars(self.bot.cogs[each_cog]).get("hidden") is not True:
+                        cogs_desc += (
+                            "**{}**\n• {}".format(each_cog, self.bot.cogs[each_cog].__doc__)
+                            + "\n"
+                        )
                 our_help_embed.add_field(
                     name="Categories",
                     value=cogs_desc[0 : len(cogs_desc) - 1],

@@ -1,10 +1,10 @@
+from re import error
 from cheemsbot.helpers import embeds
 from cheemsbot.helpers import nekoimg
+from cheemsbot.helpers import errorhandler
 
 import discord
 from discord.ext import commands
-
-bot = commands.Bot(command_prefix=">")
 
 
 class NekoActionCog(commands.Cog, name="NekoActions"):
@@ -19,10 +19,18 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of two anime characters cudling, with a title formatted as User A is cuddling with User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("You need to provide an user.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to provide an user."
+                ).get_error_embed()
+            )
         else:
             if ctx.message.author == member:
-                await ctx.send("You can't cuddle with yourself")
+                await ctx.send(
+                    embed=errorhandler.BotAlert(
+                        1, "You can't cuddle with yourself"
+                    ).get_error_embed()
+                )
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.blurple(),
@@ -38,10 +46,18 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of one anime character patting the other, with a title formatted as User A is patting User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("You need to provide an user.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to provide an user."
+                ).get_error_embed()
+            )
         else:
             if ctx.message.author == self.current_member:
-                await ctx.send("You can't pat yourself.")
+                await ctx.send(
+                    embed=errorhandler.BotAlert(
+                        1, "You can't pat yourself."
+                    ).get_error_embed()
+                )
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.blurple(),
@@ -57,10 +73,18 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of two anime characters kissing with a title formatted as User A is kissing User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("You need to provide an user.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to provide an user."
+                ).get_error_embed()
+            )
         else:
             if ctx.message.author == self.current_member:
-                await ctx.send("You can't kiss yourself.")
+                await ctx.send(
+                    embed=errorhandler.BotAlert(
+                        1, "You can't kiss yourself."
+                    ).get_error_embed()
+                )
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.blurple(),
@@ -76,10 +100,18 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of one anime character slapping another, with a title formatted as User A is slapping User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("You need to provide an user.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to provide an user."
+                ).get_error_embed()
+            )
         else:
             if ctx.message.author == self.current_member:
-                await ctx.send("You can't slap yourself")
+                await ctx.send(
+                    embed=errorhandler.BotAlert(
+                        1, "You can't slap yourself"
+                    ).get_error_embed()
+                )
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.blurple(),
@@ -95,10 +127,18 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of two anime characters hugging, with a title formatted as User A is hugging User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("You need to provide an user.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to provide an user."
+                ).get_error_embed()
+            )
         else:
             if ctx.message.author == self.current_member:
-                await ctx.send("You can't hug yourself")
+                await ctx.send(
+                    embed=errorhandler.BotAlert(
+                        1, "You can't hug yourself"
+                    ).get_error_embed()
+                )
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.purple(),
@@ -114,10 +154,18 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         """Description:  Displays a gif of one anime character tickling another, with a title formatted as User A tickling User B\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("You need to provide an user.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to provide an user."
+                ).get_error_embed()
+            )
         else:
             if ctx.message.author == self.current_member:
-                await ctx.send("You can't tickle yourself")
+                await ctx.send(
+                    embed=errorhandler.BotAlert(
+                        1, "You can't tickle yourself"
+                    ).get_error_embed()
+                )
                 return
             neko_action = embeds.NekoEmbed(
                 discord.Color.purple(),
