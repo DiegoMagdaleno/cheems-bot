@@ -5,6 +5,7 @@ from cheemsbot.helpers import embeds
 from discord.errors import NotFound
 from discord.ext import commands
 from prawcore.exceptions import Forbidden, NotFound
+from cheemsbot.helpers import errorhandler
 
 
 class RedditCommandsCog(commands.Cog, name="RedditActions"):
@@ -73,28 +74,42 @@ class RedditCommandsCog(commands.Cog, name="RedditActions"):
         self.forbidden = ["cock", "ass", "sex", "dick", "penis", "pussy"]
         self.current_subreddit = subreddit
         if self.current_subreddit is None:
-            await ctx.send("Give a subreddit")
+            await ctx.send(
+                embed=errorhandler.BotAlert(1, "Give me a Subreddit.").get_error_embed()
+            )
             return
         async with ctx.typing():
             try:
                 self.reddit_post = conf.get_reddit_post(self.current_subreddit)
             except NotFound:
-                await ctx.send("Subreddit not found")
+                await ctx.send(
+                    embed=errorhandler.BotAlert(
+                        2, "Subreddit not found."
+                    ).get_error_embed()
+                )
                 return
             except Forbidden:
                 await ctx.send(
-                    "I don't have permissions to watch that subreddit. Perhaps it is quarantined."
+                    embed=errorhandler.BotAlert(
+                        2, "I don't have permission to watch that Subreddit."
+                    ).get_error_embed()
                 )
                 return
             if (self.reddit_post.is_nsfw) and (ctx.channel.is_nsfw() is False):
-                await ctx.send("Not in front of the children.")
+                await ctx.send(
+                    embed=errorhandler.BotAlert(
+                        2, "Subreddit or post is NSFW while the channel is not"
+                    ).get_error_embed()
+                )
                 return
             self.string_test_result = any(
                 element in self.current_subreddit for element in self.forbidden
             )
             if self.string_test_result and (ctx.channel.is_nsfw() is False):
                 await ctx.send(
-                    "Subreddit contains a forbidden word. This detection will be improved eventually."  # noqa: E501
+                    embed=errorhandler.BotAlert(
+                        2, "Subreddit contains a forbidden word"
+                    ).get_error_embed()
                 )
                 return
             embed_message = embeds.RedditEmbedMessage(

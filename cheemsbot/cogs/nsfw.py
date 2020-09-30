@@ -1,5 +1,7 @@
 import cheemsbot.config as conf
 from cheemsbot.helpers import nekoimg
+from cheemsbot.helpers import errorhandler
+
 
 from discord.ext import commands
 
@@ -17,7 +19,11 @@ class NSFWCommandsCog(commands.Cog, name="NSFW"):
             self.reddit_post = conf.get_reddit_post("femboys")
             await ctx.send(self.reddit_post.image)
         else:
-            await ctx.send("Can't post NSFW in non-NSFW channels.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    2, "Can't post NSFW in non-NSFW channels."
+                ).get_error_embed()
+            )
 
     @commands.command(name="lewdneko")
     async def lewdneko(self, ctx):
@@ -26,7 +32,11 @@ class NSFWCommandsCog(commands.Cog, name="NSFW"):
             if ctx.channel.is_nsfw():
                 await ctx.send(nekoimg.get_neko_nsfw())
             else:
-                await ctx.send("Can't post NSFW in non-NSFW channels.")
+                await ctx.send(
+                    embed=errorhandler.BotAlert(
+                        2, "Can't post NSFW in non-NSFW channels."
+                    ).get_error_embed()
+                )
 
 
 def setup(bot):
