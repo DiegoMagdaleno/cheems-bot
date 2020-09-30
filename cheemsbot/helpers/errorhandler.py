@@ -1,16 +1,16 @@
-
 import discord
 
 
-class BotAlert():
+class BotAlert:
     def __init__(self, type: int, why: str):
         self.type = type
         self.why = why
+
     def get_error_embed(self):
         # Type levels:
-            # 0 - Succesfull operation
-            # 1 - Warning
-            # 2 - Error
+        # 0 - Succesfull operation
+        # 1 - Warning
+        # 2 - Error
         self.embed = discord.Embed()
         if self.type == 0:
             self.why = ":white_check_mark: " + self.why
@@ -30,5 +30,3 @@ class BotAlert():
             self.embed.title = "Critical error"
             self.embed.description = self.why
             return self.embed
-            
-

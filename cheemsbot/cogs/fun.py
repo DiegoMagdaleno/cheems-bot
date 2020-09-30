@@ -141,9 +141,11 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         await self.hook.delete()
 
     @commands.command(name="poll")
-    async def poll(self, ctx, *, desired_questions:str=None):
+    async def poll(self, ctx, *, desired_questions: str = None):
         if desired_questions is None:
-            await ctx.send("What do you want a poll about? Syntax: Question, options, separated, by, commas")
+            await ctx.send(
+                "What do you want a poll about? Syntax: Question, options, separated, by, commas"
+            )
             return
         self.split_questions = desired_questions.split(",")
         self.question = self.split_questions[0]
@@ -151,10 +153,15 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         try:
             self.poll_verify = poll.PollHelper(self.split_questions).verify_poll()
         except poll.PollException:
-            await ctx.send(embed=errorhandler.BotAlert(2, "Limit exeded").get_error_embed())
+            await ctx.send(
+                embed=errorhandler.BotAlert(2, "Limit exeded").get_error_embed()
+            )
             return
-        self.multiple_choice = BotMultipleChoice(ctx, self.split_questions, self.question)
+        self.multiple_choice = BotMultipleChoice(
+            ctx, self.split_questions, self.question
+        )
         await self.multiple_choice.run()
+
 
 def setup(bot):
     bot.add_cog(FunWithCheemsCog(bot))
