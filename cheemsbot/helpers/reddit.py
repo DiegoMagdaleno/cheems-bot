@@ -61,7 +61,7 @@ class RedditPost(RedditSession):
             self.reddit_credentials.password,
         )
 
-        # The subreddit we want to targed
+        # The subreddit we want to target
         self.subreddit = subreddit
 
         # We get the subreddit property from our praw session attribute in our main class,

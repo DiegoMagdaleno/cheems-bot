@@ -2,7 +2,7 @@
 # pagination.py by runerw0lf https://gist.github.com/runew0lf/fce60414d7a4ee9dfac8f442eca39687
 # The Discord bot https://github.com/python-discord/bot community
 # And more! Check them out they did all the work here.
-# This acts as a collection of Master classes, this are overriden in "embeds.py", but
+# This acts as a collection of Master classes, this are overrides in "embeds.py", but
 # many of the methods are kept
 
 from typing import Iterable, List, Optional, Tuple

@@ -1,4 +1,5 @@
 from discord import user
+from disputils import multiple_choice
 import cheemsbot.config as conf
 import random
 from cheemsbot.helpers import nekoimg
@@ -6,6 +7,8 @@ from cheemsbot.helpers import random_operations
 from cheemsbot.helpers import fourchan
 from cheemsbot.helpers import stringchecker
 from discord.ext.commands import MemberConverter
+from cheemsbot.helpers import poll
+from disputils import BotMultipleChoice
 
 import discord
 from discord.ext import commands
@@ -136,6 +139,20 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         await self.hook.send(message)
         await self.hook.delete()
 
+    @commands.command(name="poll")
+    async def poll(self, ctx, *, desired_questions:str=None):
+        if desired_questions is None:
+            await ctx.send("What do you want a poll about? Syntax: Question, options, separated, by, commas")
+            return
+        self.split_questions = desired_questions.split(",")
+        self.question = self.split_questions[0]
+        self.split_questions.pop(0)
+        try:
+            self.poll_verify = poll.PollHelper(self.split_questions)
+        except poll.PollException:
+            await ctx.send("More items than max allowed")
+        self.multiple_choice = BotMultipleChoice(ctx, self.split_questions, self.question)
+        await self.multiple_choice.run()
 
 def setup(bot):
     bot.add_cog(FunWithCheemsCog(bot))

@@ -22,6 +22,7 @@ google-images-search = "*"
 loguru = "*"
 markovify = "*"
 udpy = "*"
+disputils = "*"
 
 [requires]
 python_version = "3.8"
