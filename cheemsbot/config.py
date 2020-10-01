@@ -1,3 +1,4 @@
+from cheemsbot.helpers import fourchan
 import os
 from typing import List
 
@@ -64,3 +65,10 @@ def get_images(term: str, safe_search: str) -> List:
     elapsed_time = time.process_time() - t
     log.debug(f"Images are ready to Go took {elapsed_time}")
     return list_of_images
+
+def get_fourchan_post(
+    board: str
+) -> fourchan.FourChanPost:
+    fourchan_post = fourchan.FourChanImage(board)
+    fourchan_contents = fourchan.FourChanPost(fourchan_post.url, fourchan_post.is_nsfw, fourchan_post.topic, fourchan_post.image_url, fourchan_post.board_title)
+    return fourchan_contents

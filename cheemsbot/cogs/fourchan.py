@@ -1,7 +1,7 @@
 from cheemsbot.helpers import embeds
 from cheemsbot.helpers import fourchan
+from cheemsbot import config
 
-import discord
 from discord.ext import commands
 
 
@@ -15,13 +15,9 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
     async def tech(self, ctx):
         """Description:  Grabs a random post from 4chan's /g/ board and posts it on the chat\nArguments: `None`"""
         self.target_board = "g"
-        self.four_chan_post = fourchan.FourChanImage(self.target_board)
+        self.post = config.get_fourchan_post(self.target_board)
         self.embed_message = embeds.FourChanEmbed(
-            discord.Color.green(),
-            self.four_chan_post.topic,
-            self.four_chan_post.image_url,
-            self.target_board,
-            self.four_chan_post.url,
+            self.post
         ).get_embed_message()
         await ctx.send(embed=self.embed_message)
 
@@ -37,7 +33,6 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
             await ctx.send("Can't display NSFW content in non-NSFW channels.")
             return
         self.embed_message = embeds.FourChanEmbed(
-            discord.Color.green(),
             self.four_chan_post.topic,
             self.four_chan_post.image_url,
             self.target_board,

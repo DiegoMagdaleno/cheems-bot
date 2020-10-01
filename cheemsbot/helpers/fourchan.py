@@ -1,7 +1,15 @@
+from dataclasses import dataclass
 import random
 
 import basc_py4chan
 
+@dataclass
+class FourChanPost:
+    submission_url: str
+    submissing_is_nsfw: bool
+    submission_topic: str
+    submission_image_url: str
+    board_title: str
 
 class FourChan:
     def __init__(self, board: str) -> None:
@@ -22,3 +30,4 @@ class FourChanImage(FourChan):
         self.topic = str(thread.topic.subject)
         self.url = str(thread.url)
         self.is_nsfw = self.board.is_worksafe
+        self.board_title = self.board.title

@@ -1,4 +1,5 @@
 # type: ignore
+from cheemsbot.helpers.fourchan import FourChanPost
 from re import T
 from cheemsbot.helpers.github import GitHubRepository
 from cheemsbot.helpers.wikipedia import WikipediaArticle
@@ -69,16 +70,16 @@ class RedditEmbedMessage(EmbedMessage):
 
 class FourChanEmbed(EmbedMessage):
     def __init__(
-        self, colour: str, title: str, image: str, src: str, link: str
+        self, post: FourChanPost
     ) -> None:
-        super().__init__(colour=colour, title=title, image=image, source=src, link=link)
+        super().__init__(discord.Color.green(), post.submission_topic, post.submission_image_url, post.board_title,  post.submission_url)
 
     def get_embed_message(self):
         self.embed_object_session = discord.Embed()
         self.embed_object_session.title = self.title
         self.embed_object_session.set_image(url=self.image)
         self.embed_object_session.set_footer(
-            text="Posted on: 4chan\nOn board: " + self.source
+            text=f"Posted on board: {self.source} at 4chan!"
         )
         self.embed_object_session.color = self.colour
         self.embed_object_session.insert_field_at(
