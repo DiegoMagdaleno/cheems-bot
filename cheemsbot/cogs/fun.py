@@ -22,7 +22,6 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
 
     def __init__(self, bot):
         self.bot = bot
-        self.converter = MemberConverter()
 
     @commands.command(name="ask", aliases=["8b"])
     async def ask(self, ctx, *, question=None):

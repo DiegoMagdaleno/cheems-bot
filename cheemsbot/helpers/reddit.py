@@ -4,7 +4,6 @@ from dataclasses import dataclass
 
 import praw
 
-import pprint
 
 
 @dataclass

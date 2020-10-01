@@ -9,7 +9,6 @@ from cheemsbot.helpers.paginator import ImagePaginator, UrbanPagintor
 from cheemsbot.helpers.github import GitHub, GitHubRepositoryError
 from cheemsbot.helpers.urban_dictionary import UrbanDictionary, UrbanDictionaryError
 from cheemsbot.helpers import errorhandler
-import pprint
 
 
 class SearchUtilitiesCog(commands.Cog, name="Search"):

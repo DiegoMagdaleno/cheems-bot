@@ -1,4 +1,3 @@
-from re import error
 from cheemsbot.helpers import embeds
 from cheemsbot.helpers import nekoimg
 from cheemsbot.helpers import errorhandler

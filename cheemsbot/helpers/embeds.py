@@ -1,6 +1,5 @@
 # type: ignore
 from cheemsbot.helpers.fourchan import FourChanPost
-from re import T
 from cheemsbot.helpers.github import GitHubRepository
 from cheemsbot.helpers.wikipedia import WikipediaArticle
 from prawcore import auth

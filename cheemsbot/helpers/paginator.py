@@ -5,7 +5,7 @@
 # This acts as a collection of Master classes, this are overrides in "embeds.py", but
 # many of the methods are kept
 
-from typing import Iterable, List, Optional, Tuple
+from typing import Iterable, List, Optional
 from discord.ext.commands import Context, Paginator
 from discord import Embed, Member, Reaction
 from discord.abc import User
