@@ -44,7 +44,7 @@ class LinePaginator(Paginator):
     def add_line(self, line, *, empty=False):
         if len(line) > self.max_size - len(self.prefix) - 2:
             raise RuntimeError(
-                f"Line exceeds maximum page size {(self.max_size - len(self.prefix) - 2)}"              
+                f"Line exceeds maximum page size {(self.max_size - len(self.prefix) - 2)}"
             )
         if self.max_lines is not None:
             if self._linecount >= self.max_lines:

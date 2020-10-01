@@ -43,9 +43,7 @@ class HelpCog(commands.Cog):
                 commands_desc = ""
                 for command in self.bot.walk_commands():
                     if not command.cog_name and not command.hidden:
-                        commands_desc += (
-                            f"{command.name} - {command.help}\n"
-                        )
+                        commands_desc += f"{command.name} - {command.help}\n"
                 if commands_desc != "":
                     our_help_embed.add_field(
                         name="Uncategorized commands",

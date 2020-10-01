@@ -56,10 +56,7 @@ class RedditEmbedMessage(EmbedMessage):
         )
         self.embed_object_session.color = self.colour
         self.embed_object_session.insert_field_at(
-            20,
-            name="Link to post",
-            value=f"[Go to post]({self.link})",
-            inline=True,
+            20, name="Link to post", value=f"[Go to post]({self.link})", inline=True,
         )
         return self.embed_object_session
 
