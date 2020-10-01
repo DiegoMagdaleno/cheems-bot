@@ -69,10 +69,14 @@ class RedditEmbedMessage(EmbedMessage):
 
 
 class FourChanEmbed(EmbedMessage):
-    def __init__(
-        self, post: FourChanPost
-    ) -> None:
-        super().__init__(discord.Color.green(), post.submission_topic, post.submission_image_url, post.board_title,  post.submission_url)
+    def __init__(self, post: FourChanPost) -> None:
+        super().__init__(
+            discord.Color.green(),
+            post.submission_topic,
+            post.submission_image_url,
+            post.board_title,
+            post.submission_url,
+        )
 
     def get_embed_message(self):
         self.embed_object_session = discord.Embed()

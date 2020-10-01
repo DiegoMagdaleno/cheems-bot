@@ -16,9 +16,7 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
         """Description:  Grabs a random post from 4chan's /g/ board and posts it on the chat\nArguments: `None`"""
         self.target_board = "g"
         self.post = config.get_fourchan_post(self.target_board)
-        self.embed_message = embeds.FourChanEmbed(
-            self.post
-        ).get_embed_message()
+        self.embed_message = embeds.FourChanEmbed(self.post).get_embed_message()
         await ctx.send(embed=self.embed_message)
 
     @commands.command(name="4chan")
