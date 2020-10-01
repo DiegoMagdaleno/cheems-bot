@@ -2,7 +2,6 @@ import cheemsbot.config as conf
 import random
 from cheemsbot.helpers import embeds
 
-from discord.errors import NotFound
 from discord.ext import commands
 from prawcore.exceptions import Forbidden, NotFound
 from cheemsbot.helpers import errorhandler
@@ -57,7 +56,7 @@ class RedditCommandsCog(commands.Cog, name="RedditActions"):
         """Description:  Grabs an image from the following Subreddits:\n •PewDiePieSubmissions\n   •Dankmemes\n    •memes\n •meme\n •gamging \nand posts it in chat\nArguments: `None`"""
         async with ctx.typing():
             self.current_subreddit = random.choice(
-                ["pewdiepiesubmissions", "dankmemes", "meme", "memes", "gaming",]
+                ["pewdiepiesubmissions", "dankmemes", "meme", "memes", "gaming"]
             )
             self.reddit_post = conf.get_reddit_post(
                 self.current_subreddit, only_image=True

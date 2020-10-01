@@ -2,8 +2,7 @@
 from cheemsbot.helpers.fourchan import FourChanPost
 from cheemsbot.helpers.github import GitHubRepository
 from cheemsbot.helpers.wikipedia import WikipediaArticle
-from prawcore import auth
-from cheemsbot.helpers.reddit import RedditPostContents, RedditSession
+from cheemsbot.helpers.reddit import RedditPostContents
 import discord
 from switch import Switch
 
@@ -95,9 +94,7 @@ class FourChanEmbed(EmbedMessage):
 
 
 class NekoEmbed(EmbedMessage):
-    def __init__(
-        self, image: str, user_a: str, user_b: str, action: str
-    ) -> None:
+    def __init__(self, image: str, user_a: str, user_b: str, action: str) -> None:
         super().__init__(colour=discord.Color.blurple(), image=image)
         self.user_a = user_a
         self.user_b = user_b

@@ -1,5 +1,4 @@
 from cheemsbot.helpers import embeds
-from cheemsbot.helpers import fourchan
 from cheemsbot.helpers import errorhandler
 from cheemsbot import config
 

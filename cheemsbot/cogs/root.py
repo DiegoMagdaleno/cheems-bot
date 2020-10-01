@@ -1,6 +1,5 @@
 from cheemsbot.helpers import random_operations
 
-import discord
 from discord.ext import commands
 
 

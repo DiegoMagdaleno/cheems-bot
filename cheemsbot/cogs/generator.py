@@ -21,7 +21,7 @@ class GeneratorCog(commands.Cog, name="Generator"):
             text = f.read()
         text_model = markovify.NewlineText(text)
         phrase = text_model.make_sentence()
-        while phrase == None:
+        while phrase is None:
             phrase = text_model.make_sentence()
         await ctx.send(phrase)
 

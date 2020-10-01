@@ -5,7 +5,6 @@ from dataclasses import dataclass
 import praw
 
 
-
 @dataclass
 class RedditCredentials:
     client_id: str

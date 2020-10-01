@@ -1,12 +1,9 @@
-from discord import user
-from disputils import multiple_choice
 import cheemsbot.config as conf
 import random
 from cheemsbot.helpers import nekoimg
 from cheemsbot.helpers import random_operations
 from cheemsbot.helpers import fourchan
 from cheemsbot.helpers import stringchecker
-from discord.ext.commands import MemberConverter
 from cheemsbot.helpers import poll
 from disputils import BotMultipleChoice
 from cheemsbot.helpers import errorhandler
@@ -70,7 +67,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
             return
         if self.string_check_session.contains_racism():
             await ctx.send(
-                "Cheems does not repeat or talks to racists. Please take in count that after the moderation update your message will be logged and sent to moderators."
+                "Cheems does not repeat or talks to racists."
             )
             return
         self.owofied_input = nekoimg.owo_text(our_input)

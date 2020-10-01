@@ -2,8 +2,6 @@ from dataclasses import dataclass
 import requests
 import datetime
 
-from requests.api import request
-
 
 class NoArticlesOrNotFound(Exception):
     pass

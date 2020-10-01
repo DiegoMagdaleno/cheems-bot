@@ -293,7 +293,7 @@ class ImagePaginator(Paginator):
         current_page = 0
 
         for image in pages:
-            #! HACKY METHOD.
+            # !HACKY METHOD.
             # TODO: Rewrite after more research is done
             paginator.pages.append([None for _ in range(len(pages))])
             paginator.add_image(image)
@@ -581,7 +581,7 @@ class UrbanPagintor(Paginator):
                 our_definition = our_definition[0:999] + "..."
             if urban_example_limits >= 1000:
                 our_example = our_example[0:999] + "..."
-            if urban_example_limits == 0 or urban_example_limits == None:
+            if urban_example_limits == 0 or urban_example_limits is None:
                 our_example = "No examples provided."
             embed.add_field(
                 name="Definition",
@@ -673,7 +673,7 @@ class UrbanPagintor(Paginator):
                     our_definition = our_definition[0:999] + "..."
                 if urban_example_limits >= 1000:
                     our_example = our_example[0:999] + "..."
-                if urban_example_limits == 0 or urban_example_limits == None:
+                if urban_example_limits == 0 or urban_example_limits is None:
                     our_example = "No examples provided."
                 embed.add_field(
                     name="Definition",
