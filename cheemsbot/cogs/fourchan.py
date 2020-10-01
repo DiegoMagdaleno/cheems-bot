@@ -1,5 +1,6 @@
 from cheemsbot.helpers import embeds
 from cheemsbot.helpers import fourchan
+from cheemsbot.helpers import errorhandler
 from cheemsbot import config
 
 from discord.ext import commands
@@ -14,8 +15,7 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
     @commands.command(name="tech")
     async def tech(self, ctx):
         """Description:  Grabs a random post from 4chan's /g/ board and posts it on the chat\nArguments: `None`"""
-        self.target_board = "g"
-        self.post = config.get_fourchan_post(self.target_board)
+        self.post = config.get_fourchan_post("g")
         self.embed_message = embeds.FourChanEmbed(self.post).get_embed_message()
         await ctx.send(embed=self.embed_message)
 
@@ -24,17 +24,25 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
         """Description:  Grabs a random post from a user provided board and posts it on the chat, prevents NSFW\nArguments: `None`"""
         self.target_board = target_board
         if self.target_board is None:
-            await ctx.send("You need to provide a board.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to provide a board."
+                ).get_error_embed()
+            )
             return
-        self.four_chan_post = fourchan.FourChanImage(self.target_board)
-        if (self.four_chan_post.is_nsfw is False) and (ctx.channel.is_nsfw() is False):
-            await ctx.send("Can't display NSFW content in non-NSFW channels.")
+        self.four_chan_post = config.get_fourchan_post(self.target_board)
+        print(self.four_chan_post)
+        if (self.four_chan_post.submission_is_nsfw is False) and (
+            ctx.channel.is_nsfw() is False
+        ):
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "Can't display NSFW content in non-NSFW channels."
+                ).get_error_embed()
+            )
             return
         self.embed_message = embeds.FourChanEmbed(
-            self.four_chan_post.topic,
-            self.four_chan_post.image_url,
-            self.target_board,
-            self.four_chan_post.url,
+            self.four_chan_post
         ).get_embed_message()
         await ctx.send(embed=self.embed_message)
 

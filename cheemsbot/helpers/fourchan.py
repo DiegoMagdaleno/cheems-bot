@@ -7,7 +7,7 @@ import basc_py4chan
 @dataclass
 class FourChanPost:
     submission_url: str
-    submissing_is_nsfw: bool
+    submission_is_nsfw: bool
     submission_topic: str
     submission_image_url: str
     board_title: str
