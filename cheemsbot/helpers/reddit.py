@@ -74,7 +74,7 @@ class RedditPost(RedditSession):
             self.target = self.praw_session.submission(self.random_id_choice)
 
         self.image = self.target.url
-        self.link = "https://reddit.com{0}".format(self.target.permalink)
+        self.link = f"https://reddit.com{self.target.permalink}"
         if hasattr(self.target.author, "name"):
             self.author = self.target.author.name
         else:

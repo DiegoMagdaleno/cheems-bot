@@ -19,7 +19,7 @@ class DuckDuckGoHandler:
         self.objects_list_duck = []
 
         self.duckduckgo_site = urllib.request.urlopen(
-            "https://duckduckgo.com/html/?q={}".format(self.query)
+            f"https://duckduckgo.com/html/?q={self.query}"
         )
         self.data = self.duckduckgo_site.read()
 

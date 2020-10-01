@@ -33,10 +33,7 @@ class HelpCog(commands.Cog):
 
                     if vars(self.bot.cogs[each_cog]).get("hidden") is not True:
                         cogs_desc += (
-                            "**{}**\n• {}".format(
-                                each_cog, self.bot.cogs[each_cog].__doc__
-                            )
-                            + "\n"
+                            f"**{each_cog}**\n• {self.bot.cogs[each_cog].__doc__}\n"
                         )
                 our_help_embed.add_field(
                     name="Categories",
@@ -47,7 +44,7 @@ class HelpCog(commands.Cog):
                 for command in self.bot.walk_commands():
                     if not command.cog_name and not command.hidden:
                         commands_desc += (
-                            "{} - {}".format(command.name, command.help) + "\n"
+                            f"{command.name} - {command.help}\n"
                         )
                 if commands_desc != "":
                     our_help_embed.add_field(

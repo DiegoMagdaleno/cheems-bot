@@ -47,10 +47,8 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
     async def image(self, ctx: commands.Context, *, query=None):
         self.query = query
         self.our_embed_session = discord.Embed()
-        self.our_embed_session.title = "**Search results for {}**".format(self.query)
-        self.our_embed_session.description = "Requested by:  {}".format(
-            ctx.message.author.display_name
-        )
+        self.our_embed_session.title = f"**Search results for {self.query}**"
+        self.our_embed_session.description = f"Requested by:  {ctx.message.author.display_name}"
         if self.query is None:
             await ctx.send(
                 embed=errorhandler.BotAlert(

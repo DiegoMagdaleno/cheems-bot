@@ -24,8 +24,8 @@ class Wikipedia:
         self.search = requests.get(
             (
                 "https://en.wikipedia.org//w/api.php?action=query"
-                "&format=json&list=search&utf8=1&srsearch={}&srlimit=5&srprop="
-            ).format(self.query)
+                f"&format=json&list=search&utf8=1&srsearch={self.query}&srlimit=5&srprop="
+            )
         ).json()["query"]
 
         if self.search["searchinfo"]["totalhits"] == 0:
@@ -36,8 +36,8 @@ class Wikipedia:
                 (
                     "https://en.wikipedia.org//w/api.php?action=query"
                     "&utf8=1&redirects&format=json&prop=info|images"
-                    "&inprop=url&titles={}"
-                ).format(self.article)
+                    f"&inprop=url&titles={self.article}"
+                )
             ).json()["query"]["pages"]
             if str(list(self.request)[0]) != "-1":
                 break
@@ -49,7 +49,7 @@ class Wikipedia:
         self.article = self.request_properties["title"]
         self.article_url = self.request_properties["fullurl"]
         self.article_description = requests.get(
-            "https://en.wikipedia.org/api/rest_v1/page/summary/{}".format(self.article)
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{self.article}"
         ).json()["extract"]
 
         self.last_edit = datetime.datetime.strptime(

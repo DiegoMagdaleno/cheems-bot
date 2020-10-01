@@ -51,16 +51,14 @@ class RedditEmbedMessage(EmbedMessage):
             if case("meme"):
                 self.credit_string = "Meme by:"
         self.embed_object_session.set_footer(
-            text="Posted on: {0}\n{1} {2}".format(
-                self.source, self.credit_string, self.author
-            ),
+            text=f"Posted on: {self.source}\n{self.credit_string} {self.author}",
             icon_url=self.author_icon,
         )
         self.embed_object_session.color = self.colour
         self.embed_object_session.insert_field_at(
             20,
             name="Link to post",
-            value="[Go to post]({})".format(self.link),
+            value=f"[Go to post]({self.link})",
             inline=True,
         )
         return self.embed_object_session
@@ -87,7 +85,7 @@ class FourChanEmbed(EmbedMessage):
         self.embed_object_session.insert_field_at(
             20,
             name="Link to thread",
-            value="[Go to thread]({})".format(self.link),
+            value=f"[Go to thread]({self.link})",
             inline=True,
         )
         return self.embed_object_session
@@ -144,7 +142,7 @@ class WikipediaEmbed(EmbedMessage):
     def get_embed_message(self):
         self.embed_object_session = discord.Embed()
         self.embed_object_session.clear_fields()
-        self.embed_object_session.title = "**{}**".format(self.article.name)
+        self.embed_object_session.title = f"**{self.article.name}**"
         self.embed_object_session.url = self.article.url
         self.embed_object_session.description = self.article.description
 
