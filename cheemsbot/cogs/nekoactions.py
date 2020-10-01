@@ -33,7 +33,6 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
                 )
                 return
             neko_action = embeds.NekoEmbed(
-                discord.Color.blurple(),
                 self.our_neko_actions.neko_cuddle(),
                 ctx.author.name,
                 str(member.name),
@@ -60,7 +59,6 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
                 )
                 return
             neko_action = embeds.NekoEmbed(
-                discord.Color.blurple(),
                 self.our_neko_actions.neko_pat(),
                 ctx.author.name,
                 str(member.name),
@@ -87,7 +85,6 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
                 )
                 return
             neko_action = embeds.NekoEmbed(
-                discord.Color.blurple(),
                 self.our_neko_actions.neko_kiss(),
                 ctx.author.name,
                 str(member.name),
@@ -114,7 +111,6 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
                 )
                 return
             neko_action = embeds.NekoEmbed(
-                discord.Color.blurple(),
                 self.our_neko_actions.neko_slap(),
                 ctx.author.name,
                 str(member.name),
@@ -141,7 +137,6 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
                 )
                 return
             neko_action = embeds.NekoEmbed(
-                discord.Color.purple(),
                 self.our_neko_actions.neko_hug(),
                 ctx.author.name,
                 str(member.name),
@@ -168,7 +163,6 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
                 )
                 return
             neko_action = embeds.NekoEmbed(
-                discord.Color.purple(),
                 self.our_neko_actions.neko_tickle(),
                 ctx.author.name,
                 str(member.name),

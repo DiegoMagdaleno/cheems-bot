@@ -97,9 +97,9 @@ class FourChanEmbed(EmbedMessage):
 
 class NekoEmbed(EmbedMessage):
     def __init__(
-        self, colour: str, image: str, user_a: str, user_b: str, action: str
+        self, image: str, user_a: str, user_b: str, action: str
     ) -> None:
-        super().__init__(colour=colour, image=image)
+        super().__init__(colour=discord.Color.blurple(), image=image)
         self.user_a = user_a
         self.user_b = user_b
         self.action = action
