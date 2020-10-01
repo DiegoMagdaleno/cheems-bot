@@ -15,7 +15,7 @@ import os
 bot = commands.Bot(command_prefix=">", case_insensitive=True)
 
 file_base = os.path.dirname(os.path.realpath(__file__))
-file_list = os.listdir(file_base+"/cogs")
+file_list = os.listdir(file_base + "/cogs")
 for item in ["__init__.py", "__pycache__", ".mypy_cache"]:
     file_list.remove(item)
 
