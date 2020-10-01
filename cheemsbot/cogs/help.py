@@ -1,7 +1,7 @@
 import discord
 from discord import embeds
-from discord.embeds import Embed
 from discord.ext import commands
+from cheemsbot.helpers import errorhandler
 
 
 class HelpCog(commands.Cog):
@@ -28,12 +28,14 @@ class HelpCog(commands.Cog):
                     text="Cheemsburguer is free software. And it is licensed under the WTFPL license. Copyright Diego Magdaleno 2020 et al."
                 )
                 cogs_desc = ""
-                
+
                 for each_cog in self.bot.cogs:
-                    
+
                     if vars(self.bot.cogs[each_cog]).get("hidden") is not True:
                         cogs_desc += (
-                            "**{}**\n• {}".format(each_cog, self.bot.cogs[each_cog].__doc__)
+                            "**{}**\n• {}".format(
+                                each_cog, self.bot.cogs[each_cog].__doc__
+                            )
                             + "\n"
                         )
                 our_help_embed.add_field(
@@ -92,7 +94,11 @@ class HelpCog(commands.Cog):
                     else:
                         await ctx.send(embed=our_help_embed)
         except:
-            await ctx.send("Excuse me, I can't send embeds.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    2, "Excuse me, I can't send embeds."
+                ).get_error_embed()
+            )
 
 
 def setup(bot):

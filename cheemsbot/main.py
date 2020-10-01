@@ -1,4 +1,3 @@
-from cheemsbot.helpers.errorhandler import BotAlert
 import sys
 
 from discord.ext import commands
@@ -10,23 +9,21 @@ import asyncio
 
 from loguru import logger as log
 import traceback
+import os
 
 
 bot = commands.Bot(command_prefix=">", case_insensitive=True)
 
-initial_extensions = [
-    "cogs.help",
-    "cogs.fun",
-    "cogs.nekoactions",
-    "cogs.nsfw",
-    "cogs.reddit",
-    "cogs.fourchan",
-    "cogs.root",
-    "cogs.search",
-    "cogs.animals",
-    "cogs.credits",
-    "cogs.generator",
-]
+file_base = os.path.dirname(os.path.realpath(__file__))
+file_list = os.listdir(file_base+"/cogs")
+for item in ["__init__.py", "__pycache__", ".mypy_cache"]:
+    file_list.remove(item)
+
+initial_extensions = []
+
+for cog in file_list:
+    cog = "cogs." + cog.replace(".py", "")
+    initial_extensions.append(cog)
 
 
 if __name__ == "__main__":
