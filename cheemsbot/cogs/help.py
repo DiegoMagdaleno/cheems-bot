@@ -40,7 +40,7 @@ class HelpCog(commands.Cog):
                         )
                 our_help_embed.add_field(
                     name="Categories",
-                    value=cogs_desc[0:len(cogs_desc) - 1],
+                    value=cogs_desc[0 : len(cogs_desc) - 1],
                     inline=True,
                 )
                 commands_desc = ""
@@ -52,7 +52,7 @@ class HelpCog(commands.Cog):
                 if commands_desc != "":
                     our_help_embed.add_field(
                         name="Uncategorized commands",
-                        value=commands_desc[0:len(commands_desc) - 1],
+                        value=commands_desc[0 : len(commands_desc) - 1],
                         inline=False,
                     )
                 await ctx.send(embed=our_help_embed)

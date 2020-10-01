@@ -1,3 +1,4 @@
+from cheemsbot.helpers import embeds
 import cheemsbot.config as conf
 import random
 from cheemsbot.helpers import nekoimg
@@ -24,10 +25,14 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     async def ask(self, ctx, *, question=None):
         """Description: Gives an answer to a question asked by a user. Similar to 8ball.\nArguments: `1`"""
         if question is None:
-            await ctx.send("You need to ask something")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to ask something"
+                ).get_error_embed()
+            )
         else:
             ask_answer = random_operations.get_8_ball()
-            await ctx.send("{0}, {1}".format(ctx.author.mention, ask_answer))
+            await ctx.send(f"{ctx.author.mention}, {ask_answer}")
 
     @commands.command(name="gf")
     async def girlfriend(self, ctx):
@@ -57,17 +62,25 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     async def owofy(self, ctx, *, our_input=None):
         """Description: Owofies sewected input UwU\nArguments: `1`"""
         if our_input is None:
-            await ctx.send("You need to give a message to owofy")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to give a message to owofy"
+                ).get_error_embed()
+            )
             return
         self.string_check_session = stringchecker.StringChecker(our_input)
         if self.string_check_session.is_unicode() is False:
             await ctx.send(
-                "Nice try on bypassing. However Cheems doesn't accept unicode."
+                embed=errorhandler.BotAlert(
+                    1, "Nice try on bypassing. However Cheems doesn't accept unicode."
+                ).get_error_embed()
             )
             return
         if self.string_check_session.contains_racism():
             await ctx.send(
-                "Cheems does not repeat or talks to racists."
+                embed=errorhandler.BotAlert(
+                    1, "Cheems does not repeat or talks to racists."
+                ).get_error_embed()
             )
             return
         self.owofied_input = nekoimg.owo_text(our_input)
@@ -78,7 +91,11 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         """Description: Tells you if an user is a Chad or a Beta based on luck.\nArguments: `1`"""
         self.current_member = member
         if self.current_member is None:
-            await ctx.send("You need to provide an user.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to provide an user."
+                ).get_error_embed()
+            )
         else:
             self.chad_virgin_prob = random.randint(0, 100)
             if self.chad_virgin_prob >= 50:
@@ -94,7 +111,11 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     async def lmgtfy(self, ctx, *, our_terms=None):
         """Description: Generates an URL to lmgtfy containing your desired search terms\nArguments: `1`"""
         if our_terms is None:
-            await ctx.send("You need to provide a query.")
+            await ctx.send(
+                errorhandler.BotAlert(
+                    1, "You need to provide a query."
+                ).get_error_embed()
+            )
         else:
             self.lmgtfy_list = our_terms.split()
             await ctx.send(Lmgtfy(self.lmgtfy_list).get_url())
@@ -102,15 +123,13 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     @commands.command(name="animegf")
     async def animegf(self, ctx):
         """Description: Grabs an image from 4chan's /c/ board and displays it \nArguments: `None`"""
-        self.target_board = "c"
-        self.fourchan_image = fourchan.FourChanImage(self.target_board).image_url
+        self.fourchan_image = fourchan.FourChanImage("c").image_url
         await ctx.send(self.fourchan_image)
 
     @commands.command(name="animebf")
     async def animebf(self, ctx):
         """Description: Grabs an image from 4chan's /cm/ board and displays it \nArguments: `None`"""
-        self.target_board = "cm"
-        self.fourchan_image = fourchan.FourChanImage(self.target_board).image_url
+        self.fourchan_image = fourchan.FourChanImage("cm").image_url
         await ctx.send(self.fourchan_image)
 
     # TODO: Right now we can't do our self.target.clone = ctx.author because of Python limitations
@@ -120,10 +139,18 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     async def clone(self, ctx, member: discord.User = None, *, message=None):
         """Description: Replicates what an user says, if no user is provided it will clone the message author\nArguments: `1 up to 2`"""
         if member is None and message is None:
-            await ctx.send("You need to provide an user and a message.")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "You need to provide an user and a message."
+                ).get_error_embed()
+            )
             return
         if "@" in message or "<" in message or "&" in message:
-            await ctx.send("I will not ping another user/a role/or everyone")
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    1, "I will not ping another user/a role/or everyone"
+                ).get_error_embed()
+            )
             return
         self.target_to_clone = member
         self.profile_picture = requests.get(
@@ -140,7 +167,10 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     async def poll(self, ctx, *, desired_questions: str = None):
         if desired_questions is None:
             await ctx.send(
-                "What do you want a poll about? Syntax: Question, options, separated, by, commas"
+                embed=errorhandler.BotAlert(
+                    1,
+                    "What do you want a poll about? Syntax: Question, options, separated, by, commas",
+                )
             )
             return
         self.split_questions = desired_questions.split(",")
