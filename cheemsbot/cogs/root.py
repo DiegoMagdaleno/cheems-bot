@@ -15,7 +15,7 @@ class CheemsRootCommandsCog(commands.Cog, name="Root"):
         self.random_cheems = random_operations.get_cheems_phrase()
         self.ping_in_ms = round(self.bot.latency * 1000, 1)
         await ctx.send(
-            self.random_cheems + " \n**{:.0f}{}".format(self.ping_in_ms, "ms** pimg")
+            f" {self.random_cheems }\n**{self.ping_in_ms :.0f}ms** ping"
         )
 
 
