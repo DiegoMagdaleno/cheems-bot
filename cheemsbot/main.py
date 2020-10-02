@@ -43,7 +43,7 @@ async def on_command_error(ctx: commands.Context, error: commands.errors):
             await ctx.send(
                 embed=errorhandler.BotAlert(
                     1,
-                    f"This command is in a {error.retry_after :.2f} cooldown, try again later"
+                    f"This command is in a {error.retry_after :.2f} cooldown, try again later",
                 ).get_error_embed()
             )
         ).delete(delay=3)

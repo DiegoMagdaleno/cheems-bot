@@ -14,9 +14,7 @@ class CheemsRootCommandsCog(commands.Cog, name="Root"):
         """Tells you the client latency between the bot and the Discord client"""
         self.random_cheems = random_operations.get_cheems_phrase()
         self.ping_in_ms = round(self.bot.latency * 1000, 1)
-        await ctx.send(
-            f" {self.random_cheems }\n**{self.ping_in_ms :.0f}ms** ping"
-        )
+        await ctx.send(f" {self.random_cheems }\n**{self.ping_in_ms :.0f}ms** ping")
 
 
 def setup(bot):
