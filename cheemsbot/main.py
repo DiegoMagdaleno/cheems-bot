@@ -15,16 +15,10 @@ import os
 bot = commands.Bot(command_prefix=">", case_insensitive=True)
 
 file_base = os.path.dirname(os.path.realpath(__file__))
-file_list = os.listdir(file_base + "/cogs")
-for item in ["__init__.py", "__pycache__", ".mypy_cache"]:
-    file_list.remove(item)
-
+file_list = os.listdir(f"{file_base}/cogs")
 initial_extensions = []
-
-for cog in file_list:
-    cog = "cogs." + cog.replace(".py", "")
-    initial_extensions.append(cog)
-
+[file_list.remove(item) for item in ["__init__.py", "__pycache__", ".mypy_cache"]]
+[initial_extensions.append(f"cogs.{cog.replace('.py', '')}") for cog in file_list]
 
 if __name__ == "__main__":
     bot.remove_command("help")
