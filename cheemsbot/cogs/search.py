@@ -40,9 +40,9 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             return
         self.embed_message = embeds.WikipediaEmbed(
             discord.Color.blue(), self.our_wikipedia_message
-        ).get_embed_message()
+        )
 
-        await ctx.send(embed=self.embed_message)
+        await ctx.send(embed=self.embed_message.get_embed_message())
 
     @commands.command(name="image")
     async def image(self, ctx: commands.Context, *, query=None):
