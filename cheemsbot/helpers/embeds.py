@@ -1,4 +1,5 @@
 # type: ignore
+from cheemsbot.helpers.brew import HomebrewPackage
 from cheemsbot.helpers.fourchan import FourChanPost
 from cheemsbot.helpers.github import GitHubRepository
 from cheemsbot.helpers.wikipedia import WikipediaArticle
@@ -17,6 +18,8 @@ class EmbedMessage:
         author=None,
         author_icon=None,
         link=None,
+        footer_string=None,
+        footer_author_url=None,
     ) -> None:
         self.colour = colour
         self.title = title
@@ -25,41 +28,45 @@ class EmbedMessage:
         self.author = author
         self.author_icon = author_icon
         self.link = link
+        self.footer_string = footer_string
+        self.footer_author_url = footer_author_url
+
+        # !? Discord embed object intialization.
+        self.object_embed_session = discord.Embed()
+        self.object_embed_session.color = self.colour
+        self.object_embed_session.title = self.title
+        if self.image is not None:
+            self.object_embed_session.set_image(url=self.image)
+        if self.footer_string is not None or self.footer_author_url is not None:
+            self.object_embed_session.set_footer(text=self.footer_string,icon_url=self.footer_author_url)
+
+    def get_embed_message(self):
+        return self.object_embed_session
 
 
 class RedditEmbedMessage(EmbedMessage):
     def __init__(self, post: RedditPostContents, post_type: str) -> None:
-        super().__init__(
-            discord.Color.orange(),
-            post.title,
-            post.image,
-            post.subreddit,
-            post.author,
-            post.author_avatar,
-            post.link,
-        )
         self.type = post_type
-
-    def get_embed_message(self):
-        self.embed_object_session = discord.Embed()
-        self.embed_object_session.clear_fields()
-        self.embed_object_session.title = self.title
-        self.embed_object_session.set_image(url=self.image)
         with Switch(self.type) as case:
             if case("post"):
                 self.credit_string = "Post by:"
             if case("meme"):
                 self.credit_string = "Meme by:"
-        self.embed_object_session.set_footer(
-            text=f"Posted on: {self.source}\n{self.credit_string} {self.author}",
-            icon_url=self.author_icon,
+        super().__init__(
+            colour=discord.Color.orange(),
+            title=post.title,
+            image=post.image,
+            source=post.subreddit,
+            author=post.author,
+            author_icon=post.author_avatar,
+            link=post.link,
+            footer_author_url=post.author_avatar,
+            footer_string=f"Posted on: {post.subreddit}\n{self.credit_string} {post.author}"
         )
-        self.embed_object_session.color = self.colour
-        self.embed_object_session.insert_field_at(
+
+        self.object_embed_session.insert_field_at(
             20, name="Link to post", value=f"[Go to post]({self.link})", inline=True,
         )
-        return self.embed_object_session
-
 
 class FourChanEmbed(EmbedMessage):
     def __init__(self, post: FourChanPost) -> None:
@@ -159,6 +166,7 @@ class GitHubEmbed(EmbedMessage):
         super().__init__(colour=colour)
         self.repository = repository
 
+
     def get_embed_message(self):
         self.embed_object_session = discord.Embed()
         self.embed_object_session.title = self.repository.full_name
@@ -195,3 +203,7 @@ class GitHubEmbed(EmbedMessage):
             )
 
         return self.embed_object_session
+
+class HomebrewEmbed(EmbedMessage):
+    def __init__(self, formuale: HomebrewPackage) -> None:
+        super().__init__(colour=0x2F2A25)
