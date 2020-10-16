@@ -9,6 +9,7 @@ from cheemsbot.helpers.paginator import ImagePaginator, UrbanPagintor
 from cheemsbot.helpers.github import GitHub, GitHubRepositoryError
 from cheemsbot.helpers.urban_dictionary import UrbanDictionary, UrbanDictionaryError
 from cheemsbot.helpers import errorhandler
+from cheemsbot.helpers import brew
 
 
 class SearchUtilitiesCog(commands.Cog, name="Search"):
@@ -131,6 +132,28 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             embed=self.our_embed_session,
             bot=self.bot,
         )
+
+    @commands.command(name="brew")
+    async def brew(self, ctx: commands.Context, *, formuale=None):
+        if formuale is None:
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    2,
+                    "You need to give me a formulae."
+                ).get_error_embed()
+            )
+            return 
+        try:
+            self.formuale_session = brew.HomebrewInteracter(formuale).get_target_formula()
+        except brew.NoHomebrewFormuale:
+            await ctx.send(embed=errorhandler.BotAlert(
+                2,
+                f"Couldn't find anything for that query {formuale}"
+            ).get_error_embed())
+            return
+        await ctx.send(self.formuale_session)
+        
+
 
 
 def setup(bot):

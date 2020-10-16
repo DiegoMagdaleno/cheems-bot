@@ -20,15 +20,6 @@ initial_extensions = []
 [file_list.remove(item) for item in ["__init__.py", "__pycache__", ".mypy_cache"]]
 [initial_extensions.append(f"cogs.{cog.replace('.py', '')}") for cog in file_list]
 
-if __name__ == "__main__":
-    bot.remove_command("help")
-    for extension in initial_extensions:
-        try:
-            bot.load_extension(extension)
-        except Exception:
-            print(f"Failed to load extension {extension}.", file=sys.stderr)
-            traceback.print_exc()
-
 
 @bot.event
 async def on_command_error(ctx: commands.Context, error: commands.errors):
@@ -65,8 +56,14 @@ async def on_command_error(ctx: commands.Context, error: commands.errors):
 
 @bot.event
 async def on_ready():
+    for extension in initial_extensions:
+        try:
+            bot.load_extension(extension)
+        except Exception:
+            print(f"Failed to load extension {extension}.", file=sys.stderr)
+            traceback.print_exc()  
     log.debug("Cheems is ready to run.")
     log.debug(f" The following cogs were loaded loadead {bot.cogs}")
 
-
+bot.remove_command("help")
 bot.run(conf.our_discord_token)
