@@ -2,9 +2,9 @@ from dataclasses import dataclass
 from typing import List
 import requests
 
+
 class NoHomebrewFormuale(Exception):
     pass
-
 
 
 @dataclass

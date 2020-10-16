@@ -73,10 +73,7 @@ class RedditEmbedMessage(EmbedMessage):
         )
 
         self.object_embed_session.insert_field_at(
-            20,
-            name="Link to post",
-            value=f"[Go to post]({self.link})",
-            inline=True,
+            20, name="Link to post", value=f"[Go to post]({self.link})", inline=True,
         )
 
 
@@ -133,7 +130,6 @@ class WikipediaEmbed(EmbedMessage):
             link=self.article.url,
             description=self.article.description,
             footer_string="Article last modified:",
-
         )
 
         self.object_embed_session.set_author(
@@ -141,10 +137,13 @@ class WikipediaEmbed(EmbedMessage):
         )
         self.object_embed_session.timestamp = self.article.last_modified
 
+
 class GitHubEmbed(EmbedMessage):
     def __init__(self, colour: str, repository: GitHubRepository) -> None:
         self.repository = repository
-        super().__init__(colour=colour, title=self.repository.full_name, link=self.repository.url)
+        super().__init__(
+            colour=colour, title=self.repository.full_name, link=self.repository.url
+        )
 
         self.object_embed_session.add_field(
             name="Stars", value=self.repository.stars, inline=True
@@ -179,4 +178,21 @@ class GitHubEmbed(EmbedMessage):
 
 class HomebrewEmbed(EmbedMessage):
     def __init__(self, formuale: HomebrewPackage) -> None:
-        super().__init__(colour=0x2F2A25)
+        super().__init__(
+            colour=0x2F2A25, title=formuale.name, description=formuale.desc
+        )
+        self.object_embed_session.set_author(
+            name="Homebrew",
+            url="https://brew.sh",
+            icon_url="https://brew.sh/assets/img/homebrew-256x256.png",
+        )
+        self.object_embed_session.add_field(
+            name="Homepage", value=formuale.homepage, inline=True
+        )
+        self.object_embed_session.add_field(
+            name="Version", value=formuale.version, inline=True
+        )
+        self.deps = "\n".join("⊛ {}".format(each) for each in formuale.dependencies)
+        self.object_embed_session.add_field(
+            name="Dependecies", value=self.deps, inline=False
+        )

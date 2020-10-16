@@ -138,22 +138,24 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         if formuale is None:
             await ctx.send(
                 embed=errorhandler.BotAlert(
-                    2,
-                    "You need to give me a formulae."
+                    2, "You need to give me a formulae."
                 ).get_error_embed()
             )
-            return 
-        try:
-            self.formuale_session = brew.HomebrewInteracter(formuale).get_target_formula()
-        except brew.NoHomebrewFormuale:
-            await ctx.send(embed=errorhandler.BotAlert(
-                2,
-                f"Couldn't find anything for that query {formuale}"
-            ).get_error_embed())
             return
-        await ctx.send(self.formuale_session)
-        
-
+        try:
+            self.formuale_session = brew.HomebrewInteracter(
+                formuale
+            ).get_target_formula()
+        except brew.NoHomebrewFormuale:
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    2, f"Couldn't find anything for that query {formuale}"
+                ).get_error_embed()
+            )
+            return
+        await ctx.send(
+            embed=embeds.HomebrewEmbed(self.formuale_session).get_embed_message()
+        )
 
 
 def setup(bot):

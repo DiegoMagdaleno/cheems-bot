@@ -61,9 +61,10 @@ async def on_ready():
             bot.load_extension(extension)
         except Exception:
             print(f"Failed to load extension {extension}.", file=sys.stderr)
-            traceback.print_exc()  
+            traceback.print_exc()
     log.debug("Cheems is ready to run.")
     log.debug(f" The following cogs were loaded loadead {bot.cogs}")
+
 
 bot.remove_command("help")
 bot.run(conf.our_discord_token)
