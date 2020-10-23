@@ -62,14 +62,17 @@ class HelpCog(commands.Cog):
                 else:
                     found = False
                     for each_cog in self.bot.cogs:
+                        index_target = [x.lower() for x in self.bot.cogs.keys()].index(cog[0].lower())
+                        to_lower = each_cog.lower()
                         for each in cog:
-                            if each_cog == each:
+                            if to_lower == each.lower():
+                                target = list(self.bot.cogs.keys())[index_target]
                                 our_help_embed = discord.Embed(
-                                    title=cog[0] + " Command Listing",
-                                    description=self.bot.cogs[cog[0]].__doc__,
+                                    title=target+ " Command Listing",
+                                    description=self.bot.cogs[target].__doc__,
                                 )
                                 for individual_cog in self.bot.get_cog(
-                                    each
+                                    target
                                 ).get_commands():
                                     if not individual_cog.hidden:
                                         our_help_embed.add_field(
