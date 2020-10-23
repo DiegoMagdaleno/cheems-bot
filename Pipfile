@@ -24,6 +24,9 @@ loguru = "*"
 markovify = "*"
 udpy = "*"
 disputils = "*"
+validators = "*"
+wget = "*"
+pytesseract = "*"
 
 [requires]
 python_version = "3.8"
