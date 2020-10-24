@@ -27,30 +27,41 @@ async def on_command_error(ctx: commands.Context, error: commands.errors):
         await (
             await ctx.send(
                 embed=errorhandler.BotAlert(
-                    1,
+                    "warn",
                     f"This command is in a {error.retry_after :.2f} cooldown, try again later",
                 ).get_error_embed()
             )
-        ).delete(delay=3)
-        await asyncio.sleep(4)
+        ).delete(delay=5)
+        await asyncio.sleep(6)
     if isinstance(error, commands.CommandNotFound):
         await (
             await ctx.send(
                 embed=errorhandler.BotAlert(
-                    1, "That command isn't in my command list!"
+                    "warn", "That command isn't in my command list!"
                 ).get_error_embed()
             )
-        ).delete(delay=3)
-        await asyncio.sleep(4)
+        ).delete(delay=5)
+        await asyncio.sleep(6)
+    if isinstance(error, errorhandler.CommandRedditBreaker):
+        await (
+            await ctx.send(
+                embed=errorhandler.BotAlert(
+                    "error",
+                    "There was an error fetching that Subreddit! Are you sute it exists and it isn't banned from Reddit?",
+                ).get_error_embed()
+            )
+        ).delete(delay=5)
+        await asyncio.sleep(6)
     if isinstance(error, commands.CommandInvokeError):
         await (
             await ctx.send(
                 embed=errorhandler.BotAlert(
-                    2, "There was an error running this command. Internal bot error!."
+                    type="error",
+                    why="There was an error running this command. Internal bot error!.",
                 ).get_error_embed()
             )
-        ).delete(delay=3)
-        await asyncio.sleep(4)
+        ).delete(delay=5)
+        await asyncio.sleep(6)
     raise error
 
 

@@ -26,8 +26,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         """Description: Gives an answer to a question asked by a user. Similar to 8ball.\nArguments: `1`"""
         if question is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to ask something"
+                embed=errorhandler.BotAlert("warn", "You need to ask something"
                 ).get_error_embed()
             )
         else:
@@ -63,23 +62,20 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         """Description: Owofies sewected input UwU\nArguments: `1`"""
         if our_input is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to give a message to owofy"
+                embed=errorhandler.BotAlert("warn", "You need to give a message to owofy"
                 ).get_error_embed()
             )
             return
         self.string_check_session = stringchecker.StringChecker(our_input)
         if self.string_check_session.is_unicode() is False:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "Nice try on bypassing. However Cheems doesn't accept unicode."
+                embed=errorhandler.BotAlert("warn", "Nice try on bypassing. However Cheems doesn't accept unicode."
                 ).get_error_embed()
             )
             return
         if self.string_check_session.contains_racism():
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "Cheems does not repeat or talks to racists."
+                embed=errorhandler.BotAlert("warn", "Cheems does not repeat or talks to racists."
                 ).get_error_embed()
             )
             return
@@ -92,8 +88,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         self.current_member = member
         if self.current_member is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to provide an user."
+                embed=errorhandler.BotAlert("warn", "You need to provide an user."
                 ).get_error_embed()
             )
         else:
@@ -112,8 +107,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         """Description: Generates an URL to lmgtfy containing your desired search terms\nArguments: `1`"""
         if our_terms is None:
             await ctx.send(
-                errorhandler.BotAlert(
-                    1, "You need to provide a query."
+                errorhandler.BotAlert("warn", "You need to provide a query."
                 ).get_error_embed()
             )
         else:
@@ -140,15 +134,13 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
         """Description: Replicates what an user says, if no user is provided it will clone the message author\nArguments: `1 up to 2`"""
         if member is None and message is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to provide an user and a message."
+                embed=errorhandler.BotAlert("warn", "You need to provide an user and a message."
                 ).get_error_embed()
             )
             return
         if "@" in message or "<" in message or "&" in message:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "I will not ping another user/a role/or everyone"
+                embed=errorhandler.BotAlert("warn", "I will not ping another user/a role/or everyone"
                 ).get_error_embed()
             )
             return
@@ -167,8 +159,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
     async def poll(self, ctx, *, desired_questions: str = None):
         if desired_questions is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1,
+                embed=errorhandler.BotAlert("warn",
                     "What do you want a poll about? Syntax: Question, options, separated, by, commas",
                 )
             )
@@ -180,7 +171,7 @@ class FunWithCheemsCog(commands.Cog, name="Fun"):
             self.poll_verify = poll.PollHelper(self.split_questions).verify_poll()
         except poll.PollException:
             await ctx.send(
-                embed=errorhandler.BotAlert(2, "Limit exeded").get_error_embed()
+                embed=errorhandler.BotAlert("error", "Limit exeded").get_error_embed()
             )
             return
         self.multiple_choice = BotMultipleChoice(

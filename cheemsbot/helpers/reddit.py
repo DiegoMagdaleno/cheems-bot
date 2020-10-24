@@ -3,7 +3,8 @@ import random
 from dataclasses import dataclass
 
 import praw
-
+from cheemsbot.modifiers import reddit
+import pprint
 
 @dataclass
 class RedditCredentials:
@@ -39,7 +40,7 @@ class RedditSession:
         self.user_agent: str = str(user_agent)
         self.user: str = str(user)
         self.password: str = str(password)
-        self.praw_session: praw.Reddit = praw.Reddit(
+        self.praw_session = reddit.RedditWithGallery(
             client_id=self.client_id,
             client_secret=self.client_secret,
             user_agent=self.user_agent,
@@ -74,6 +75,10 @@ class RedditPost(RedditSession):
             self.target = self.praw_session.submission(self.random_id_choice)
 
         self.image = self.target.url
+        if "gallery" in self.image:
+            self.metadata = self.target.media_metadata
+            self.initial_list = self.metadata[list(self.metadata.keys())[0]]['p']
+            self.image = self.initial_list[-1]['u']
         self.link = f"https://reddit.com{self.target.permalink}"
         if hasattr(self.target.author, "name"):
             self.author = self.target.author.name

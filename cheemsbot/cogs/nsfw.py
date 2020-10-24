@@ -20,8 +20,7 @@ class NSFWCommandsCog(commands.Cog, name="NSFW"):
             await ctx.send(self.reddit_post.image)
         else:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    2, "Can't post NSFW in non-NSFW channels."
+                embed=errorhandler.BotAlert("error", "Can't post NSFW in non-NSFW channels."
                 ).get_error_embed()
             )
 

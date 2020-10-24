@@ -1,5 +1,4 @@
 import discord
-from discord import embeds
 from discord.ext import commands
 from cheemsbot.helpers import errorhandler
 
@@ -62,13 +61,15 @@ class HelpCog(commands.Cog):
                 else:
                     found = False
                     for each_cog in self.bot.cogs:
-                        index_target = [x.lower() for x in self.bot.cogs.keys()].index(cog[0].lower())
+                        index_target = [x.lower() for x in self.bot.cogs.keys()].index(
+                            cog[0].lower()
+                        )
                         to_lower = each_cog.lower()
                         for each in cog:
                             if to_lower == each.lower():
                                 target = list(self.bot.cogs.keys())[index_target]
                                 our_help_embed = discord.Embed(
-                                    title=target+ " Command Listing",
+                                    title=target + " Command Listing",
                                     description=self.bot.cogs[target].__doc__,
                                 )
                                 for individual_cog in self.bot.get_cog(
@@ -93,8 +94,7 @@ class HelpCog(commands.Cog):
                         await ctx.send(embed=our_help_embed)
         except:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    2, "Excuse me, I can't send embeds."
+                embed=errorhandler.BotAlert("error", "Excuse me, I can't send embeds."
                 ).get_error_embed()
             )
 

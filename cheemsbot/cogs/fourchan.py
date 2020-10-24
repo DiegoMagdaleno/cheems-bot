@@ -1,3 +1,4 @@
+from discord.ext.commands.errors import CommandInvokeError
 from cheemsbot.helpers import embeds
 from cheemsbot.helpers import errorhandler
 from cheemsbot import config
@@ -24,8 +25,7 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
         self.target_board = target_board
         if self.target_board is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to provide a board."
+                embed=errorhandler.BotAlert("warn", "You need to provide a board."
                 ).get_error_embed()
             )
             return
@@ -35,8 +35,7 @@ class FourChanCommandsCog(commands.Cog, name="4chan"):
             ctx.channel.is_nsfw() is False
         ):
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "Can't display NSFW content in non-NSFW channels."
+                embed=errorhandler.BotAlert("warn", "Can't display NSFW content in non-NSFW channels."
                 ).get_error_embed()
             )
             return

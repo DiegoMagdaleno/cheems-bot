@@ -1,3 +1,4 @@
+from cheemsbot.helpers.iosjailbreak import JailbreakPackage, JailbreakPackageInteractor
 from requests.api import request
 from cheemsbot.helpers.ghelper import NoResults
 from cheemsbot.helpers import embeds
@@ -24,8 +25,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         self.query = query
         if self.query is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to give me a query!"
+                embed=errorhandler.BotAlert("warn", "You need to give me a query!"
                 ).get_error_embed()
             )
             return
@@ -33,8 +33,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             self.our_wikipedia_message = Wikipedia(self.query).get_wikipedia_article()
         except NoArticlesOrNotFound:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    2, f"I couldn't find anything for {self.query}"
+                embed=errorhandler.BotAlert("error", f"I couldn't find anything for {self.query}"
                 ).get_error_embed()
             )
             return
@@ -54,8 +53,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         )
         if self.query is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to give me a query!"
+                embed=errorhandler.BotAlert("warn", "You need to give me a query!"
                 ).get_error_embed()
             )
             return
@@ -66,8 +64,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
                 self.array_of_images = conf.get_images(self.query, "off")
         except NoResults:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    2, f"I couldn't find anything for {self.query}"
+                embed=errorhandler.BotAlert("error", f"I couldn't find anything for {self.query}"
                 ).get_error_embed()
             )
             return
@@ -83,8 +80,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         self.repository = repository
         if self.repository is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to give me a repository!"
+                embed=errorhandler.BotAlert("warn", "You need to give me a repository!"
                 ).get_error_embed()
             )
             return
@@ -92,8 +88,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             self.github_session = GitHub(self.repository)
         except GitHubRepositoryError:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    2,
+                embed=errorhandler.BotAlert("error",
                     f"Had an error getting that repository. Are you sure {self.repository} exists?",
                 ).get_error_embed()
             )
@@ -111,8 +106,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         self.our_embed_session = discord.Embed(color=0x3E9CBF)
         if self.term is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to provide a term!"
+                embed=errorhandler.BotAlert("warn", "You need to provide a term!"
                 ).get_error_embed()
             )
             return
@@ -121,8 +115,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
         except UrbanDictionaryError:
             self.pure_term = discord.utils.escape_mentions(self.term)
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    2, f"Couldn't find anything for that query {self.pure_term}"
+                embed=errorhandler.BotAlert("error", f"Couldn't find anything for that query {self.pure_term}"
                 ).get_error_embed()
             )
             return
@@ -137,8 +130,7 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
     async def brew(self, ctx: commands.Context, *, formuale=None):
         if formuale is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    2, "You need to give me a formulae."
+                embed=errorhandler.BotAlert("error", "You need to give me a formulae."
                 ).get_error_embed()
             )
             return
@@ -148,14 +140,25 @@ class SearchUtilitiesCog(commands.Cog, name="Search"):
             ).get_target_formula()
         except brew.NoHomebrewFormuale:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    2, f"Couldn't find anything for that query {formuale}"
+                embed=errorhandler.BotAlert("error", f"Couldn't find anything for that query {formuale}"
                 ).get_error_embed()
             )
             return
         await ctx.send(
             embed=embeds.HomebrewEmbed(self.formuale_session).get_embed_message()
         )
+
+    @commands.command(name="jb")
+    async def jb(self, ctx: commands.Context, *, package=None):
+        if package is None:
+            await ctx.send(
+                embed=errorhandler.BotAlert("error", "You need to give me a package to search!"
+                ).get_error_embed()
+            )
+            return
+        self.package_response = await JailbreakPackageInteractor(package).get_packages()
+        for p in self.package_response:
+            await ctx.send("Here you go faggot: " + str(p))
 
 
 def setup(bot):

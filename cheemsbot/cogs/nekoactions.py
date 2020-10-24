@@ -19,8 +19,7 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         self.current_member = member
         if self.current_member is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to provide an user."
+                embed=errorhandler.BotAlert("warn", "You need to provide an user."
                 ).get_error_embed()
             )
         else:
@@ -45,8 +44,7 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         self.current_member = member
         if self.current_member is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to provide an user."
+                embed=errorhandler.BotAlert("warn", "You need to provide an user."
                 ).get_error_embed()
             )
         else:
@@ -71,8 +69,7 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         self.current_member = member
         if self.current_member is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to provide an user."
+                embed=errorhandler.BotAlert("warn", "You need to provide an user."
                 ).get_error_embed()
             )
         else:
@@ -97,8 +94,7 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         self.current_member = member
         if self.current_member is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to provide an user."
+                embed=errorhandler.BotAlert("warn", "You need to provide an user."
                 ).get_error_embed()
             )
         else:
@@ -123,8 +119,7 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         self.current_member = member
         if self.current_member is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to provide an user."
+                embed=errorhandler.BotAlert("warn", "You need to provide an user."
                 ).get_error_embed()
             )
         else:
@@ -149,8 +144,7 @@ class NekoActionCog(commands.Cog, name="NekoActions"):
         self.current_member = member
         if self.current_member is None:
             await ctx.send(
-                embed=errorhandler.BotAlert(
-                    1, "You need to provide an user."
+                embed=errorhandler.BotAlert("warn", "You need to provide an user."
                 ).get_error_embed()
             )
         else:
