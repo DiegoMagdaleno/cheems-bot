@@ -15,7 +15,7 @@ or any other platforms.
 1. Basic Permitions
 
 Cheemsbot is licensed under the terms of the Mozilla Public License 2.0,
-or alternatively under the terms of the GNU Lesser General Public License (LGPL) Version 3.
+or alternatively under the terms of the GNU General Public License (GPL) Version 3.
 You may use Cheemsbot according to either of these licenses as is most appropiate 
 for your project or redistribution.
 
@@ -38,4 +38,4 @@ In addition the perms of each license can be found in the main directory of the 
 repository under the file names of:
 
 LICENSE.MPL
-LICENSE.LGPL
+LICENSE.GPL
