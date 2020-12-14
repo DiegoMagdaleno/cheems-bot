@@ -1,4 +1,3 @@
-from cheemsbot.helpers.iosjailbreak import JailbreakPackage, JailbreakPackageInteractor
 from requests.api import request
 from cheemsbot.helpers.ghelper import NoResults
 from cheemsbot.helpers import embeds

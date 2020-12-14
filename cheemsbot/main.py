@@ -17,7 +17,7 @@ bot = commands.Bot(command_prefix=">", case_insensitive=True)
 file_base = os.path.dirname(os.path.realpath(__file__))
 file_list = os.listdir(f"{file_base}/cogs")
 initial_extensions = []
-[file_list.remove(item) for item in ["__init__.py", "__pycache__", ".mypy_cache"]]
+[file_list.remove(item) for item in ["__init__.py"]]
 [initial_extensions.append(f"cogs.{cog.replace('.py', '')}") for cog in file_list]
 
 
