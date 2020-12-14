@@ -1,6 +1,7 @@
-import sys
+from logging import exception
 
 from discord.ext import commands
+import discord
 
 import cheemsbot.config as conf
 from cheemsbot.helpers import database, errorhandler
@@ -8,7 +9,6 @@ from cheemsbot.helpers import database, errorhandler
 import asyncio
 
 from loguru import logger as log
-import traceback
 import os
 
 import motor.motor_asyncio
@@ -63,15 +63,16 @@ async def on_command_error(ctx: commands.Context, error: commands.errors):
 
 @bot.event
 async def on_ready():
-    for extension in initial_extensions:
-        try:
-            bot.load_extension(extension)
-        except Exception:
-            print(f"Failed to load extension {extension}.", file=sys.stderr)
-            traceback.print_exc()
-    log.debug("Cheems is ready to run.")
-    log.debug(f" The following cogs were loaded loadead {bot.cogs}")
+    await bot.change_presence(activity=discord.Game(name="Eating a Cheemsburbger"))
 
+    log.info("Cheems bot is ready to run!")
+
+    try:
+        await bot.config.get_all()
+    except database.PyMongoError as e:
+        log.error(f"An error ocurred fetching the config {e}")
+    else:
+        log.info("Database connection has been stablished!")
 
 if __name__ == "__main__":
     bot.db = motor.motor_asyncio.AsyncIOMotorCliet(conf.mongo_url)

@@ -1,4 +1,15 @@
 from typing import Mapping
+from pymongo.errors import PyMongoError
+
+class IdNotFound(PyMongoError):
+    def __init__(self, *args):
+        if args:
+            self.message = args[0]
+        else:
+            self.message = self.__doc__
+
+    def __str__(self):
+        return self.message
 
 class DocumentExecutor:
     def __init__(self, db) -> None:
