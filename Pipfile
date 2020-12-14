@@ -28,6 +28,7 @@ validators = "*"
 wget = "*"
 pytesseract = "*"
 windows-curses = {version = "*", sys_platform = "== 'win32'"}
+motor = "*"
 
 [requires]
 python_version = "3.8"

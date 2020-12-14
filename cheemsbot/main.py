@@ -3,7 +3,7 @@ import sys
 from discord.ext import commands
 
 import cheemsbot.config as conf
-from cheemsbot.helpers import errorhandler
+from cheemsbot.helpers import database, errorhandler
 
 import asyncio
 
@@ -11,15 +11,11 @@ from loguru import logger as log
 import traceback
 import os
 
+import motor.motor_asyncio
 
 bot = commands.Bot(command_prefix=">", case_insensitive=True)
 
 file_base = os.path.dirname(os.path.realpath(__file__))
-file_list = os.listdir(f"{file_base}/cogs")
-initial_extensions = []
-[file_list.remove(item) for item in ["__init__.py"]]
-[initial_extensions.append(f"cogs.{cog.replace('.py', '')}") for cog in file_list]
-
 
 @bot.event
 async def on_command_error(ctx: commands.Context, error: commands.errors):
@@ -77,5 +73,21 @@ async def on_ready():
     log.debug(f" The following cogs were loaded loadead {bot.cogs}")
 
 
-bot.remove_command("help")
-bot.run(conf.our_discord_token)
+if __name__ == "__main__":
+    bot.db = motor.motor_asyncio.AsyncIOMotorCliet(conf.mongo_url)
+
+    bot.config = database.DocumentInteractor(bot.db, "config")
+
+    for extension in os.listdir(f"{file_base}/cogs"):
+        if extension.endswith(".py") and not extension.startswith("_"):
+            try:
+                bot.load_extension(extension)
+            except Exception as e:
+                log.error(
+                    f"An error ocurred while loading the extension {extension}, the following error was reported: {e}."
+                )
+    log.debug("Cheems is ready to run")
+    log.debug(f"The following extensions were succesfully loaded {bot.cogs}")
+
+    bot.remove_command("help") # Remove default help command
+    bot.run(conf.our_discord_token)

@@ -23,6 +23,7 @@ our_reddit_credentials = reddit.RedditCredentials(
 
 
 our_discord_token = session_config.discord_token
+mongo_url = session_config.mongo_url
 
 our_google_credentials = ghelper.GoogleCredentials(
     session_config.google_api_key, session_config.google_cx

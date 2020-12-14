@@ -14,3 +14,4 @@ class Configuration:
         self.discord_token = self.config_session.discordToken
         self.google_api_key = self.config_session.googleAPIKey
         self.google_cx = self.config_session.googleCx
+        self.mongo_url = self.config_session.mongoUrl
