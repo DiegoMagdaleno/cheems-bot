@@ -1,4 +1,5 @@
 from logging import exception
+from typing import List
 
 from discord.ext import commands
 import discord
@@ -23,10 +24,10 @@ async def get_prefix(bot, message):
     try:
         data = await bot.config.find(message.guild.id)
 
-        # Make sure we have a use able prefix
         if not data or "prefix" not in data:
             return commands.when_mentioned_or(bot.DEFAULTPREFIX)(bot, message)
-        return commands.when_mentioned_or(data["prefix"])(bot, message)
+        
+        return commands.when_mentioned_or(*data["prefix"])(bot, message)
     except database.IdNotFound:
         return commands.when_mentioned_or(bot.DEFAULTPREFIX)(bot, message)
 

@@ -1,5 +1,4 @@
 from typing import Mapping
-from discord.ext.commands.converter import IDConverter
 from pymongo.errors import PyMongoError
 
 class IdNotFound(PyMongoError):
@@ -89,11 +88,7 @@ class DocumentExecutor:
         
         self.db.update_one({"_id": id}, {"$inc", {field: amount}})
     
-    
-    async def __get_raw(self, id):
-        return await self.db.find_one({"_id": id})
-    
-
+        
 
 class DocumentInteractor(DocumentExecutor):
     def __init__(self, connection, document_name) -> None:
