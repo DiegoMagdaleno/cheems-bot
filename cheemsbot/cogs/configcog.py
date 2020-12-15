@@ -51,6 +51,32 @@ class Config(commands.Cog, name="Configuration"):
         await ctx.send(
         f"The guild prefix has been set to `{prefix}`. Use `{prefix}prefix [prefix]` to change it again!")
 
+    @prefix_cmd.command(name="remove")
+    async def prefix_cmd_remove(self, ctx, *, prefix=None):
+        if prefix is None:
+            await ctx.send("You need to provide a prefix to remove")
+        
+        if ' ' in prefix:
+            await ctx.send("No spaces")
+
+        try:
+            data = await self.bot.config.find(ctx.guild.id)
+        except IdNotFound:
+            await ctx.send("Cant remove anything because there are no prefixes for this guild")
+            return
+        
+        if len(prefix) > 1:
+            target_to_add = f"{prefix} "
+        else:
+            target_to_add = prefix
+
+
+        if target_to_add not in data["prefix"]:
+            await ctx.send("That prefix is not in the database for this guild")
+            return
+        else:
+            await self.bot.config.upsert({"_id": ctx.guild.id, "prefix": target_to_add}, option="pull")
+
     
 def setup(bot):
     bot.add_cog(Config(bot))
