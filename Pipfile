@@ -29,6 +29,7 @@ wget = "*"
 pytesseract = "*"
 windows-curses = {version = "*", sys_platform = "== 'win32'"}
 motor = "*"
+dnspython = "*"
 
 [requires]
 python_version = "3.8"

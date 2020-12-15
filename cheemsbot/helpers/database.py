@@ -1,4 +1,5 @@
 from typing import Mapping
+from discord.ext.commands.converter import IDConverter
 from pymongo.errors import PyMongoError
 
 class IdNotFound(PyMongoError):
@@ -15,14 +16,27 @@ class DocumentExecutor:
     def __init__(self, db) -> None:
         self.db = db
     
-    async def find_by_id(self, id):
-        return await self.db.find_one({"_id": id})
-    
-    async def delete_by_id(self, id):
-        if not await self.find_by_id():
-            pass
-        
-        await self.db.delete_many({"_id": id})
+    async def find_by_id(self, _id):
+        data = await self.db.find_one({"_id": _id})
+
+        if not data:
+            raise IdNotFound()
+
+        return data
+
+    async def find_by_custom(self, filter):
+        if not isinstance(filter, Mapping):
+            raise TypeError(f"Expected Dictionary got: {type(filter)}")
+
+        data = await self.db.find_one(filter)
+        if not data:
+            raise IdNotFound()
+        return data
+
+    async def delete_by_id(self, _id):
+        await self.find_by_id(_id)
+
+        await self.db.delete_many({"_id": _id})
     
     async def insert(self, dict: Mapping):
         if not isinstance(dict, Mapping):
@@ -33,25 +47,27 @@ class DocumentExecutor:
             
         await self.db.insert_one(dict)
 
-    async def upsert(self, dict):
-        if await self.__get_raw(dict["_id"]) is not None:
-            await self.update_by_id(dict)
-        else:
-            await self.db.insert_one(dict)
-    
-    async def update_by_id(self, dict):
-        if not isinstance(dict, Mapping):
-            raise TypeError(f"Expected Dictionary got: {type(dict)}")
+    async def upsert(self, data, option="set", *args, **kwargs):
+        await self.update_by_id(data, option, upsert=True, *args, **kwargs)
 
-        if not dict["_id"]:
-            raise KeyError("_id was not supplied in the dictionary")
-    
-        if not await self.find_by_id(dict["id"]):
-            pass
-            
-        id = dict["_id"]
-        dict.pop("_id")
-        await self.db.update_one({"_id": id}, {"$set": dict})
+    async def update_by_id(self, data, option="set", *args, **kwargs):
+        upsert = kwargs.get("upsert", False)
+
+        if not isinstance(data, Mapping):
+            raise TypeError(f"Expected Dictionary got {type(data)}")
+
+        if not data.get("_id"):
+            raise KeyError("_id not found in supplied dict.")
+
+        try:
+            await self.find_by_id(data["_id"])
+        except IdNotFound as e:
+            if not upsert:
+                raise e
+
+        _id = data["_id"]
+        data.pop("_id")
+        await self.db.update_one({"_id": _id}, {f"${option}": data}, *args, **kwargs)
     
     async def unset(self, dict):
         if not isinstance(dict, Mapping):
@@ -73,11 +89,6 @@ class DocumentExecutor:
         
         self.db.update_one({"_id": id}, {"$inc", {field: amount}})
     
-    async def get_all(self):
-        data = []
-        async for document in self.db.find({}):
-            data.append(document)
-        return data
     
     async def __get_raw(self, id):
         return await self.db.find_one({"_id": id})
@@ -89,15 +100,18 @@ class DocumentInteractor(DocumentExecutor):
         self.db = connection[document_name]
         super().__init__(self.db)
 
-    async def update(self, target_dict):
-        await self.update_by_id(target_dict)
+    async def update(self, target_dict, *args, **kwargs):
+        await self.update_by_id(target_dict, *args, **kwargs)
     
+    async def get_all(self, filter={}, *args, **kwargs):
+        return await self.db.find(filter, *args, **kwargs).to_list(None)
+
     async def get_by_id(self, id):
         return await self.find_by_id(id)
     
-    async def find(self, id):
-        return await self.find_by_id(id)
+    async def find(self, _id):
+        return await self.find_by_id(_id)
     
-    async def delete(self, id):
-        await self.delete_by_id(id)
+    async def delete(self, _id):
+        await self.delete_by_id(_id)
     

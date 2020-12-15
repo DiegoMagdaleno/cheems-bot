@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a5aa07bfbde688f19a5c5829d3846621d15457d4af72ff99816df8d1bc74c1b0"
+            "sha256": "aecca4fee9183d1a2312211d929ea829ea089eaf10ed00b2f1f41e24f0886dab"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -131,6 +131,14 @@
             ],
             "index": "pypi",
             "version": "==0.1.3"
+        },
+        "dnspython": {
+            "hashes": [
+                "sha256:044af09374469c3a39eeea1a146e8cac27daec951f1f1f157b1962fc7cb9d1b7",
+                "sha256:40bb3c24b9d4ec12500f0124288a65df232a3aa749bb0c39734b782873a2544d"
+            ],
+            "index": "pypi",
+            "version": "==2.0.0"
         },
         "duckduckpy": {
             "hashes": [

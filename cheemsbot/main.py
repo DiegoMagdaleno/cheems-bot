@@ -13,9 +13,28 @@ import os
 
 import motor.motor_asyncio
 
-bot = commands.Bot(command_prefix=">", case_insensitive=True)
 
 file_base = os.path.dirname(os.path.realpath(__file__))
+
+async def get_prefix(bot, message):
+    if not message.guild:
+        return commands.when_mentioned_or(bot.DEFAULTPREFIX)(bot, message)
+
+    try:
+        data = await bot.config.find(message.guild.id)
+
+        # Make sure we have a use able prefix
+        if not data or "prefix" not in data:
+            return commands.when_mentioned_or(bot.DEFAULTPREFIX)(bot, message)
+        return commands.when_mentioned_or(data["prefix"])(bot, message)
+    except database.IdNotFound:
+        return commands.when_mentioned_or(bot.DEFAULTPREFIX)(bot, message)
+
+
+bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
+
+bot.DEFAULTPREFIX = ">"
+
 
 @bot.event
 async def on_command_error(ctx: commands.Context, error: commands.errors):
@@ -75,14 +94,15 @@ async def on_ready():
         log.info("Database connection has been stablished!")
 
 if __name__ == "__main__":
-    bot.db = motor.motor_asyncio.AsyncIOMotorCliet(conf.mongo_url)
+    bot.db = motor.motor_asyncio.AsyncIOMotorClient(conf.mongo_url).cheems
 
     bot.config = database.DocumentInteractor(bot.db, "config")
 
+    bot.remove_command("help") # Remove default help command
     for extension in os.listdir(f"{file_base}/cogs"):
         if extension.endswith(".py") and not extension.startswith("_"):
             try:
-                bot.load_extension(extension)
+                bot.load_extension(f"cogs.{extension[:-3]}")
             except Exception as e:
                 log.error(
                     f"An error ocurred while loading the extension {extension}, the following error was reported: {e}."
@@ -90,5 +110,4 @@ if __name__ == "__main__":
     log.debug("Cheems is ready to run")
     log.debug(f"The following extensions were succesfully loaded {bot.cogs}")
 
-    bot.remove_command("help") # Remove default help command
     bot.run(conf.our_discord_token)
