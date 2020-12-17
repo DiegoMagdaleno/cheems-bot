@@ -5,8 +5,7 @@
 </p>
 
 # Cheems bot
-mmmmm Dismcord, Cheems is a Discord bot created by me and some friends to have fun, it is still on early development, however it is able to do a lot of stuff and provide 
-fun to your Discord server!
+mmmmm Dismcord, Cheems is a Discord bot created by me it is still on early development, however it is able to do a lot of stuff and provide fun to your Discord server!
 
 ## Table of notes
 
