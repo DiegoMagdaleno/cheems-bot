@@ -209,10 +209,10 @@
         },
         "httplib2": {
             "hashes": [
-                "sha256:8af66c1c52c7ffe1aa5dc4bcd7c769885254b0756e6e69f953c7f0ab49a70ba3",
-                "sha256:ca2914b015b6247791c4866782fa6042f495b94401a0f0bd3e1d6e0ba2236782"
+                "sha256:749c32603f9bf16c1277f59531d502e8f1c2ca19901ae653b49c4ed698f0820e",
+                "sha256:e0d428dad43c72dbce7d163b7753ffc7a39c097e6788ef10f4198db69b92f08e"
             ],
-            "version": "==0.18.1"
+            "version": "==0.19.0"
         },
         "idna": {
             "hashes": [
@@ -329,11 +329,11 @@
         },
         "praw": {
             "hashes": [
-                "sha256:3deaa094d510b6b03358c7b6a36c37e314b77d8750efdf97a770c175886c4444",
-                "sha256:dec043a08e1ea229d4f64407b16defeaa63c1eca133e631f47842019d0d84071"
+                "sha256:068a01c19834e1f748a8c220c6aa62ae9f0f8e211504ab8ef19883d09bed3430",
+                "sha256:87166a77ec31a1d9686ccdac97b5b72ba277ce436976eb3baf467c593f15bb26"
             ],
             "index": "pypi",
-            "version": "==7.1.2"
+            "version": "==7.1.4"
         },
         "prawcore": {
             "hashes": [
@@ -454,6 +454,13 @@
             ],
             "version": "==3.11.3"
         },
+        "pyparsing": {
+            "hashes": [
+                "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1",
+                "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"
+            ],
+            "version": "==2.4.7"
+        },
         "pytesseract": {
             "hashes": [
                 "sha256:4ecfc898d00a70fcc38d2bce729de1597c67e7bc5d2fa26094714c9f5b573645"
@@ -536,10 +543,10 @@
         },
         "unidecode": {
             "hashes": [
-                "sha256:4c9d15d2f73eb0d2649a151c566901f80a030da1ccb0a2043352e1dbf647586b",
-                "sha256:a039f89014245e0cad8858976293e23501accc9ff5a7bdbc739a14a2b7b85cdc"
+                "sha256:12435ef2fc4cdfd9cf1035a1db7e98b6b047fe591892e81f34e94959591fad00",
+                "sha256:8d73a97d387a956922344f6b74243c2c6771594659778744b2dbdaad8f6b727d"
             ],
-            "version": "==1.1.2"
+            "version": "==1.2.0"
         },
         "update-checker": {
             "hashes": [
