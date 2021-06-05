@@ -144,11 +144,11 @@
         },
         "disputils": {
             "hashes": [
-                "sha256:d80c29b68a58cd45660388edd3031dbf92072d1d2e163e2810935687b7547217",
-                "sha256:ea05bac8239e3b8dabfa10db9378c3ccd3b26522d659ec9f386e39edd55be372"
+                "sha256:750b55b97b1d27b045b5f9675c43ec6c0042cac857de95fa4dd916ded34d47e1",
+                "sha256:d0a2671a16a6bf3cfffd962421fe8e6f196d199a7112ee6e8c78b57f4c85a021"
             ],
             "index": "pypi",
-            "version": "==0.1.3"
+            "version": "==0.2.0"
         },
         "dnspython": {
             "hashes": [
