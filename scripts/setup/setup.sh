@@ -6,7 +6,7 @@ if hash python3 2>/dev/null; then
 else
     if hash python 2>/dev/null; then
        PYTHON_VERSION=$(python --version  | awk \'{print $2}\')
-       if [ "$PYTHON_VERSION" -lt "3.0.0" ]; then
+       if [ "$PYTHON_VERSION" -lt "3.8.0" ]; then
             echo "Your Python version is too old, please update your python version"
             exit 1
         else
