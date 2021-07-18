@@ -1,17 +1,58 @@
-# WARNING: CHEEMS IS IN ACTIVE, VERY ACTIVE DEVELOPMENT, (ALPHA) AND IT DOESN'T HAVE A STABLE INTERFACE. IT ISN'T RECOMMENDED TO SELF HOST CHEEMS YET. THE WORK ON CHEEMS WILL CONTINUE.
+<h1 align="center">
+    <br>
+    <a href="https://github.com/DiegoMagdaleno/cheems-bot"><img src="https://i.imgur.com/gymxVRg.jpg" width=25% height=25%></a>
+    <br>
+    Cheems Bot!
+    <br>
+</h1>
+
+<h4 align="center">Reddit, 4chan, Memes, Package managers, Information.</h4>
 
 <p align="center">
-<img src="https://i.imgur.com/gymxVRg.jpg" width=25% height=25%/>
+<a href="https://github.com/diegomagdaleno/cheems-bot/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/diegomagdaleno/cheems-bot?style=flat-square"></a>
+<a href="https://github.com/diegomagdaleno/cheems-bot/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/diegomagdaleno/cheems-bot?style=flat-square"></a>
+<a href="https://github.com/diegomagdaleno/cheems-bot/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/diegomagdaleno/cheems-bot?style=flat-square"></a>
 </p>
 
-# Cheems bot
-mmmmm Dismcord, Cheems is a Discord bot created by me it is still on early development, however it is able to do a lot of stuff and provide fun to your Discord server!
 
-## Table of notes
+<p align="center">
+    <a href="#overview">Overview</a>
+    •
+    <a href="#installation">Installation</a>
+    •
+    <a href="">Documentation</a>
+    •
+    <a href="#contributing">Contributing</a>
+    •
+    <a href="#credits">Credits</a>
+</p>
 
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Contributing](#contributing)
+# Overview
+
+Cheems bot was a project created by me and a couple of friends, the original intention was to be able to get r/Dogelore memes on the Discord chat, however the project quickly scalated to become a multifunctional Discord bot.
+
+The goal of Cheems then became to make a easy to install, self-hosted multifunctional Discord bot. While Cheems is still in early development it can perform a lot of actions and operations!
+
+**Some features:**
+- Check Dogelore memes
+- Get memes from different subreddits
+- Get 4chan posts from a board
+- Get NSFW content 
+- Get cute images of animals
+- Get Homebrew packages information
+- Get GitHub repository information
+- Get Urban Dictionary information
+- Get Google images
+
+Cheems is install in development and the stuff that it can do, is getting bigger and bigger! In the future, Cheems might even be able to fully moderate servers.
+
+# Installation
+
+We support the major platforms, but pretty much any operating system that is UNIX-like or NT should be supported!, still you can see specific for each platform:
+
+- [Windows]()
+- [macOS]()
+- [Linux]()
 
 ## Requirements
 
