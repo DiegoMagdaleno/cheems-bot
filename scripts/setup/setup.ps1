@@ -42,16 +42,17 @@ function Get-Configuration() {
     $GoogleCX = Read-Host -Prompt 'What is your Google CX?'
     $MongoURL = Read-Host -Prompt 'What is your Mongo URL?'
 
-    $conf_obj = New-Object -TypeName psobject
-    $conf_obj | Add-Member -MemberType NoteProperty -Name redditClientID -Value $RedditClientID
-    $conf_obj | Add-Member -MemberType NoteProperty -Name redditClientSecret -Value $RedditClientSecret
-    $conf_obj | Add-Member -MemberType NoteProperty -Name redditUserAgent -Value $RedditUserAgent
-    $conf_obj | Add-Member -MemberType NoteProperty -Name redditUserName -Value $RedditUserName
-    $conf_obj | Add-Member -MemberType NoteProperty -Name redditPassword -Value $RedditPassword
-    $conf_obj | Add-Member -MemberType NoteProperty -Name discordToken -Value $DiscordToken
-    $conf_obj | Add-Member -MemberType NoteProperty -Name googleAPIKey -Value $GoogleAPIKey
-    $conf_obj | Add-Member -MemberType NoteProperty -Name googleCx -Value $GoogleCX
-    $conf_obj | Add-Member -MemberType NoteProperty -Name mongoUrl -Value $MongoURL
+    $conf_obj = [PSCustomObject]@{
+        redditClientID = $RedditClientID
+        redditClientSecret = $RedditClientSecret
+        redditUserAgent = $RedditUserAgent
+        redditUsername = $RedditUserName
+        redditPassword = $RedditPassword
+        discordToken = $DiscordToken
+        googleAPIKey = $GoogleAPIKey
+        googleCx = $GoogleCX
+        mongoUrl = $MongoURL
+    }
 
     return $conf_obj
 }
@@ -84,8 +85,8 @@ if (-Not (Test-Path -Path $file -PathType Leaf)) {
     try {
         $null = New-Item -ItemType File -Path $file -Force -ErrorAction Stop
         Write-Host "Sucessfully created file $file."
-        $our_object = Get-Configuration
-        Write-Output $our_object
+        $conf_object = Get-Configuration
+        $conf_object| ConvertTo-Json | Set-Content -Path "settings.json"
     } catch {
         throw $_.Exception.Message
     }
