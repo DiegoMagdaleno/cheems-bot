@@ -213,11 +213,11 @@
         },
         "google-images-search": {
             "hashes": [
-                "sha256:0ead3934de303952d5b88b22319b9a5634591575e2346a3bfba1cc3ad02cce80",
-                "sha256:26a967d02c875b60ae8f2e0a0c4dff4070420cf08332faa0734649258110beca"
+                "sha256:40c78717d8fc047bed161f6c24af94dcc15e66cdb29f651239a92debb3976c98",
+                "sha256:6627d99c95e3d9ecc99a415f111ed20d6152186b84b4507e263b2c8afa21cc94"
             ],
             "index": "pypi",
-            "version": "==1.3.9"
+            "version": "==1.3.10"
         },
         "googleapis-common-protos": {
             "hashes": [
