@@ -213,11 +213,11 @@
         },
         "google-images-search": {
             "hashes": [
-                "sha256:65fef1ad12a10dcecbd3a32d02b368b2bbb65f115147e25daf8dbd6cb14642c8",
-                "sha256:69d35c830fd5aa5db9c837cbd8779128de7c2066c1f2d0b5764fa9047c765790"
+                "sha256:1d471b67f84c4b4716d0b049fde29f2d09d9446083e82d7f0c01fa55584cc624",
+                "sha256:90a2264aa946b5b81ae48d691b4a5f44f247e3c1a07dcddde810a6156b296492"
             ],
             "index": "pypi",
-            "version": "==1.4.1"
+            "version": "==1.4.2"
         },
         "googleapis-common-protos": {
             "hashes": [
@@ -715,7 +715,7 @@
                 "sha256:000ca7f471a233c2251c6c7023ee85305721bfdf18621ebff4fd17a8653427ed",
                 "sha256:0e7c33d9a63e7ddfcb86780aac87befc2fbddf46c58dbb487e0855f7ceec283c"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4.0'",
             "version": "==1.26.8"
         },
         "validators": {
@@ -728,11 +728,11 @@
         },
         "websocket-client": {
             "hashes": [
-                "sha256:1315816c0acc508997eb3ae03b9d3ff619c9d12d544c9a9b553704b1cc4f6af5",
-                "sha256:2eed4cc58e4d65613ed6114af2f380f7910ff416fc8c46947f6e76b6815f56c0"
+                "sha256:074e2ed575e7c822fc0940d31c3ac9bb2b1142c303eafcf3e304e6ce035522e8",
+                "sha256:6278a75065395418283f887de7c3beafb3aa68dada5cacbe4b214e8d26da499b"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==1.2.3"
+            "version": "==1.3.1"
         },
         "wget": {
             "hashes": [
