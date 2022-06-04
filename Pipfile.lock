@@ -722,11 +722,10 @@
         },
         "validators": {
             "hashes": [
-                "sha256:0143dcca8a386498edaf5780cbd5960da1a4c85e0719f3ee5c9b41249c4fefbd",
-                "sha256:37cd9a9213278538ad09b5b9f9134266e7c226ab1fede1d500e29e0a8fbb9ea6"
+                "sha256:dec45f4381f042f1e705cfa74949505b77f1e27e8b05409096fee8152c839cbe"
             ],
             "index": "pypi",
-            "version": "==0.18.2"
+            "version": "==0.19.0"
         },
         "websocket-client": {
             "hashes": [
