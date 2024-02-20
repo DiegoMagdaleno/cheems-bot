@@ -765,10 +765,12 @@
     "develop": {
         "autoflake": {
             "hashes": [
-                "sha256:61a353012cff6ab94ca062823d1fb2f692c4acda51c76ff83a8d77915fba51ea"
+                "sha256:79a51eb8c0744759d2efe052455ab20aa6a314763510c3fd897499a402126327",
+                "sha256:8c2011fa34701b9d7dcf05b9873bc4859d4fce4e62dfea90dffefd1576f5f01d"
             ],
             "index": "pypi",
-            "version": "==1.4"
+            "markers": "python_version >= '3.8'",
+            "version": "==2.3.0"
         },
         "black": {
             "hashes": [
